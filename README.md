@@ -2,8 +2,8 @@
 this is a web based application developed for health care facilities.
 ### this web application is based on healthcare and it is developed for accomplishment of future ready talent internship program launched by Microsoft, Future Skills Prime, Zuno by foundit & Github.
 
-* project link - https://mypro.z13.web.core.windows.net/health.html
-* project demo video link - 
+* project link - https://mypro.z13.web.core.windows.net/
+* project demo video link - https://youtu.be/Nnk8Fm24Rzk
 
 
 **Azure core technologies used for project**
