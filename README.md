@@ -43,7 +43,7 @@ Visual studio code
 8. after that start the static web application servises on to your website.
 9. finally , your website is now hosted on platform.
 
-# steps to follow for deployment of azure health bot:
+## steps to follow for deployment of azure health bot:
 1. first, you need to have an access to the azure portal.
 2. then search "health bot" in azure AI services
 3. select the azure health bot
@@ -51,10 +51,10 @@ Visual studio code
 5. then go to the management then click on "keys".
 6. here , copy the key and paste in your project code where you want to apply.
 7. copy ,the name id provided in keys section and paste it in the project code in the AI health BOt nav.
-# the AI healthbot code joining to the project :
+### the AI healthbot code joining to the project :
 8. now , commit changes & run the program .
 9. now your Azure healt bot is applide to the project success fully.
-# Azure AI health bot screenshot in project:
+### Azure AI health bot screenshot in project:
 
 ## designed & developed by :
 1. Anurag Anilkumarji Dayma (group representative)
