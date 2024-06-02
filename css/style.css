@@ -287,7 +287,7 @@ button {
     float: left;
     font-size: 18px;
     color: #f6f8f8;
-    background-color: #4bc5b8;
+    background-color: #d67272;
     text-align: center;
     padding: 10px 0px;
 }
@@ -310,15 +310,15 @@ button {
 
 .contact_bt a:hover {
     color: #f6f8f8;
-    background-color: #4bc5b8;
+    background-color: #d67272;
 }
 
 #main_slider .carousel-control-prev:hover,
 #main_slider .carousel-control-next:hover,
 #main_slider .carousel-control-prev:focus,
 #main_slider .carousel-control-next:focus {
-    border: 4px solid #4bc5b8;
-    color: #4bc5b8;
+    border: 4px solid #d67272;
+    color: #d67272;
 }
 
 #main_slider a.carousel-control-next {
@@ -331,8 +331,8 @@ button {
     position: absolute;
     left: 120px;
     top: 85%;
-    border: 4px solid #4bc5b8;
-    color: #4bc5b8;
+    border: 4px solid #d67272;
+    color: #d67272;
 }
 
 #main_slider .carousel-control-prev,
