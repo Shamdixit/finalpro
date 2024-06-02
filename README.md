@@ -32,16 +32,31 @@ Welcome to the Wellthier HealthCare Website repository. This project aims to pro
 ## IDE USed :
 Visual studio code
 
+## steps to follow for deployment of dtatic web applications:
+1. Create an Azure Static Web App Go to the Azure Portal and log in.
+### 2. Click on Create a resource and search for "Static Web App". ![st2](https://github.com/Shamdixit/finalpro/assets/126175943/98fe4bac-dd11-47dc-8339-d4f393905ba6)
+
+4. Click on Create to start the setup process.
+### 5. Fill in the required details.![storageacc](https://github.com/Shamdixit/finalpro/assets/126175943/f6ae1352-1a12-4a9b-ac75-e89f48fa83e7)
+## 6. Deploy Your App.![stwb1](https://github.com/Shamdixit/finalpro/assets/126175943/2b8f3c38-abac-4cbe-ae1c-4ca798de3a4c)
+7. Every time you push changes to your repository, the GitHub Actions workflow will trigger and deploy your site.
+8. You can monitor the deployment status in the Actions tab of your GitHub repository.
+
+### 9. Access Your Deployed App.![st5](https://github.com/Shamdixit/finalpro/assets/126175943/7ee10b81-8d49-4dfa-911f-f0b71500deaf)
+Once the deployment is complete, you can access your static web app via the URL provided in the Azure Portal under your Static Web App resource.
+
 ## steps to follow for deployment of storage accounts :
 1. built the whole project code in visual studio code
 2. test it on the live server.
 3. after that install git in system.
 4. uplode project on your github repositry.
-5. after that login to your azure portal and get access to try for free.
-6. then select azure storage accounts, click on create .
-7. after creating successfully uplode your project files on to it.
-8. after that start the static web application servises on to your website.
-9. finally , your website is now hosted on platform.
+5. after that login to your azure portal and get access to try for free.![storageacc](https://github.com/Shamdixit/finalpro/assets/126175943/13012965-b66d-4de2-adba-7ecafa0f46e1)
+6. then select azure storage accounts, click on create. 
+7. after creating successfully uplode your project files on to it.![storage](https://github.com/Shamdixit/finalpro/assets/126175943/8f59f631-86c9-4fde-be34-b13577ffbb5b)
+
+### all files are uploaded to the storage Accounts:
+9. after that start the static web application servises on to your website.
+10. finally , your website is now stoerd in the Azure Storage Accounts.
 
 ## steps to follow for deployment of azure health bot:
 1. first, you need to have an access to the azure portal.
@@ -51,10 +66,12 @@ Visual studio code
 5. then go to the management then click on "keys".
 6. here , copy the key and paste in your project code where you want to apply.
 7. copy ,the name id provided in keys section and paste it in the project code in the AI health BOt nav.
-### the AI healthbot code joining to the project :
+### the AI healthbot code joining to the project : ![hb](https://github.com/Shamdixit/finalpro/assets/126175943/6cd103dd-30d5-4cfe-bb81-92927d86fb51)
+
 8. now , commit changes & run the program .
-9. now your Azure healt bot is applide to the project success fully.
-### Azure AI health bot screenshot in project:
+9. now your Azure healt bot is applide to the project successfully.
+
+### Azure AI health bot screenshot in project:  ![hbs](https://github.com/Shamdixit/finalpro/assets/126175943/683b7735-bedf-49d5-b56a-b6733655f69f)
 
 ## designed & developed by :
 1. Anurag Anilkumarji Dayma (group representative)
