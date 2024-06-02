@@ -83,7 +83,7 @@ we have worked together on the whole wellthier project together using HTML, CSS 
 * makes the connection between project and Azure AI health BOt. 
 * deplyode and stored data of web application in the Azure Storage Accounts.
 * worked on readme file creation.
-3. Shamkumar Bhausaheb Dixit
+2. Shamkumar Bhausaheb Dixit
 * worked on the small detailings of the website .
 * worked on the designing of the website using CSS.
 * makes the web site respnsive.
