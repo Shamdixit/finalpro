@@ -813,7 +813,7 @@ button {
 #my_slider .carousel-control-next:hover,
 #my_slider .carousel-control-prev:focus,
 #my_slider .carousel-control-next:focus {
-    background-color: #19e9d9;
+    background-color: #0d6e16;
     color: #ffffff;
 }
 
@@ -821,7 +821,7 @@ button {
     position: absolute;
     left: 490px;
     top: 70%;
-    background-color: #19e9d9;
+    background-color: #0d6e16;
     color: #ffffff;
 }
 
@@ -918,7 +918,7 @@ input.Enter_text::placeholder {
     float: left;
     font-size: 18px;
     color: #ffffff;
-    background-color: #19e9d9;
+    background-color: #0d6e16;
     text-align: center;
     padding: 7px 0px;
     text-transform: uppercase;
@@ -961,7 +961,7 @@ input.Enter_text::placeholder {
 }
 
 .copyright_text a:hover {
-    color: #19e9d9;
+    color: #0d6e16;
 }
 
 .margin_90 {
