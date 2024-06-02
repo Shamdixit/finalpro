@@ -476,7 +476,7 @@ button {
     float: left;
     font-size: 18px;
     color: #ffffff;
-    background-color: #1becde;
+    background-color: #1bec29;
     padding: 7px 0px;
     text-align: center;
 }
@@ -585,7 +585,7 @@ button {
 }
 
 .box_main.active {
-    background-color: #1becde;
+    background-color: #1bec29;
 }
 
 .icon_1 {
@@ -630,7 +630,7 @@ button {
     float: left;
     font-size: 18px;
     color: #ffffff;
-    background-color: #1becde;
+    background-color: #1bec29;
     padding: 7px 0px;
     text-align: center;
     margin-top: 50px;
@@ -727,7 +727,7 @@ button {
     float: left;
     font-size: 18px;
     color: #ffffff;
-    background-color: #1becde;
+    background-color: #1bec29;
     padding: 7px 0px;
     text-align: center;
     margin-top: 50px;
