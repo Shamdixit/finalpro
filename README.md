@@ -84,12 +84,12 @@ we have worked together on the whole wellthier project together using HTML, CSS 
 * deplyode and stored data of web application in the Azure Storage Accounts.
 * worked on readme file creation.
 3. Shamkumar Bhausaheb Dixit
-    * worked on the small detailings of the website .
-    * worked on the designing of the website using CSS.
-    * makes the web site respnsive.
-    * deployed the website to the azure static web apps.
-    * made the youtube demo video.
-    * working on applying database.
+* worked on the small detailings of the website .
+* worked on the designing of the website using CSS.
+* makes the web site respnsive.
+* deployed the website to the azure static web apps.
+*  Made the youtube demo video.
+* working on applying database.
 
   
 
