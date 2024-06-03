@@ -408,7 +408,7 @@
       _proto.dispose = function dispose() {
         $$$1.removeData(this._element, DATA_KEY);
         this._element = null;
-      }; // Static
+      }; 
 
 
       Button._jQueryInterface = function _jQueryInterface(config) {
@@ -997,8 +997,7 @@
         if (this._config.toggle) {
           this.toggle();
         }
-      } // Getters
-
+      } 
 
       var _proto = Collapse.prototype;
 
@@ -1143,8 +1142,7 @@
 
       _proto._getConfig = function _getConfig(config) {
         config = _objectSpread({}, Default, config);
-        config.toggle = Boolean(config.toggle); // Coerce string values
-
+        config.toggle = Boolean(config.toggle)
         Util.typeCheckConfig(NAME, config, DefaultType);
         return config;
       };
@@ -1160,8 +1158,7 @@
         var parent = null;
 
         if (Util.isElement(this._config.parent)) {
-          parent = this._config.parent; // It's a jQuery object
-
+          parent = this._config.parent; 
           if (typeof this._config.parent.jquery !== 'undefined') {
             parent = this._config.parent[0];
           }
@@ -1184,9 +1181,7 @@
             $$$1(triggerArray).toggleClass(ClassName.COLLAPSED, !isOpen).attr('aria-expanded', isOpen);
           }
         }
-      }; // Static
-
-
+      };
       Collapse._getTargetFromElement = function _getTargetFromElement(element) {
         var selector = Util.getSelectorFromElement(element);
         return selector ? $$$1(selector)[0] : null;
@@ -1235,7 +1230,6 @@
 
 
     $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
-      // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
       if (event.currentTarget.tagName === 'A') {
         event.preventDefault();
       }
@@ -1374,7 +1368,7 @@
 
         if (showEvent.isDefaultPrevented()) {
           return;
-        } // Disable totally Popper.js for Dropdown in Navbar
+        } 
 
 
         if (!this._inNavbar) {
@@ -1388,7 +1382,7 @@
           if (this._config.reference === 'parent') {
             referenceElement = parent;
           } else if (Util.isElement(this._config.reference)) {
-            referenceElement = this._config.reference; // Check if it's jQuery element
+            referenceElement = this._config.reference; 
 
             if (typeof this._config.reference.jquery !== 'undefined') {
               referenceElement = this._config.reference[0];
@@ -1707,7 +1701,7 @@
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
-    var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
+    var ESCAPE_KEYCODE = 27; 
 
     var Default = {
       backdrop: true,
@@ -1940,7 +1934,7 @@
       _proto._enforceFocus = function _enforceFocus() {
         var _this4 = this;
 
-        $$$1(document).off(Event.FOCUSIN) // Guard against infinite focus loop
+        $$$1(document).off(Event.FOCUSIN)
         .on(Event.FOCUSIN, function (event) {
           if (document !== event.target && _this4._element !== event.target && $$$1(_this4._element).has(event.target).length === 0) {
             _this4._element.focus();
@@ -2863,11 +2857,6 @@
 
       return Tooltip;
     }();
-    /**
-     * ------------------------------------------------------------------------
-     * jQuery
-     * ------------------------------------------------------------------------
-     */
 
 
     $$$1.fn[NAME] = Tooltip._jQueryInterface;
@@ -2881,19 +2870,8 @@
     return Tooltip;
   }($, Popper);
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.0): popover.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
   var Popover = function ($$$1) {
-    /**
-     * ------------------------------------------------------------------------
-     * Constants
-     * ------------------------------------------------------------------------
-     */
+  
     var NAME = 'popover';
     var VERSION = '4.1.0';
     var DATA_KEY = 'bs.popover';
@@ -2961,7 +2939,7 @@
       };
 
       _proto.setContent = function setContent() {
-        var $tip = $$$1(this.getTipElement()); // We use append for html objects to maintain js events
+        var $tip = $$$1(this.getTipElement()); 
 
         this.setElementContent($tip.find(Selector.TITLE), this.getTitle());
 
@@ -3267,9 +3245,7 @@
 
         this._clear();
 
-        var queries = this._selector.split(','); // eslint-disable-next-line arrow-body-style
-
-
+        var queries = this._selector.split(','); 
         queries = queries.map(function (selector) {
           return selector + "[data-target=\"" + target + "\"]," + (selector + "[href=\"" + target + "\"]");
         });
