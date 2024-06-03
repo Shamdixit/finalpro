@@ -52,14 +52,17 @@ Once the deployment is complete, you can access your static web app via the URL 
 2. test it on the live server.
 3. after that install git in system.
 4. uplode project on your github repositry.
-5. after that login to your azure portal and get access to try for free.![storageacc](https://github.com/Shamdixit/finalpro/assets/126175943/13012965-b66d-4de2-adba-7ecafa0f46e1)
+5. after that login to your azure portal and get access to try for free.
 6. then select azure storage accounts, click on create. 
-7. after creating successfully uplode your project files on to it.![storage](https://github.com/Shamdixit/finalpro/assets/126175943/8f59f631-86c9-4fde-be34-b13577ffbb5b)
-
-### all files are uploaded to the storage Accounts:
+7. after creating successfully uplode your project files on to it.
+8. ### all files are uploaded to the Azure storage Accounts.
+![str1](https://github.com/Shamdixit/finalpro/assets/126175943/b73fb199-6628-4e3c-bf4b-5372550ad78f)
 9. after that start the static web application servises on to your website.
 10. finally , your website is now stoerd in the Azure Storage Accounts.
+![str2](https://github.com/Shamdixit/finalpro/assets/126175943/700d1a43-a854-4e2b-b98f-ceba8c39c9b2)
 
+* this is the link provided by the Azure Storage Accounts. 
+   https://healthcare01.z5.web.core.windows.net/ 
 ## steps to follow for deployment of azure health bot:
 1. first, you need to have an access to the azure portal.
 2. then search "health bot" in azure AI services
