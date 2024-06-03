@@ -68,22 +68,25 @@ Once the deployment is complete, you can access your static web app via the URL 
 5. then go to the management then click on "keys".
 6. here , copy the key and paste in your project code where you want to apply.
 7. copy ,the name id provided in keys section and paste it in the project code in the AI health BOt nav.
-### the AI healthbot code joining to the project : ![hb](https://github.com/Shamdixit/finalpro/assets/126175943/6cd103dd-30d5-4cfe-bb81-92927d86fb51)
+### the AI healthbot code joining to the project :
+  ![hbs](https://github.com/Shamdixit/finalpro/assets/126175943/683b7735-bedf-49d5-b56a-b6733655f69f)
 
 8. now , commit changes & run the program .
-9. now your Azure healt bot is applide to the project successfully.
+### 9. now your Azure healt bot is applide to the project successfully. ![hb](https://github.com/Shamdixit/finalpro/assets/126175943/6cd103dd-30d5-4cfe-bb81-92927d86fb51)
+10. 
+### Azure AI health bot screenshot in project:![hb9](https://github.com/Shamdixit/finalpro/assets/126175943/b7f0d471-9854-4010-83d1-56b24a991083)
 
-### Azure AI health bot screenshot in project:  ![hbs](https://github.com/Shamdixit/finalpro/assets/126175943/683b7735-bedf-49d5-b56a-b6733655f69f)
-
-# * here are some screen shots of the web application.
+# * here are some Project DEMO  screenshots of the web application (Welltier).
 ![home](https://github.com/Shamdixit/finalpro/assets/126175943/ffcad9cf-c47d-43f7-9a45-4e8cfeb92d88)
 ![contact](https://github.com/Shamdixit/finalpro/assets/126175943/c632fb90-03da-48fa-9d88-d5d11fd79312)
 ![c2](https://github.com/Shamdixit/finalpro/assets/126175943/01218da8-8016-4607-a691-867a35d8b5fd)
 ![foot](https://github.com/Shamdixit/finalpro/assets/126175943/f9470d58-8f1a-45d0-9338-c7651a39d8d2)
+![hb9](https://github.com/Shamdixit/finalpro/assets/126175943/b7f0d471-9854-4010-83d1-56b24a991083)
 
 
 ## designed & developed by :
 we have worked together on the whole wellthier project together using HTML, CSS , JavaScript.
+ ## * following is the contribution of each member of the project:
 
 1. Anurag Anilkumarji Dayma (group representative)
 * made the main structure of the website using HTML.
