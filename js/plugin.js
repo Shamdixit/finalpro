@@ -347,7 +347,6 @@ var r=!1;n.isFunction(i)&&(a=i,i=null),n.isPlainObject(e)||t.removeAttr("style")
 			}
 			$("<span class='input-group-btn'></span>").append(up).appendTo(group);
 
-			// remove spins from original
 			clone.attr('type', 'text').keydown(function (e) {
 				if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -0 ||
 					(e.keyCode == 65 && e.ctrlKey === true) || 
@@ -1273,7 +1272,6 @@ $.fn.position = function( options ) {
 		return _position.apply( this, arguments );
 	}
 
-	// Make a origin, we don't want to modify arguments
 	options = $.extend( {}, options );
 
 	var atOffset, targetWidth, targetHeight, targetOffset, basePosition, dimensions,
@@ -1945,12 +1943,10 @@ color.fn = jQuery.extend( color.prototype, {
 				endValue = end[ index ],
 				type = propTypes[ prop.type ] || {};
 
-			// If null, don't override start value
 			if ( endValue === null ) {
 				return;
 			}
 
-			// If null - use end
 			if ( startValue === null ) {
 				result[ index ] = endValue;
 			} else {
@@ -2023,7 +2019,6 @@ color.fn = jQuery.extend( color.prototype, {
 
 		return "#" + jQuery.map( rgba, function( v ) {
 
-			// Default to 0 when nulls exist
 			v = ( v || 0 ).toString( 16 );
 			return v.length === 1 ? "0" + v : v;
 		} ).join( "" );
@@ -3390,7 +3385,6 @@ var effectsEffectFade = $.effects.define( "fade", "toggle", function( options, d
 
 var effectsEffectFold = $.effects.define( "fold", "hide", function( options, done ) {
 
-	// Create element
 	var element = $( this ),
 		mode = options.mode,
 		show = mode === "show",
@@ -3475,16 +3469,13 @@ var effectsEffectHighlight = $.effects.define( "highlight", "show", function( op
 
 var effectsEffectSize = $.effects.define( "size", function( options, done ) {
 
-	// Create element
 	var baseline, factor, temp,
 		element = $( this ),
 
-		// origin for children
 		cProps = [ "fontSize" ],
 		vProps = [ "borderTopWidth", "borderBottomWidth", "paddingTop", "paddingBottom" ],
 		hProps = [ "borderLeftWidth", "borderRightWidth", "paddingLeft", "paddingRight" ],
 
-		// Set options
 		mode = options.mode,
 		restore = mode !== "effect",
 		scale = options.scale || "both",
@@ -3580,11 +3571,9 @@ var effectsEffectSize = $.effects.define( "size", function( options, done ) {
 				$.effects.saveStyle( child );
 			}
 
-			// Animate children
 			child.css( childFrom );
 			child.animate( childTo, options.duration, options.easing, function() {
 
-				// Restore children
 				if ( restore ) {
 					$.effects.restoreStyle( child );
 				}
@@ -3710,15 +3699,12 @@ var effectsEffectShake = $.effects.define( "shake", function( options, done ) {
 
 	$.effects.createPlaceholder( element );
 
-	// Animation
 	animation[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance;
 	animation1[ ref ] = ( positiveMotion ? "+=" : "-=" ) + distance * 2;
 	animation2[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance * 2;
 
-	// Animate
 	element.animate( animation, speed, options.easing );
 
-	// Shakes
 	for ( ; i < times; i++ ) {
 		element
 			.animate( animation1, speed, options.easing )
@@ -3791,7 +3777,6 @@ var effectsEffectTransfer = effect;
 
 
 
-// Selectors
 $.ui.focusable = function( element, hasTabindex ) {
 	var map, mapName, img, focusableIfVisible, fieldset,
 		nodeName = element.nodeName.toLowerCase();
@@ -4300,7 +4285,6 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		this.panels = this.headers.next().filter( ":not(.ui-accordion-content-active)" ).hide();
 		this._addClass( this.panels, "ui-accordion-content", "ui-helper-reset ui-widget-content" );
 
-		// Avoid memory leaks (#10056)
 		if ( prevPanels ) {
 			this._off( prevHeaders.not( this.headers ) );
 			this._off( prevPanels.not( this.panels ) );
@@ -5246,7 +5230,6 @@ $.widget( "ui.autocomplete", {
 		},
 		source: null,
 
-		// Callbacks
 		change: null,
 		close: null,
 		focus: null,
@@ -5307,11 +5290,9 @@ $.widget( "ui.autocomplete", {
 					break;
 				case keyCode.ENTER:
 
-					// when menu is open and has focus
 					if ( this.menu.active ) {
 
-						// #6055 - Opera still allows the keypress to occur
-						// which causes forms to submit
+						
 						suppressKeyPress = true;
 						event.preventDefault();
 						this.menu.select( event );
@@ -5640,7 +5621,6 @@ $.widget( "ui.autocomplete", {
 			this._trigger( "open" );
 		} else {
 
-			// use ._close() instead of .close() so we don't cancel future searches
 			this._close();
 		}
 	},
@@ -5652,7 +5632,6 @@ $.widget( "ui.autocomplete", {
 
 	_close: function( event ) {
 
-		// Remove the handler that closes the menu on outside clicks
 		this._off( this.document, "mousedown" );
 
 		if ( this.menu.element.is( ":visible" ) ) {
@@ -13656,7 +13635,6 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 					this._refreshRange( value );
 				}
 
-				// Reset positioning from previous orientation
 				this.handles.css( value === "horizontal" ? "bottom" : "left", "" );
 				break;
 			case "value":
@@ -13669,7 +13647,6 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 				this._animateOff = true;
 				this._refreshValue();
 
-				// Start from the last handle to prevent unreachable handles (#9046)
 				for ( i = valsLength - 1; i >= 0; i-- ) {
 					this._change( null, i );
 				}
@@ -13716,8 +13693,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 			return val;
 		} else if ( this._hasMultipleValues() ) {
 
-			// .slice() creates a origin of the array
-			// this origin gets trimmed by min and max and then returned
+			
 			vals = this.options.values.slice();
 			for ( i = 0; i < vals.length; i += 1 ) {
 				vals[ i ] = this._trimAlignValue( vals[ i ] );
