@@ -2331,7 +2331,6 @@ function styleDifference( oldStyle, newStyle ) {
 	return diff;
 }
 
-// Support: jQuery <1.8
 if ( !$.fn.addBack ) {
 	$.fn.addBack = function( selector ) {
 		return this.add( selector == null ?
@@ -3955,8 +3954,6 @@ var keycode = $.ui.keyCode = {
 };
 
 
-
-
 var escapeSelector = $.ui.escapeSelector = ( function() {
 	var selectorEscape = /([!"#$%&'()*+,./:;<=>?@[\]^`{|}~])/g;
 	return function( selector ) {
@@ -3994,8 +3991,6 @@ var labels = $.fn.labels = function() {
 	return this.pushStack( labels );
 };
 
-
-
 var scrollParent = $.fn.scrollParent = function( includeHidden ) {
 	var position = this.css( "position" ),
 		excludeStaticParent = position === "absolute",
@@ -4013,9 +4008,6 @@ var scrollParent = $.fn.scrollParent = function( includeHidden ) {
 		$( this[ 0 ].ownerDocument || document ) :
 		scrollParent;
 };
-
-
-
 var tabbable = $.extend( $.expr[ ":" ], {
 	tabbable: function( element ) {
 		var tabIndex = $.attr( element, "tabindex" ),
@@ -4047,7 +4039,6 @@ var uniqueId = $.fn.extend( {
 		} );
 	}
 } );
-
 
 var widgetsAccordion = $.widget( "ui.accordion", {
 	version: "1.12.1",
@@ -6930,7 +6921,7 @@ $.extend( Datepicker.prototype, {
 				prop( "disabled", false );
 		}
 		this._disabledInputs = $.map( this._disabledInputs,
-			function( value ) { return ( value === target ? null : value ); } ); // delete entry
+			function( value ) { return ( value === target ? null : value ); } 
 	},
 
 	_disableDatepicker: function( target ) {
@@ -6955,7 +6946,7 @@ $.extend( Datepicker.prototype, {
 				prop( "disabled", true );
 		}
 		this._disabledInputs = $.map( this._disabledInputs,
-			function( value ) { return ( value === target ? null : value ); } ); // delete entry
+			function( value ) { return ( value === target ? null : value ); } 
 		this._disabledInputs[ this._disabledInputs.length ] = target;
 	},
 
@@ -7417,7 +7408,7 @@ am  input  element - the input field attached to the date picker
 			return;
 		}
 		this._adjustInstDate( inst, offset +
-			( period === "M" ? this._get( inst, "showCurrentAtPos" ) : 0 ), // undo positioning
+			( period === "M" ? this._get( inst, "showCurrentAtPos" ) : 0 ), 
 			period );
 		this._updateDatepicker( inst );
 	},
@@ -7726,7 +7717,6 @@ am  input  element - the input field attached to the date picker
 			monthNamesShort = ( settings ? settings.monthNamesShort : null ) || this._defaults.monthNamesShort,
 			monthNames = ( settings ? settings.monthNames : null ) || this._defaults.monthNames,
 
-			// Check whether a format character is doubled
 			lookAhead = function( match ) {
 				var matches = ( iFormat + 1 < format.length && format.charAt( iFormat + 1 ) === match );
 				if ( matches ) {
@@ -7735,7 +7725,6 @@ am  input  element - the input field attached to the date picker
 				return matches;
 			},
 
-			// Format a number, with leading zero if necessary
 			formatNumber = function( match, value, len ) {
 				var num = "" + value;
 				if ( lookAhead( match ) ) {
@@ -13982,18 +13971,14 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		this.containerCache = {};
 		this._addClass( "ui-sortable" );
 
-		//Get the items
 		this.refresh();
 
-		//Let's determine the parent's offset
 		this.offset = this.element.offset();
 
-		//Initialize mouse events for interaction
 		this._mouseInit();
 
 		this._setHandleClassName();
 
-		//We're ready to go
 		this.ready = true;
 
 	},
@@ -15522,8 +15507,6 @@ $.widget( "ui.spinner", {
 			"showLabel": false
 		} );
 
-		// IE 6 doesn't understand height: 50% for the buttons
-		// unless the wrapper has an explicit height
 		if ( this.buttons.height() > Math.ceil( this.uiSpinner.height() * 0.5 ) &&
 				this.uiSpinner.height() > 0 ) {
 			this.uiSpinner.height( this.uiSpinner.height() );
@@ -16275,7 +16258,6 @@ $.widget( "ui.tabs", {
 
 		this._off( this.anchors.add( this.tabs ).add( this.panels ) );
 
-		// Always prevent the default action, even when disabled
 		this._on( true, this.anchors, {
 			click: function( event ) {
 				event.preventDefault();
@@ -16573,7 +16555,6 @@ $.widget( "ui.tabs", {
 				}
 			};
 
-		// Not remote
 		if ( this._isLocal( anchor[ 0 ] ) ) {
 			return;
 		}
