@@ -14,7 +14,6 @@
 	while (length--) {
 		method = methods[length];
 
-		// Only stub undefined methods.
 		if (!console[method]) {
 			console[method] = noop;
 		}
@@ -24,7 +23,6 @@
 
 				options = $.extend(defaults, options);
 
-				// get browser width
 				var currentWidth = window.innerWidth || document.documentElement.clientWidth;
 
 				return this.each(function () {
@@ -48,14 +46,12 @@
 						var meanDisplay = options.meanDisplay;
 						var removeElements = options.removeElements;
 
-						//detect known mobile/tablet usage
 						var isMobile = false;
 						if ( (navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i)) || (navigator.userAgent.match(/Android/i)) || (navigator.userAgent.match(/Blackberry/i)) || (navigator.userAgent.match(/Windows Phone/i)) ) {
 								isMobile = true;
 						}
 
 						if ( (navigator.userAgent.match(/MSIE 8/i)) || (navigator.userAgent.match(/MSIE 7/i)) ) {
-							// add scrollbar for IE7 & 8 to stop breaking resize function on small content sites
 								jQuery('html').css("overflow-y" , "scroll");
 						}
 
@@ -91,7 +87,6 @@
 						var $navreveal = "";
 
 						var meanInner = function() {
-								// get last class name
 								if (jQuery($navreveal).is(".meanmenu-reveal.meanclose")) {
 										$navreveal.html(meanMenuClose);
 								} else {
@@ -167,7 +162,6 @@
 											jQuery('.mean-nav ul ul').hide();
 									}
 
-									// add last class to tidy up borders
 									jQuery('.mean-nav ul li').last().addClass('mean-last');
 									$navreveal.removeClass("meanclose");
 									jQuery($navreveal).click(function(e){
@@ -187,7 +181,6 @@
 											jQuery(removeElements).addClass('mean-remove');
 									});
 
-									// for one page websites, reset all variables...
 									if ( onePage ) {
 										jQuery('.mean-nav ul > li > a:first-child').on( "click" , function () {
 											jQuery('.mean-nav ul:first').slideUp();
@@ -201,7 +194,6 @@
 						};
 
 						if (!isMobile) {
-								// reset menu on resize above meanScreenWidth
 								jQuery(window).resize(function () {
 										currentWidth = window.innerWidth || document.documentElement.clientWidth;
 										if (currentWidth > meanScreenWidth) {
@@ -239,7 +231,6 @@
 								}
 						});
 
-					// run main menuMenu function on load
 					showMeanMenu();
 				});
 		};
@@ -272,7 +263,6 @@ this.core.speed(0);var b,c=a.proxy(this.clear,this),d=this.core.$stage.children(
 		var firstTop;
 		var paddingTop = 0;
 		
-		//get the starting position of each element to have parallax applied to it		
 		jQuerythis.each(function(){
 		    firstTop = jQuerythis.offset().top;
 		});
@@ -287,12 +277,10 @@ this.core.speed(0);var b,c=a.proxy(this.clear,this),d=this.core.$stage.children(
 			};
 		}
 			
-		// setup defaults if arguments aren't specified
 		if (arguments.length < 1 || xpos === null) xpos = "50%";
 		if (arguments.length < 2 || speedFactor === null) speedFactor = 0.1;
 		if (arguments.length < 3 || outerHeight === null) outerHeight = true;
 		
-		// function to be called whenever the window is scrolled or resized
 		function update(){
 			var pos = jQuerywindow.scrollTop();				
 
@@ -301,7 +289,6 @@ this.core.speed(0);var b,c=a.proxy(this.clear,this),d=this.core.$stage.children(
 				var top = jQueryelement.offset().top;
 				var height = getHeight(jQueryelement);
 
-				// Check if totally above or totally below viewport
 				if (top + height < pos || top > pos + windowHeight) {
 					return;
 				}
@@ -513,11 +500,9 @@ d));k.push(d)});return 1==k.length?k[0]:k};window.NiceScroll={getjQuery:function
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
 		define([ "jquery" ], factory );
 	} else {
 
-		// Browser globals
 		factory( jQuery );
 	}
 }(function( $ ) {
@@ -535,13 +520,11 @@ $.cleanData = ( function( orig ) {
 		for ( i = 0; ( elem = elems[ i ] ) != null; i++ ) {
 			try {
 
-				// Only trigger remove when necessary to save time
 				events = $._data( elem, "events" );
 				if ( events && events.remove ) {
 					$( elem ).triggerHandler( "remove" );
 				}
 
-			// Http://bugs.jquery.com/ticket/8235
 			} catch ( e ) {}
 		}
 		orig( elems );
@@ -566,7 +549,6 @@ $.widget = function( name, base, prototype ) {
 		prototype = $.extend.apply( null, [ {} ].concat( prototype ) );
 	}
 
-	// Create selector for plugin
 	$.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
 		return !!$.data( elem, fullName );
 	};
@@ -575,7 +557,6 @@ $.widget = function( name, base, prototype ) {
 	existingConstructor = $[ namespace ][ name ];
 	constructor = $[ namespace ][ name ] = function( options, element ) {
 
-		// Allow instantiation without "new" keyword
 		if ( !this._createWidget ) {
 			return new constructor( options, element );
 		}
@@ -666,12 +647,10 @@ $.widget.extend = function( target ) {
 			value = input[ inputIndex ][ key ];
 			if ( input[ inputIndex ].hasOwnProperty( key ) && value !== undefined ) {
 
-				// Clone objects
 				if ( $.isPlainObject( value ) ) {
 					target[ key ] = $.isPlainObject( target[ key ] ) ?
 						$.widget.extend( {}, target[ key ], value ) :
 
-						// Don't extend strings, arrays, etc. with objects
 						$.widget.extend( {}, value );
 
 				} else {
@@ -786,10 +765,8 @@ $.Widget.prototype = {
 			} );
 			this.document = $( element.style ?
 
-				// Element within the document
 				element.ownerDocument :
 
-				// Element is window or document
 				element.document || element );
 			this.window = $( this.document[ 0 ].defaultView || this.document[ 0 ].parentWindow );
 		}
@@ -1029,7 +1006,6 @@ $.Widget.prototype = {
 			suppressDisabledCheck = false;
 		}
 
-		// No element argument, shuffle and use this.element
 		if ( !handlers ) {
 			handlers = element;
 			element = this.element;
@@ -1042,9 +1018,7 @@ $.Widget.prototype = {
 		$.each( handlers, function( event, handler ) {
 			function handlerProxy() {
 
-				// Allow widgets to customize the disabled handling
-				// - disabled as an array instead of boolean
-				// - disabled class as method for disabling individual parts
+				
 				if ( !suppressDisabledCheck &&
 						( instance.options.disabled === true ||
 						$( this ).hasClass( "ui-state-disabled" ) ) ) {
@@ -1054,7 +1028,6 @@ $.Widget.prototype = {
 					.apply( instance, arguments );
 			}
 
-			// origin the guid so direct unbinding works
 			if ( typeof handler !== "string" ) {
 				handlerProxy.guid = handler.guid =
 					handler.guid || handlerProxy.guid || $.guid++;
@@ -1077,7 +1050,6 @@ $.Widget.prototype = {
 			this.eventNamespace;
 		element.off( eventName ).off( eventName );
 
-		// Clear the stack to avoid memory leaks (#10056)
 		this.bindings = $( this.bindings.not( element ).get() );
 		this.focusable = $( this.focusable.not( element ).get() );
 		this.hoverable = $( this.hoverable.not( element ).get() );
@@ -1126,8 +1098,6 @@ $.Widget.prototype = {
 			type :
 			this.widgetEventPrefix + type ).toLowerCase();
 
-		// The original event may come from any element
-		// so we need to reset the target on the new event
 		event.target = this.element[ 0 ];
 
 		orig = event.originalEvent;
@@ -1318,18 +1288,14 @@ $.fn.position = function( options ) {
 	dimensions = getDimensions( target );
 	if ( target[ 0 ].preventDefault ) {
 
-		// Force left top to allow flipping
 		options.at = "left top";
 	}
 	targetWidth = dimensions.width;
 	targetHeight = dimensions.height;
 	targetOffset = dimensions.offset;
 
-	// Clone to reuse original targetOffset later
 	basePosition = $.extend( {}, targetOffset );
 
-	// Force my and at to have valid horizontal and vertical positions
-	// if a value is missing or invalid, it will be converted to center
 	$.each( [ "my", "at" ], function() {
 		var pos = ( options[ this ] || "" ).split( " " ),
 			horizontalOffset,
@@ -1345,7 +1311,6 @@ $.fn.position = function( options ) {
 		pos[ 0 ] = rhorizontal.test( pos[ 0 ] ) ? pos[ 0 ] : "center";
 		pos[ 1 ] = rvertical.test( pos[ 1 ] ) ? pos[ 1 ] : "center";
 
-		// Calculate offsets
 		horizontalOffset = roffset.exec( pos[ 0 ] );
 		verticalOffset = roffset.exec( pos[ 1 ] );
 		offsets[ this ] = [
@@ -1353,14 +1318,12 @@ $.fn.position = function( options ) {
 			verticalOffset ? verticalOffset[ 0 ] : 0
 		];
 
-		// Reduce to just the positions without the offsets
 		options[ this ] = [
 			rposition.exec( pos[ 0 ] )[ 0 ],
 			rposition.exec( pos[ 1 ] )[ 0 ]
 		];
 	} );
 
-	// Normalize collision option
 	if ( collision.length === 1 ) {
 		collision[ 1 ] = collision[ 0 ];
 	}
@@ -1436,7 +1399,6 @@ $.fn.position = function( options ) {
 
 		if ( options.using ) {
 
-			// Adds feedback as second argument to using callback, if present
 			using = function( props ) {
 				var left = targetOffset.left - position.left,
 					right = left + targetWidth - elemWidth,
@@ -1490,20 +1452,16 @@ $.ui.position = {
 				overRight = collisionPosLeft + data.collisionWidth - outerWidth - withinOffset,
 				newOverRight;
 
-			// Element is wider than within
 			if ( data.collisionWidth > outerWidth ) {
 
-				// Element is initially over the left side of within
 				if ( overLeft > 0 && overRight <= 0 ) {
 					newOverRight = position.left + overLeft + data.collisionWidth - outerWidth -
 						withinOffset;
 					position.left += overLeft - newOverRight;
 
-				// Element is initially over right side of within
 				} else if ( overRight > 0 && overLeft <= 0 ) {
 					position.left = withinOffset;
 
-				// Element is initially over both left and right sides of within
 				} else {
 					if ( overLeft > overRight ) {
 						position.left = withinOffset + outerWidth - data.collisionWidth;
@@ -1512,15 +1470,12 @@ $.ui.position = {
 					}
 				}
 
-			// Too far left -> align with left edge
 			} else if ( overLeft > 0 ) {
 				position.left += overLeft;
 
-			// Too far right -> align with right edge
 			} else if ( overRight > 0 ) {
 				position.left -= overRight;
 
-			// Adjust based on position and margin
 			} else {
 				position.left = max( position.left - collisionPosLeft, position.left );
 			}
@@ -1534,20 +1489,16 @@ $.ui.position = {
 				overBottom = collisionPosTop + data.collisionHeight - outerHeight - withinOffset,
 				newOverBottom;
 
-			// Element is taller than within
 			if ( data.collisionHeight > outerHeight ) {
 
-				// Element is initially over the top of within
 				if ( overTop > 0 && overBottom <= 0 ) {
 					newOverBottom = position.top + overTop + data.collisionHeight - outerHeight -
 						withinOffset;
 					position.top += overTop - newOverBottom;
 
-				// Element is initially over bottom of within
 				} else if ( overBottom > 0 && overTop <= 0 ) {
 					position.top = withinOffset;
 
-				// Element is initially over both top and bottom of within
 				} else {
 					if ( overTop > overBottom ) {
 						position.top = withinOffset + outerHeight - data.collisionHeight;
@@ -1556,15 +1507,12 @@ $.ui.position = {
 					}
 				}
 
-			// Too far up -> align with top
 			} else if ( overTop > 0 ) {
 				position.top += overTop;
 
-			// Too far down -> align with bottom edge
 			} else if ( overBottom > 0 ) {
 				position.top -= overBottom;
 
-			// Adjust based on position and margin
 			} else {
 				position.top = max( position.top - collisionPosTop, position.top );
 			}
@@ -1705,10 +1653,8 @@ var dataSpace = "ui-effects-",
 	var stepHooks = "backgroundColor borderBottomColor borderLeftColor borderRightColor " +
 		"borderTopColor color columnRuleColor outlineColor textDecorationColor textEmphasisColor",
 
-	// Plusequals test for += 100 -= 100
 	rplusequals = /^([\-+])=\s*(\d+\.?\d*)/,
 
-	// A set of RE's that can match strings and generate color tuples.
 	stringParsers = [ {
 			re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
 			parse: function( execResult ) {
@@ -1731,7 +1677,6 @@ var dataSpace = "ui-effects-",
 			}
 		}, {
 
-			// This regex ignores A-F because it's compared against an already lowercased string
 			re: /#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})/,
 			parse: function( execResult ) {
 				return [
@@ -1742,7 +1687,6 @@ var dataSpace = "ui-effects-",
 			}
 		}, {
 
-			// This regex ignores A-F because it's compared against an already lowercased string
 			re: /#([a-f0-9])([a-f0-9])([a-f0-9])/,
 			parse: function( execResult ) {
 				return [
@@ -1764,7 +1708,6 @@ var dataSpace = "ui-effects-",
 			}
 		} ],
 
-	// JQuery.Color( )
 	color = jQuery.Color = function( color, green, blue, alpha ) {
 		return new jQuery.Color.fn.parse( color, green, blue, alpha );
 	},
@@ -2132,8 +2075,6 @@ spaces.hsla.to = function( rgba ) {
 		h = ( 60 * ( r - g ) / diff ) + 240;
 	}
 
-	// Chroma (diff) == 0 means greyscale which, by definition, saturation = 0%
-	// otherwise, saturation is based on the ratio of chroma (diff) to lightness (add)
 	if ( diff === 0 ) {
 		s = 0;
 	} else if ( l <= 0.5 ) {
@@ -2169,10 +2110,8 @@ each( spaces, function( spaceName, space ) {
 		to = space.to,
 		from = space.from;
 
-	// Makes rgba() and hsla()
 	color.fn[ spaceName ] = function( value ) {
 
-		// Generate a cache for this space if it doesn't exist
 		if ( to && !this[ cache ] ) {
 			this[ cache ] = to( this._rgba );
 		}
@@ -2202,10 +2141,8 @@ each( spaces, function( spaceName, space ) {
 		}
 	};
 
-	// Makes red() green() blue() alpha() hue() saturation() lightness()
 	each( props, function( key, prop ) {
 
-		// Alpha is included in more than one space
 		if ( color.fn[ key ] ) {
 			return;
 		}
@@ -2419,7 +2356,6 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 			applyClassChange,
 			allAnimations = o.children ? animated.find( "*" ).addBack() : animated;
 
-		// Map the animated objects to store the original styles.
 		allAnimations = allAnimations.map( function() {
 			var el = $( this );
 			return {
@@ -2459,14 +2395,12 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 			return dfd.promise();
 		} );
 
-		// Once all animations have completed:
+		
 		$.when.apply( $, allAnimations.get() ).done( function() {
 
-			// Set the final class
 			applyClassChange();
 
-			// For each animated element,
-			// clear all css properties that were animated
+			
 			$.each( arguments, function() {
 				var el = this.el;
 				$.each( this.diff, function( key ) {
@@ -2540,7 +2474,6 @@ if ( $.expr && $.expr.filters && $.expr.filters.animated ) {
 if ( $.uiBackCompat !== false ) {
 	$.extend( $.effects, {
 
-		// Saves a set of properties in a data storage
 		save: function( element, set ) {
 			var i = 0, length = set.length;
 			for ( ; i < length; i++ ) {
@@ -2550,7 +2483,6 @@ if ( $.uiBackCompat !== false ) {
 			}
 		},
 
-		// Restores a set of previously saved properties from a data storage
 		restore: function( element, set ) {
 			var val, i = 0, length = set.length;
 			for ( ; i < length; i++ ) {
@@ -2568,15 +2500,12 @@ if ( $.uiBackCompat !== false ) {
 			return mode;
 		},
 
-		// Wraps the element around a wrapper that copies position properties
 		createWrapper: function( element ) {
 
-			// If the element is already wrapped, return it
 			if ( element.parent().is( ".ui-effects-wrapper" ) ) {
 				return element.parent();
 			}
 
-			// Wrap the element
 			var props = {
 					width: element.outerWidth( true ),
 					height: element.outerHeight( true ),
@@ -2592,7 +2521,6 @@ if ( $.uiBackCompat !== false ) {
 						padding: 0
 					} ),
 
-				// Store the size in case width/height are defined in % - Fixes #5245
 				size = {
 					width: element.width(),
 					height: element.height()
@@ -2646,7 +2574,6 @@ if ( $.uiBackCompat !== false ) {
 			if ( element.parent().is( ".ui-effects-wrapper" ) ) {
 				element.parent().replaceWith( element );
 
-				// Fixes #7595 - Elements lose focus when wrapped.
 				if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
 					$( active ).trigger( "focus" );
 				}
@@ -2703,7 +2630,6 @@ $.extend( $.effects, {
 		};
 	},
 
-	// Injects recently queued functions to be first in line (after "inprogress")
 	unshift: function( element, queueLength, count ) {
 		var queue = element.queue();
 
@@ -2735,7 +2661,6 @@ $.extend( $.effects, {
 		return mode;
 	},
 
-	// Translates a [top,left] array into a baseline value
 	getBaseline: function( origin, original ) {
 		var y, x;
 
@@ -2792,14 +2717,12 @@ $.extend( $.effects, {
 
 			placeholder = $( "<" + element[ 0 ].nodeName + ">" ).insertAfter( element ).css( {
 
-				// Convert inline to inline block to account for inline elements
-				// that turn to inline block based on content (like img)
+				
 				display: /^(inline|ruby)/.test( element.css( "display" ) ) ?
 					"inline-block" :
 					"block",
 				visibility: "hidden",
 
-				// Margins need to be set to account for margin collapse
 				marginTop: element.css( "marginTop" ),
 				marginBottom: element.css( "marginBottom" ),
 				marginLeft: element.css( "marginLeft" ),
@@ -2851,41 +2774,34 @@ $.extend( $.effects, {
 
 function _normalizeArguments( effect, options, speed, callback ) {
 
-	// Allow passing all options as the first parameter
 	if ( $.isPlainObject( effect ) ) {
 		options = effect;
 		effect = effect.effect;
 	}
 
-	// Convert to an object
 	effect = { effect: effect };
 
-	// Catch (effect, null, ...)
 	if ( options == null ) {
 		options = {};
 	}
 
-	// Catch (effect, callback)
 	if ( $.isFunction( options ) ) {
 		callback = options;
 		speed = null;
 		options = {};
 	}
 
-	// Catch (effect, speed, ?)
 	if ( typeof options === "number" || $.fx.speeds[ options ] ) {
 		callback = speed;
 		speed = options;
 		options = {};
 	}
 
-	// Catch (effect, options, callback)
 	if ( $.isFunction( speed ) ) {
 		callback = speed;
 		speed = null;
 	}
 
-	// Add options to effect
 	if ( options ) {
 		$.extend( effect, options );
 	}
@@ -2903,32 +2819,27 @@ function _normalizeArguments( effect, options, speed, callback ) {
 
 function standardAnimationOption( option ) {
 
-	// Valid standard speeds (nothing, number, named speed)
 	if ( !option || typeof option === "number" || $.fx.speeds[ option ] ) {
 		return true;
 	}
 
-	// Invalid strings - treat as "normal" speed
 	if ( typeof option === "string" && !$.effects.effect[ option ] ) {
 		return true;
 	}
 
-	// Complete callback
 	if ( $.isFunction( option ) ) {
 		return true;
 	}
 
-	// Options hash (but not naming an effect)
 	if ( typeof option === "object" && !option.effect ) {
 		return true;
 	}
 
-	// Didn't match any standard API
 	return false;
 }
 
 $.fn.extend( {
-	effect: function( /* effect, options, speed, callback */ ) {
+	effect: function( ) {
 		var args = _normalizeArguments.apply( this, arguments ),
 			effectMethod = $.effects.effect[ args.effect ],
 			defaultMode = effectMethod.mode,
@@ -2941,15 +2852,11 @@ $.fn.extend( {
 				var el = $( this ),
 					normalizedMode = $.effects.mode( el, mode ) || defaultMode;
 
-				// Sentinel for duck-punching the :animated psuedo-selector
 				el.data( dataSpaceAnimated, true );
 
-				// Save effect mode for later use,
-				// we can't just call $.effects.mode again later,
-				// as the .show() below destroys the initial state
+				
 				modes.push( normalizedMode );
 
-				// See $.uiBackCompat inside of run() for removal of defaultMode in 1.13
 				if ( defaultMode && ( normalizedMode === "show" ||
 						( normalizedMode === defaultMode && normalizedMode === "hide" ) ) ) {
 					el.show();
@@ -2966,7 +2873,6 @@ $.fn.extend( {
 
 		if ( $.fx.off || !effectMethod ) {
 
-			// Delegate to the original method (e.g., .show()) if possible
 			if ( mode ) {
 				return this[ mode ]( args.duration, complete );
 			} else {
@@ -3003,14 +2909,12 @@ $.fn.extend( {
 				}
 			}
 
-			// Override mode option on a per element basis,
-			// as toggle can be either show or hide depending on element state
+			
 			args.mode = modes.shift();
 
 			if ( $.uiBackCompat !== false && !defaultMode ) {
 				if ( elem.is( ":hidden" ) ? mode === "hide" : mode === "show" ) {
 
-					// Call the core method to track "olddisplay" properly
 					elem[ mode ]();
 					done();
 				} else {
@@ -3019,7 +2923,6 @@ $.fn.extend( {
 			} else {
 				if ( args.mode === "none" ) {
 
-					// Call the core method to track "olddisplay" properly
 					elem[ mode ]();
 					done();
 				} else {
@@ -3028,9 +2931,7 @@ $.fn.extend( {
 			}
 		}
 
-		// Run prefilter on all elements first to ensure that
-		// any showing or hiding happens before placeholder creation,
-		// which ensures that any layout changes are correctly captured.
+		
 		return queue === false ?
 			this.each( prefilter ).each( run ) :
 			this.queue( queueName, prefilter ).queue( queueName, run );
@@ -3159,13 +3060,10 @@ $.fx.step.clip = function( fx ) {
 
 } )();
 
-/******************************************************************************/
-/*********************************** EASING ***********************************/
-/******************************************************************************/
+
 
 ( function() {
 
-// Based on easing equations from Robert Penner (http://www.robertpenner.com/easing)
 
 var baseEasings = {};
 
@@ -3215,20 +3113,6 @@ $.each( baseEasings, function( name, easeIn ) {
 var effect = $.effects;
 
 
-/*!
- * jQuery UI Effects Blind 1.12.1
- * http://jqueryui.com
- *
- * originright jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- */
-
-//>>label: Blind Effect
-//>>group: Effects
-//>>description: Blinds the element.
-//>>docs: http://api.jqueryui.com/blind-effect/
-//>>demos: http://jqueryui.com/effect/
 
 
 
@@ -3275,7 +3159,6 @@ var effectsEffectBounce = $.effects.define( "bounce", function( options, done ) 
 	var upAnim, downAnim, refValue,
 		element = $( this ),
 
-		// Defaults:
 		mode = options.mode,
 		hide = mode === "hide",
 		show = mode === "show",
@@ -3287,7 +3170,6 @@ var effectsEffectBounce = $.effects.define( "bounce", function( options, done ) 
 		speed = options.duration / anims,
 		easing = options.easing,
 
-		// Utility:
 		ref = ( direction === "up" || direction === "down" ) ? "top" : "left",
 		motion = ( direction === "up" || direction === "left" ),
 		i = 0,
@@ -3298,7 +3180,6 @@ var effectsEffectBounce = $.effects.define( "bounce", function( options, done ) 
 
 	refValue = element.css( ref );
 
-	// Default distance for the BIGGEST bounce is the outer Distance / 3
 	if ( !distance ) {
 		distance = element[ ref === "top" ? "outerHeight" : "outerWidth" ]() / 3;
 	}
@@ -3307,15 +3188,12 @@ var effectsEffectBounce = $.effects.define( "bounce", function( options, done ) 
 		downAnim = { opacity: 1 };
 		downAnim[ ref ] = refValue;
 
-		// If we are showing, force opacity 0 and set the initial position
-		// then do the "first" animation
 		element
 			.css( "opacity", 0 )
 			.css( ref, motion ? -distance * 2 : distance * 2 )
 			.animate( downAnim, speed, easing );
 	}
 
-	// Start at the smallest distance if we are hiding
 	if ( hide ) {
 		distance = distance / Math.pow( 2, times - 1 );
 	}
@@ -3323,7 +3201,6 @@ var effectsEffectBounce = $.effects.define( "bounce", function( options, done ) 
 	downAnim = {};
 	downAnim[ ref ] = refValue;
 
-	// Bounces up/down/left/right then back to 0 -- times * 2 animations happen here
 	for ( ; i < times; i++ ) {
 		upAnim = {};
 		upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
@@ -3335,7 +3212,6 @@ var effectsEffectBounce = $.effects.define( "bounce", function( options, done ) 
 		distance = hide ? distance * 2 : distance / 2;
 	}
 
-	// Last Bounce when Hiding
 	if ( hide ) {
 		upAnim = { opacity: 0 };
 		upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
@@ -3413,7 +3289,6 @@ var effectsEffectDrop = $.effects.define( "drop", "hide", function( options, don
 		animation.opacity = 1;
 	}
 
-	// Animate
 	element.animate( animation, {
 		queue: false,
 		duration: options.duration,
@@ -3434,12 +3309,10 @@ var effectsEffectExplode = $.effects.define( "explode", "hide", function( option
 
 		offset = element.show().css( "visibility", "hidden" ).offset(),
 
-		// Width and height of a piece
 		width = Math.ceil( element.outerWidth() / cells ),
 		height = Math.ceil( element.outerHeight() / rows ),
 		pieces = [];
 
-	// Children animate complete:
 	function childComplete() {
 		pieces.push( this );
 		if ( pieces.length === rows * cells ) {
@@ -3447,7 +3320,6 @@ var effectsEffectExplode = $.effects.define( "explode", "hide", function( option
 		}
 	}
 
-	// Clone the element for each row and cell.
 	for ( i = 0; i < rows; i++ ) { // ===>
 		top = offset.top + i * height;
 		my = i - ( rows - 1 ) / 2;
@@ -3633,7 +3505,6 @@ var effectsEffectSize = $.effects.define( "size", function( options, done ) {
 		to = temp;
 	}
 
-	// Set scaling factor
 	factor = {
 		from: {
 			y: from.height / original.height,
@@ -3645,33 +3516,27 @@ var effectsEffectSize = $.effects.define( "size", function( options, done ) {
 		}
 	};
 
-	// Scale the css box
 	if ( scale === "box" || scale === "both" ) {
 
-		// Vertical props scaling
 		if ( factor.from.y !== factor.to.y ) {
 			from = $.effects.setTransition( element, vProps, factor.from.y, from );
 			to = $.effects.setTransition( element, vProps, factor.to.y, to );
 		}
 
-		// Horizontal props scaling
 		if ( factor.from.x !== factor.to.x ) {
 			from = $.effects.setTransition( element, hProps, factor.from.x, from );
 			to = $.effects.setTransition( element, hProps, factor.to.x, to );
 		}
 	}
 
-	// Scale the content
 	if ( scale === "content" || scale === "both" ) {
 
-		// Vertical props scaling
 		if ( factor.from.y !== factor.to.y ) {
 			from = $.effects.setTransition( element, cProps, factor.from.y, from );
 			to = $.effects.setTransition( element, cProps, factor.to.y, to );
 		}
 	}
 
-	// Adjust the position properties based on the provided origin points
 	if ( origin ) {
 		baseline = $.effects.getBaseline( origin, original );
 		from.top = ( original.outerHeight - from.outerHeight ) * baseline.y + pos.top;
@@ -3681,14 +3546,12 @@ var effectsEffectSize = $.effects.define( "size", function( options, done ) {
 	}
 	element.css( from );
 
-	// Animate the children if desired
 	if ( scale === "content" || scale === "both" ) {
 
 		vProps = vProps.concat( [ "marginTop", "marginBottom" ] ).concat( cProps );
 		hProps = hProps.concat( [ "marginLeft", "marginRight" ] );
 
-		// Only animate children with width attributes specified
-		// TODO: is this right? should we include anything with css width specified as well
+		
 		element.find( "*[width]" ).each( function() {
 			var child = $( this ),
 				childOriginal = $.effects.scaledDimensions( child ),
@@ -3705,13 +3568,11 @@ var effectsEffectSize = $.effects.define( "size", function( options, done ) {
 					outerWidth: childOriginal.width * factor.to.x
 				};
 
-			// Vertical props scaling
 			if ( factor.from.y !== factor.to.y ) {
 				childFrom = $.effects.setTransition( child, vProps, factor.from.y, childFrom );
 				childTo = $.effects.setTransition( child, vProps, factor.to.y, childTo );
 			}
 
-			// Horizontal props scaling
 			if ( factor.from.x !== factor.to.x ) {
 				childFrom = $.effects.setTransition( child, hProps, factor.from.x, childFrom );
 				childTo = $.effects.setTransition( child, hProps, factor.to.x, childTo );
@@ -3751,8 +3612,7 @@ var effectsEffectSize = $.effects.define( "size", function( options, done ) {
 					.css( "position", position === "static" ? "relative" : position )
 					.offset( offset );
 
-				// Need to save style here so that automatic style restoration
-				// doesn't restore to the original styles from before the animation.
+				
 				$.effects.saveStyle( element );
 			}
 
@@ -3779,7 +3639,6 @@ var effectsEffectScale = $.effects.define( "scale", function( options, done ) {
 			origin: options.origin || [ "middle", "center" ]
 		}, options );
 
-	// Fade option to support puff
 	if ( options.fade ) {
 		newOptions.from.opacity = 1;
 		newOptions.to.opacity = 0;
@@ -3808,7 +3667,6 @@ var effectsEffectPulsate = $.effects.define( "pulsate", "show", function( option
 		hide = mode === "hide",
 		showhide = show || hide,
 
-		// Showing or hiding leaves off the "last" animation
 		anims = ( ( options.times || 5 ) * 2 ) + ( showhide ? 1 : 0 ),
 		duration = options.duration / anims,
 		animateTo = 0,
@@ -3820,7 +3678,6 @@ var effectsEffectPulsate = $.effects.define( "pulsate", "show", function( option
 		animateTo = 1;
 	}
 
-	// Anims - 1 opacity "toggles"
 	for ( ; i < anims; i++ ) {
 		element.animate( { opacity: animateTo }, duration, options.easing );
 		animateTo = 1 - animateTo;
@@ -3903,12 +3760,10 @@ var effectsEffectSlide = $.effects.define( "slide", "show", function( options, d
 	startClip = element.cssClip();
 	startRef = element.position()[ ref ];
 
-	// Define hide animation
 	animation[ ref ] = ( positiveMotion ? -1 : 1 ) * distance + startRef;
 	animation.clip = element.cssClip();
 	animation.clip[ map[ direction ][ 1 ] ] = animation.clip[ map[ direction ][ 0 ] ];
 
-	// Reverse the animation if we're showing
 	if ( mode === "show" ) {
 		element.cssClip( animation.clip );
 		element.css( ref, animation[ ref ] );
@@ -3916,7 +3771,6 @@ var effectsEffectSlide = $.effects.define( "slide", "show", function( options, d
 		animation[ ref ] = startRef;
 	}
 
-	// Actually animate
 	element.animate( animation, {
 		queue: false,
 		duration: options.duration,
@@ -3973,9 +3827,6 @@ $.ui.focusable = function( element, hasTabindex ) {
 
 	return focusableIfVisible && $( element ).is( ":visible" ) && visible( $( element ) );
 };
-
-// Support: IE 8 only
-// IE 8 doesn't resolve inherit to visible/hidden for computed values
 function visible( element ) {
 	var visibility = element.css( "visibility" );
 	while ( visibility === "inherit" ) {
@@ -3993,12 +3844,6 @@ $.extend( $.expr[ ":" ], {
 
 var focusable = $.ui.focusable;
 
-
-
-
-// Support: IE8 Only
-// IE8 does not support the form attribute and when it is supplied. It overwrites the form prop
-// with a string, so we need to find the proper form.
 var form = $.fn.form = function() {
 	return typeof this[ 0 ].form === "string" ? this.closest( "form" ) : $( this[ 0 ].form );
 };
@@ -4010,7 +3855,7 @@ var formResetMixin = $.ui.formResetMixin = {
 	_formResetHandler: function() {
 		var form = $( this );
 
-		// Wait for the form reset to actually happen before refreshing
+		
 		setTimeout( function() {
 			var instances = form.data( "ui-form-reset-instances" );
 			$.each( instances, function() {
@@ -4130,7 +3975,6 @@ var keycode = $.ui.keyCode = {
 
 
 
-// Internal use only
 var escapeSelector = $.ui.escapeSelector = ( function() {
 	var selectorEscape = /([!"#$%&'()*+,./:;<=>?@[\]^`{|}~])/g;
 	return function( selector ) {
@@ -4144,7 +3988,6 @@ var escapeSelector = $.ui.escapeSelector = ( function() {
 var labels = $.fn.labels = function() {
 	var ancestor, selector, id, labels, ancestors;
 
-	// Check control.labels first
 	if ( this[ 0 ].labels && this[ 0 ].labels.length ) {
 		return this.pushStack( this[ 0 ].labels );
 	}
@@ -4271,14 +4114,12 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		this._addClass( "ui-accordion", "ui-widget ui-helper-reset" );
 		this.element.attr( "role", "tablist" );
 
-		// Don't allow collapsible: false and active: false / null
 		if ( !options.collapsible && ( options.active === false || options.active == null ) ) {
 			options.active = 0;
 		}
 
 		this._processPanels();
 
-		// handle negative values
 		if ( options.active < 0 ) {
 			options.active += this.headers.length;
 		}
@@ -4315,17 +4156,14 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 	_destroy: function() {
 		var contents;
 
-		// Clean up main element
 		this.element.removeAttr( "role" );
 
-		// Clean up headers
 		this.headers
 			.removeAttr( "role aria-expanded aria-selected aria-controls tabIndex" )
 			.removeUniqueId();
 
 		this._destroyIcons();
 
-		// Clean up content panels
 		contents = this.headers.next()
 			.css( "display", "" )
 			.removeAttr( "role aria-hidden aria-labelledby" )
@@ -4339,7 +4177,6 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 	_setOption: function( key, value ) {
 		if ( key === "active" ) {
 
-			// _activate() will handle invalid values and update this.options
 			this._activate( value );
 			return;
 		}
@@ -4353,7 +4190,6 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 
 		this._super( key, value );
 
-		// Setting collapsible: false while collapsed; open first panel
 		if ( key === "collapsible" && !value && this.options.active === false ) {
 			this._activate( 0 );
 		}
@@ -4371,9 +4207,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 
 		this.element.attr( "aria-disabled", value );
 
-		// Support: IE8 Only
-		// #5332 / #6059 - opacity doesn't cascade to positioned elements in IE
-		// so we need to add the disabled class to the headers and panels
+		
 		this._toggleClass( null, "ui-state-disabled", !!value );
 		this._toggleClass( this.headers.add( this.headers.next() ), null, "ui-state-disabled",
 			!!value );
@@ -4434,27 +4268,21 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 			options.active = false;
 			this.active = $();
 
-		// active false only when collapsible is true
 		} else if ( options.active === false ) {
 			this._activate( 0 );
 
-		// was active, but active panel is gone
 		} else if ( this.active.length && !$.contains( this.element[ 0 ], this.active[ 0 ] ) ) {
 
-			// all remaining panel are disabled
 			if ( this.headers.length === this.headers.find( ".ui-state-disabled" ).length ) {
 				options.active = false;
 				this.active = $();
 
-			// activate previous panel
 			} else {
 				this._activate( Math.max( 0, options.active - 1 ) );
 			}
 
-		// was active, active panel still exists
 		} else {
 
-			// make sure active index is correct
 			options.active = this.headers.index( this.active );
 		}
 
@@ -4519,7 +4347,6 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 					} )
 					.hide();
 
-		// Make sure at least one header is in the tab order
 		if ( !this.active.length ) {
 			this.headers.eq( 0 ).attr( "tabIndex", 0 );
 		} else {
@@ -4580,12 +4407,10 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 	_activate: function( index ) {
 		var active = this._findActive( index )[ 0 ];
 
-		// Trying to activate the already active panel
 		if ( active === this.active[ 0 ] ) {
 			return;
 		}
 
-		// Trying to collapse, simulate a click on the currently active header
 		active = active || this.active[ 0 ];
 
 		this._eventHandler( {
@@ -4636,23 +4461,17 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 
 		if (
 
-				// click on active header, but not collapsible
 				( clickedIsActive && !options.collapsible ) ||
 
-				// allow canceling activation
 				( this._trigger( "beforeActivate", event, eventData ) === false ) ) {
 			return;
 		}
 
 		options.active = collapsing ? false : this.headers.index( clicked );
 
-		// When the call to ._toggle() comes after the class changes
-		// it causes a very odd bug in IE 8 (see #6720)
 		this.active = clickedIsActive ? $() : clicked;
 		this._toggle( eventData );
 
-		// Switch classes
-		// corner classes on the previously active header stay after the animation
 		this._removeClass( active, "ui-accordion-header-active", "ui-state-active" );
 		if ( options.icons ) {
 			activeChildren = active.children( ".ui-accordion-header-icon" );
@@ -4677,7 +4496,6 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		var toShow = data.newPanel,
 			toHide = this.prevShow.length ? this.prevShow : data.oldPanel;
 
-		// Handle activating a panel during the animation for another activation
 		this.prevShow.add( this.prevHide ).stop( true, true );
 		this.prevShow = toShow;
 		this.prevHide = toHide;
@@ -4740,7 +4558,6 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 			easing = options;
 		}
 
-		// fall back from options to animation in case of partial down settings
 		easing = easing || options.easing || animate.easing;
 		duration = duration || options.duration || animate.duration;
 
@@ -4800,24 +4617,17 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 var safeActiveElement = $.ui.safeActiveElement = function( document ) {
 	var activeElement;
 
-	// Support: IE 9 only
-	// IE9 throws an "Unspecified error" accessing document.activeElement from an <iframe>
+	
 	try {
 		activeElement = document.activeElement;
 	} catch ( error ) {
 		activeElement = document.body;
 	}
 
-	// Support: IE 9 - 11 only
-	// IE may return null instead of an element
-	// Interestingly, this only seems to occur when NOT in an iframe
 	if ( !activeElement ) {
 		activeElement = document.body;
 	}
 
-	// Support: IE 11 only
-	// IE11 returns a seemingly empty object in some cases when accessing
-	// document.activeElement from an <iframe>
 	if ( !activeElement.nodeName ) {
 		activeElement = document.body;
 	}
@@ -4852,8 +4662,6 @@ var widgetsMenu = $.widget( "ui.menu", {
 	_create: function() {
 		this.activeMenu = this.element;
 
-		// Flag used to prevent firing of the click handler
-		// as the event bubbles up through nested menus
 		this.mouseHandled = false;
 		this.element
 			.uniqueId()
@@ -4865,8 +4673,6 @@ var widgetsMenu = $.widget( "ui.menu", {
 		this._addClass( "ui-menu", "ui-widget ui-widget-content" );
 		this._on( {
 
-			// Prevent focus from sticking to links inside menu after clicking
-			// them (focus should always stay on UL during navigation).
 			"mousedown .ui-menu-item": function( event ) {
 				event.preventDefault();
 			},
@@ -4876,22 +4682,17 @@ var widgetsMenu = $.widget( "ui.menu", {
 				if ( !this.mouseHandled && target.not( ".ui-state-disabled" ).length ) {
 					this.select( event );
 
-					// Only set the mouseHandled flag if the event will bubble, see #9469.
 					if ( !event.isPropagationStopped() ) {
 						this.mouseHandled = true;
 					}
 
-					// Open submenu on click
 					if ( target.has( ".ui-menu" ).length ) {
 						this.expand( event );
 					} else if ( !this.element.is( ":focus" ) &&
 							active.closest( ".ui-menu" ).length ) {
 
-						// Redirect focus to the menu
 						this.element.trigger( "focus", [ true ] );
 
-						// If the active item is on the top level, let it stay active.
-						// Otherwise, blur the active item since it is no longer visible.
 						if ( this.active && this.active.parents( ".ui-menu" ).length === 1 ) {
 							clearTimeout( this.timer );
 						}
@@ -4900,9 +4701,6 @@ var widgetsMenu = $.widget( "ui.menu", {
 			},
 			"mouseenter .ui-menu-item": function( event ) {
 
-				// Ignore mouse events while typeahead is active, see #10458.
-				// Prevents focusing the wrong item when typeahead causes a scroll while the mouse
-				// is over an item in the menu
 				if ( this.previousFilter ) {
 					return;
 				}
@@ -4910,13 +4708,10 @@ var widgetsMenu = $.widget( "ui.menu", {
 				var actualTarget = $( event.target ).closest( ".ui-menu-item" ),
 					target = $( event.currentTarget );
 
-				// Ignore bubbled events on parent items, see #11641
 				if ( actualTarget[ 0 ] !== target[ 0 ] ) {
 					return;
 				}
 
-				// Remove ui-state-active class from siblings of the newly focused menu item
-				// to avoid a jump caused by adjacent elements both having a class with a border
 				this._removeClass( target.siblings().children( ".ui-state-active" ),
 					null, "ui-state-active" );
 				this.focus( event, target );
@@ -4925,8 +4720,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 			"mouseleave .ui-menu": "collapseAll",
 			focus: function( event, keepActiveItem ) {
 
-				// If there's already an active item, keep it active
-				// If not, activate the first item
+				
 				var item = this.active || this.element.find( this.options.items ).eq( 0 );
 
 				if ( !keepActiveItem ) {
@@ -4949,14 +4743,12 @@ var widgetsMenu = $.widget( "ui.menu", {
 
 		this.refresh();
 
-		// Clicks outside of a menu collapse any open menus
 		this._on( this.document, {
 			click: function( event ) {
 				if ( this._closeOnDocumentClick( event ) ) {
 					this.collapseAll( event );
 				}
 
-				// Reset the mouseHandled flag
 				this.mouseHandled = false;
 			}
 		} );
@@ -5029,7 +4821,6 @@ var widgetsMenu = $.widget( "ui.menu", {
 			prev = this.previousFilter || "";
 			skip = false;
 
-			// Support number pad values
 			character = event.keyCode >= 96 && event.keyCode <= 105 ?
 				( event.keyCode - 96 ).toString() : String.fromCharCode( event.keyCode );
 
@@ -5046,8 +4837,6 @@ var widgetsMenu = $.widget( "ui.menu", {
 				this.active.nextAll( ".ui-menu-item" ) :
 				match;
 
-			// If no matches on the current filter, reset to the last character pressed
-			// to move down the menu to the first item that starts with that character
 			if ( !match.length ) {
 				character = String.fromCharCode( event.keyCode );
 				match = this._filterMenuItems( character );
@@ -5087,7 +4876,6 @@ var widgetsMenu = $.widget( "ui.menu", {
 
 		this._toggleClass( "ui-menu-icons", null, !!this.element.find( ".ui-icon" ).length );
 
-		// Initialize nested menus
 		newSubmenus = submenus.filter( ":not(.ui-menu)" )
 			.hide()
 			.attr( {
@@ -5112,7 +4900,6 @@ var widgetsMenu = $.widget( "ui.menu", {
 		menus = submenus.add( this.element );
 		items = menus.find( this.options.items );
 
-		// Initialize menu-items containing spaces and/or dashes only as dividers
 		items.not( ".ui-menu-item" ).each( function() {
 			var item = $( this );
 			if ( that._isDivider( item ) ) {
@@ -5120,7 +4907,6 @@ var widgetsMenu = $.widget( "ui.menu", {
 			}
 		} );
 
-		// Don't refresh list items that are already adapted
 		newItems = items.not( ".ui-menu-item, .ui-menu-divider" );
 		newWrappers = newItems.children()
 			.not( ".ui-menu" )
@@ -5132,10 +4918,8 @@ var widgetsMenu = $.widget( "ui.menu", {
 		this._addClass( newItems, "ui-menu-item" )
 			._addClass( newWrappers, "ui-menu-item-wrapper" );
 
-		// Add aria-disabled attribute to any disabled menu item
 		items.filter( ".ui-state-disabled" ).attr( "aria-disabled", "true" );
 
-		// If the active item has been removed, blur the menu
 		if ( this.active && !$.contains( this.element[ 0 ], this.active[ 0 ] ) ) {
 			this.blur();
 		}
@@ -5175,13 +4959,10 @@ var widgetsMenu = $.widget( "ui.menu", {
 		focused = this.active.children( ".ui-menu-item-wrapper" );
 		this._addClass( focused, null, "ui-state-active" );
 
-		// Only update aria-activedescendant if there's a role
-		// otherwise we assume focus is managed elsewhere
 		if ( this.options.role ) {
 			this.element.attr( "aria-activedescendant", focused.attr( "id" ) );
 		}
 
-		// Highlight active parent menu item, if any
 		activeParent = this.active
 			.parent()
 				.closest( ".ui-menu-item" )
@@ -5273,12 +5054,9 @@ var widgetsMenu = $.widget( "ui.menu", {
 		clearTimeout( this.timer );
 		this.timer = this._delay( function() {
 
-			// If we were passed an event, look for the submenu that contains the event
 			var currentMenu = all ? this.element :
 				$( event && event.target ).closest( this.element.find( ".ui-menu" ) );
 
-			// If we found no valid submenu ancestor, use the main menu to close all
-			// sub menus anyway
 			if ( !currentMenu.length ) {
 				currentMenu = this.element;
 			}
@@ -5287,15 +5065,12 @@ var widgetsMenu = $.widget( "ui.menu", {
 
 			this.blur( event );
 
-			// Work around active item staying active after menu is blurred
 			this._removeClass( currentMenu.find( ".ui-state-active" ), null, "ui-state-active" );
 
 			this.activeMenu = currentMenu;
 		}, this.delay );
 	},
 
-	// With no arguments, closes the currently active menu - if nothing is active
-	// it closes all menus.  If passed an argument, it will search for menus BELOW
 	_close: function( startMenu ) {
 		if ( !startMenu ) {
 			startMenu = this.active ? this.active.parent() : this.element;
@@ -5313,7 +5088,6 @@ var widgetsMenu = $.widget( "ui.menu", {
 
 	_isDivider: function( item ) {
 
-		// Match hyphen, em dash, en dash
 		return !/[^\-\u2014\u2013\s]/.test( item.text() );
 	},
 
@@ -5336,7 +5110,6 @@ var widgetsMenu = $.widget( "ui.menu", {
 		if ( newItem && newItem.length ) {
 			this._open( newItem.parent() );
 
-			// Delay so Firefox will not hide activedescendant change in expanding submenu from AT
 			this._delay( function() {
 				this.focus( event, newItem );
 			} );
@@ -5449,7 +5222,6 @@ var widgetsMenu = $.widget( "ui.menu", {
 		return this.activeMenu
 			.find( this.options.items )
 
-				// Only match on items, not dividers or other content (#10571)
 				.filter( ".ui-menu-item" )
 					.filter( function() {
 						return regex.test(
@@ -5559,16 +5331,12 @@ $.widget( "ui.autocomplete", {
 						}
 						this.close( event );
 
-						// Different browsers have different default behavior for escape
-						// Single press can mean undo or clear
-						// Double press in IE means clear the whole form
 						event.preventDefault();
 					}
 					break;
 				default:
 					suppressKeyPressRepeat = true;
 
-					// search timeout should be triggered before the input value is changed
 					this._searchTimeout( event );
 					break;
 				}
@@ -5585,7 +5353,6 @@ $.widget( "ui.autocomplete", {
 					return;
 				}
 
-				// Replicate some key handlers to allow them to repeat in Firefox and Opera
 				var keyCode = $.ui.keyCode;
 				switch ( event.keyCode ) {
 				case keyCode.PAGE_UP:
@@ -5631,7 +5398,6 @@ $.widget( "ui.autocomplete", {
 			.appendTo( this._appendTo() )
 			.menu( {
 
-				// disable ARIA support, the live region takes care of that
 				role: null
 			} )
 			.hide()
@@ -5674,13 +5440,11 @@ $.widget( "ui.autocomplete", {
 				item = ui.item.data( "ui-autocomplete-item" );
 				if ( false !== this._trigger( "focus", event, { item: item } ) ) {
 
-					// use value to match what will end up in the input, if it was a key event
 					if ( event.originalEvent && /^key/.test( event.originalEvent.type ) ) {
 						this._value( item.value );
 					}
 				}
 
-				// Announce the value in the liveRegion
 				label = ui.item.attr( "aria-label" ) || item.value;
 				if ( label && $.trim( label ).length ) {
 					this.liveRegion.children().hide();
@@ -5691,14 +5455,11 @@ $.widget( "ui.autocomplete", {
 				var item = ui.item.data( "ui-autocomplete-item" ),
 					previous = this.previous;
 
-				// Only trigger when focus was lost (click on menu)
 				if ( this.element[ 0 ] !== $.ui.safeActiveElement( this.document[ 0 ] ) ) {
 					this.element.trigger( "focus" );
 					this.previous = previous;
 
-					// #6109 - IE triggers two focus events and the second
-					// is asynchronous, so we need to reset the previous
-					// term synchronously and asynchronously :-(
+				
 					this._delay( function() {
 						this.previous = previous;
 						this.selectedItem = item;
@@ -5709,8 +5470,6 @@ $.widget( "ui.autocomplete", {
 					this._value( item.value );
 				}
 
-				// reset the term after the select event
-				// this allows custom select handling to work properly
 				this.term = this._value();
 
 				this.close( event );
@@ -5727,9 +5486,6 @@ $.widget( "ui.autocomplete", {
 
 		this._addClass( this.liveRegion, null, "ui-helper-hidden-accessible" );
 
-		// Turning off autocomplete prevents the browser from remembering the
-		// value when navigating through history, so we re-enable autocomplete
-		// if the page is unloaded before the widget is destroyed. #7790
 		this._on( this.window, {
 			beforeunload: function() {
 				this.element.removeAttr( "autocomplete" );
@@ -5826,7 +5582,6 @@ $.widget( "ui.autocomplete", {
 		clearTimeout( this.searching );
 		this.searching = this._delay( function() {
 
-			// Search if the value has changed, or if the user retypes the same value (see #7434)
 			var equalValues = this.term === this._value(),
 				menuVisible = this.menu.element.is( ":visible" ),
 				modifierKey = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
@@ -5841,7 +5596,6 @@ $.widget( "ui.autocomplete", {
 	search: function( value, event ) {
 		value = value != null ? value : this._value();
 
-		// Always save the actual value, not the one passed as an argument
 		this.term = this._value();
 
 		if ( value.length < this.options.minLength ) {
@@ -5919,7 +5673,6 @@ $.widget( "ui.autocomplete", {
 
 	_normalize: function( items ) {
 
-		// assume all items have the right format when the first item is complete
 		if ( items.length && items[ 0 ].label && items[ 0 ].value ) {
 			return items;
 		}
@@ -5943,7 +5696,6 @@ $.widget( "ui.autocomplete", {
 		this.isNewMenu = true;
 		this.menu.refresh();
 
-		// Size and position menu
 		ul.show();
 		this._resizeMenu();
 		ul.position( $.extend( {
@@ -5954,7 +5706,6 @@ $.widget( "ui.autocomplete", {
 			this.menu.next();
 		}
 
-		// Listen for interactions outside of the widget (#6642)
 		this._on( this.document, {
 			mousedown: "_closeOnClickOutside"
 		} );
@@ -5964,8 +5715,7 @@ $.widget( "ui.autocomplete", {
 		var ul = this.menu.element;
 		ul.outerWidth( Math.max(
 
-			// Firefox wraps long text (possibly a rounding bug)
-			// so we add 1px to avoid the wrapping (#7513)
+			
 			ul.width( "" ).outerWidth() + 1,
 			this.element.outerWidth()
 		) );
@@ -6018,15 +5768,10 @@ $.widget( "ui.autocomplete", {
 		if ( !this.isMultiLine || this.menu.element.is( ":visible" ) ) {
 			this._move( keyEvent, event );
 
-			// Prevents moving cursor to beginning/end of the text field in some browsers
 			event.preventDefault();
 		}
 	},
 
-	// Support: Chrome <=50
-	// We should be able to just use this.element.prop( "isContentEditable" )
-	// but hidden elements always report false in Chrome.
-	// https://code.google.com/p/chromium/issues/detail?id=313082
 	_isContentEditable: function( element ) {
 		if ( !element.length ) {
 			return false;
@@ -6054,9 +5799,6 @@ $.extend( $.ui.autocomplete, {
 	}
 } );
 
-// Live region extension, adding a `messages` option
-// NOTE: This is an experimental API. We are still investigating
-// a full solution for string manipulation and internationalization.
 $.widget( "ui.autocomplete", $.ui.autocomplete, {
 	options: {
 		messages: {
@@ -6111,7 +5853,6 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 		this._enhance();
 	},
 
-	// To support the enhanced option in jQuery Mobile, we isolate DOM manipulation
 	_enhance: function() {
 		this.element.attr( "role", "toolbar" );
 		this.refresh();
@@ -6133,12 +5874,10 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 		var that = this,
 			childWidgets = [];
 
-		// First we iterate over each of the items options
 		$.each( this.options.items, function( widget, selector ) {
 			var labels;
 			var options = {};
 
-			// Make sure the widget has a selector set
 			if ( !selector ) {
 				return;
 			}
@@ -6159,37 +5898,28 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 				return;
 			}
 
-			// Make sure the widget actually exists
 			if ( !$.fn[ widget ] ) {
 				return;
 			}
 
-			// We assume everything is in the middle to start because we can't determine
-			// first / last elements until all enhancments are done.
 			if ( that[ "_" + widget + "Options" ] ) {
 				options = that[ "_" + widget + "Options" ]( "middle" );
 			} else {
 				options = { classes: {} };
 			}
 
-			// Find instances of this widget inside controlgroup and init them
 			that.element
 				.find( selector )
 				.each( function() {
 					var element = $( this );
 					var instance = element[ widget ]( "instance" );
 
-					// We need to clone the default options for this type of widget to avoid
-					// polluting the variable options which has a wider scope than a single widget.
 					var instanceOptions = $.widget.extend( {}, options );
 
-					// If the button is the child of a spinner ignore it
-					// TODO: Find a more generic solution
 					if ( widget === "button" && element.parent( ".ui-spinner" ).length ) {
 						return;
 					}
 
-					// Create the widget if it doesn't exist
 					if ( !instance ) {
 						instance = element[ widget ]()[ widget ]( "instance" );
 					}
@@ -6199,8 +5929,6 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 					}
 					element[ widget ]( instanceOptions );
 
-					// Store an instance of the controlgroup to be able to reference
-					// from the outermost element for changing options and refresh
 					var widgetElement = element[ widget ]( "widget" );
 					$.data( widgetElement[ 0 ], "ui-controlgroup-data",
 						instance ? instance : element[ widget ]( "instance" ) );
@@ -6326,15 +6054,12 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 
 		children = this.childWidgets;
 
-		// We filter here because we need to track all childWidgets not just the visible ones
 		if ( this.options.onlyVisible ) {
 			children = children.filter( ":visible" );
 		}
 
 		if ( children.length ) {
 
-			// We do this last because we need to make sure all enhancment is done
-			// before determining first and last
 			$.each( [ "first", "last" ], function( index, value ) {
 				var instance = children[ value ]().data( "ui-controlgroup-data" );
 
@@ -6349,7 +6074,6 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 				}
 			} );
 
-			// Finally call the refresh method on each of the child widgets.
 			this._callChildMethod( "refresh" );
 		}
 	}
@@ -6376,7 +6100,6 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 
 		labels = this.element.labels();
 
-		// If there are multiple labels, use the last one
 		this.label = $( labels[ labels.length - 1 ] );
 		if ( !this.label.length ) {
 			$.error( "No label found for checkboxradio widget" );
@@ -6391,7 +6114,6 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 			that.originalLabel += this.nodeType === 3 ? $( this ).text() : this.outerHTML;
 		} );
 
-		// Set the label option if we found label text
 		if ( this.originalLabel ) {
 			options.label = this.originalLabel;
 		}
@@ -6477,7 +6199,6 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 			group = $( this.form[ 0 ].elements ).filter( nameSelector );
 		} else {
 
-			// Not inside a form, check all inputs that also are not inside a form
 			group = $( nameSelector ).filter( function() {
 				return $( this ).form().length === 0;
 			} );
@@ -6519,7 +6240,6 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 
 	_setOption: function( key, value ) {
 
-		// We don't allow the value to be set to nothing
 		if ( key === "label" && !value ) {
 			return;
 		}
@@ -6530,7 +6250,6 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 			this._toggleClass( this.label, null, "ui-state-disabled", value );
 			this.element[ 0 ].disabled = value;
 
-			// Don't refresh when setting disabled
 			return;
 		}
 		this.refresh();
@@ -6566,7 +6285,6 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 
 	_updateLabel: function() {
 
-		// Remove the contents of the label ( minus the icon, icon space, and input )
 		var contents = this.label.contents().not( this.element[ 0 ] );
 		if ( this.icon ) {
 			contents = contents.not( this.icon[ 0 ] );
@@ -6617,8 +6335,6 @@ $.widget( "ui.button", {
 	_getCreateOptions: function() {
 		var disabled,
 
-			// This is to support cases like in jQuery Mobile where the base widget does have
-			// an implementation of _getCreateOptions
 			options = this._super() || {};
 
 		this.isInput = this.element.is( "input" );
@@ -6647,7 +6363,6 @@ $.widget( "ui.button", {
 
 		this.hasTitle = !!this.element.attr( "title" );
 
-		// Check to see if the label needs to be set or if its already correct
 		if ( this.options.label && this.options.label !== this.originalLabel ) {
 			if ( this.isInput ) {
 				this.element.val( this.options.label );
@@ -6712,11 +6427,9 @@ $.widget( "ui.button", {
 			}
 		} else if ( icon ) {
 
-			// If we are updating the icon remove the old icon class
 			this._removeClass( this.icon, null, this.options.icon );
 		}
 
-		// If we are updating the icon add the new icon class
 		if ( icon ) {
 			this._addClass( this.icon, null, value );
 		}
@@ -6957,89 +6670,41 @@ function datepicker_getZindex( elem ) {
 }
 
 function Datepicker() {
-	this._curInst = null; // The current instance in use
-	this._keyEvent = false; // If the last event was a key event
-	this._disabledInputs = []; // List of date picker inputs that have been disabled
-	this._datepickerShowing = false; // True if the popup picker is showing , false if not
-	this._inDialog = false; // True if showing within a "dialog", false if not
-	this._mainDivId = "ui-datepicker-div"; // The ID of the main datepicker division
-	this._inlineClass = "ui-datepicker-inline"; // The name of the inline marker class
-	this._appendClass = "ui-datepicker-append"; // The name of the append marker class
-	this._triggerClass = "ui-datepicker-trigger"; // The name of the trigger marker class
-	this._dialogClass = "ui-datepicker-dialog"; // The name of the dialog marker class
-	this._disableClass = "ui-datepicker-disabled"; // The name of the disabled covering marker class
-	this._unselectableClass = "ui-datepicker-unselectable"; // The name of the unselectable cell marker class
-	this._currentClass = "ui-datepicker-current-day"; // The name of the current day marker class
-	this._dayOverClass = "ui-datepicker-days-cell-over"; // The name of the day hover marker class
-	this.regional = []; // Available regional settings, indexed by language code
-	this.regional[ "" ] = { // Default regional settings
-		closeText: "Done", // Display text for close link
-		prevText: "Prev", // Display text for previous month link
-		nextText: "Next", // Display text for next month link
-		currentText: "Today", // Display text for current month link
+	this._curInst = null; 
+	this._keyEvent = false; 
+	this._disabledInputs = [];
+	this._datepickerShowing = false; 
+	this._inDialog = false; 
+	this._mainDivId = "ui-datepicker-div"; 
+	this._inlineClass = "ui-datepicker-inline"; 
+	this._appendClass = "ui-datepicker-append";
+	this._triggerClass = "ui-datepicker-trigger"; 
+	this._dialogClass = "ui-datepicker-dialog"; 
+	this._disableClass = "ui-datepicker-disabled"; 
+	this._unselectableClass = "ui-datepicker-unselectable"; 
+	this._currentClass = "ui-datepicker-current-day"; 
+	this._dayOverClass = "ui-datepicker-days-cell-over";
+	this.regional = []; 
+	this.regional[ "" ] = {
+		closeText: "Done",
+		prevText: "Prev", 
+		nextText: "Next", 
+		currentText: "Today", 
 		monthNames: [ "January","February","March","April","May","June",
-			"July","August","September","October","November","December" ], // Names of months for drop-down and formatting
-		monthNamesShort: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ], // For formatting
-		dayNames: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ], // For formatting
-		dayNamesShort: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ], // For formatting
-		dayNamesMin: [ "Su","Mo","Tu","We","Th","Fr","Sa" ], // Column headings for days starting at Sunday
-		weekHeader: "Wk", // Column header for week of the year
-		dateFormat: "mm/dd/yy", // See format options on parseDate
-		firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
-		isRTL: false, // True if right-to-left language, false if left-to-right
-		showMonthAfterYear: false, // True if the year select precedes month, false for month then year
-		yearSuffix: "" // Additional text to append to the year in the month headers
+			"July","August","September","October","November","December" ], /
+		monthNamesShort: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ], 
+		dayNames: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ],
+		dayNamesShort: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ], 
+		dayNamesMin: [ "Su","Mo","Tu","We","Th","Fr","Sa" ],
+		weekHeader: "Wk", 
+		dateFormat: "mm/dd/yy",
+		firstDay: 0, 
+		isRTL: false, 
+		showMonthAfterYear: false, /
+		yearSuffix: ""
 	};
-	this._defaults = { // Global defaults for all the date picker instances
-		showOn: "focus", // "focus" for popup on focus,
-			// "button" for trigger button, or "both" for either
-		showAnim: "fadeIn", // Name of jQuery animation for popup
-		showOptions: {}, // Options for enhanced animations
-		defaultDate: null, // Used when field is blank: actual date,
-			// +/-number for offset from today, null for today
-		appendText: "", // Display text following the input box, e.g. showing the format
-		buttonText: "...", // Text for trigger button
-		buttonImage: "", // URL for trigger button image
-		buttonImageOnly: false, // True if the image appears alone, false if it appears on a button
-		hideIfNoPrevNext: false, // True to hide next/previous month links
-			// if not applicable, false to just disable them
-		navigationAsDateFormat: false, // True if date formatting applied to prev/today/next links
-		gotoCurrent: false, // True if today link goes back to current selection instead
-		changeMonth: false, // True if month can be selected directly, false if only prev/next
-		changeYear: false, // True if year can be selected directly, false if only prev/next
-		yearRange: "c-10:c+10", // Range of years to display in drop-down,
-			// either relative to today's year (-nn:+nn), relative to currently displayed year
-			// (c-nn:c+nn), absolute (nnnn:nnnn), or a combination of the above (nnnn:-n)
-		showOtherMonths: false, // True to show dates in other months, false to leave blank
-		selectOtherMonths: false, // True to allow selection of dates in other months, false for unselectable
-		showWeek: false, // True to show week of the year, false to not show it
-		calculateWeek: this.iso8601Week, // How to calculate the week of the year,
-			// takes a Date and returns the number of the week for it
-		shortYearCutoff: "+10", // Short year values < this are in the current century,
-			// > this are in the previous century,
-			// string value starting with "+" for current year + value
-		minDate: null, // The earliest selectable date, or null for no limit
-		maxDate: null, // The latest selectable date, or null for no limit
-		duration: "fast", // Duration of display/closure
-		beforeShowDay: null, // Function that takes a date and returns an array with
-			// [0] = true if selectable, false if not, [1] = custom CSS class name(s) or "",
-			// [2] = cell title (optional), e.g. $.datepicker.noWeekends
-		beforeShow: null, // Function that takes an input field and
-			// returns a set of custom settings for the date picker
-		onSelect: null, // Define a callback function when a date is selected
-		onChangeMonthYear: null, // Define a callback function when the month or year is changed
-		onClose: null, // Define a callback function when the datepicker is closed
-		numberOfMonths: 1, // Number of months to show at a time
-		showCurrentAtPos: 0, // The position in multipe months at which to show the current month (starting at 0)
-		stepMonths: 1, // Number of months to step back/forward
-		stepBigMonths: 12, // Number of months to step back/forward for the big links
-		altField: "", // Selector for an alternate field to store selected dates into
-		altFormat: "", // The date format to use for the alternate field
-		constrainInput: true, // The input is constrained by the current date format
-		showButtonPanel: false, // True to show button panel, false to not show it
-		autoSize: false, // True to size the input for the date format, false to leave as is
-		disabled: false // The initial disabled state
-	};
+	
+	
 	$.extend( this._defaults, this.regional[ "" ] );
 	this.regional.en = $.extend( true, {}, this.regional[ "" ] );
 	this.regional[ "en-US" ] = $.extend( true, {}, this.regional.en );
@@ -7047,30 +6712,20 @@ function Datepicker() {
 }
 
 $.extend( Datepicker.prototype, {
-	/* Class name added to elements to indicate already configured with a date picker. */
 	markerClassName: "hasDatepicker",
 
-	//Keep track of the maximum number of rows displayed (see #7043)
 	maxRows: 4,
 
-	// TODO rename to "widget" when switching to widget factory
 	_widgetDatepicker: function() {
 		return this.dpDiv;
 	},
 
-	/* Override the default settings for all instances of the date picker.
-	 * @param  settings  object - the new settings to use as defaults (anonymous object)
-	 * @return the manager object
-	 */
+	
 	setDefaults: function( settings ) {
 		datepicker_extendRemove( this._defaults, settings || {} );
 		return this;
 	},
 
-	/* Attach the date picker to a jQuery selection.
-	 * @param  target	element - the target input field or division or span
-	 * @param  settings  object - the new settings to use for this date picker instance (anonymous)
-	 */
 	_attachDatepicker: function( target, settings ) {
 		var nodeName, inline, inst;
 		nodeName = target.nodeName.toLowerCase();
@@ -7088,18 +6743,16 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Create a new instance object. */
 	_newInst: function( target, inline ) {
-		var id = target[ 0 ].id.replace( /([^A-Za-z0-9_\-])/g, "\\\\$1" ); // escape jQuery meta chars
-		return { id: id, input: target, // associated target
-			selectedDay: 0, selectedMonth: 0, selectedYear: 0, // current selection
-			drawMonth: 0, drawYear: 0, // month being drawn
-			inline: inline, // is datepicker inline or not
-			dpDiv: ( !inline ? this.dpDiv : // presentation div
+		var id = target[ 0 ].id.replace( /([^A-Za-z0-9_\-])/g, "\\\\$1" );
+		return { id: id, input: target,
+			selectedDay: 0, selectedMonth: 0, selectedYear: 0, 
+			drawMonth: 0, drawYear: 0,
+			inline: inline, 
+			dpDiv: ( !inline ? this.dpDiv : 
 			datepicker_bindHover( $( "<div class='" + this._inlineClass + " ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>" ) ) ) };
 	},
 
-	/* Attach the date picker to an input field. */
 	_connectDatepicker: function( target, inst ) {
 		var input = $( target );
 		inst.append = $( [] );
@@ -7113,13 +6766,11 @@ $.extend( Datepicker.prototype, {
 		this._autoSize( inst );
 		$.data( target, "datepicker", inst );
 
-		//If disabled option is true, disable the datepicker once it has been attached to the input (see ticket #5665)
 		if ( inst.settings.disabled ) {
 			this._disableDatepicker( target );
 		}
 	},
 
-	/* Make attachments based on settings. */
 	_attachments: function( input, inst ) {
 		var showOn, buttonText, buttonImage,
 			appendText = this._get( inst, "appendText" ),
@@ -7140,10 +6791,10 @@ $.extend( Datepicker.prototype, {
 		}
 
 		showOn = this._get( inst, "showOn" );
-		if ( showOn === "focus" || showOn === "both" ) { // pop-up date picker when in the marked field
+		if ( showOn === "focus" || showOn === "both" ) { 
 			input.on( "focus", this._showDatepicker );
 		}
-		if ( showOn === "button" || showOn === "both" ) { // pop-up date picker when button clicked
+		if ( showOn === "button" || showOn === "both" ) { 
 			buttonText = this._get( inst, "buttonText" );
 			buttonImage = this._get( inst, "buttonImage" );
 			inst.trigger = $( this._get( inst, "buttonImageOnly" ) ?
@@ -7167,11 +6818,10 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Apply the maximum length for the date format. */
 	_autoSize: function( inst ) {
 		if ( this._get( inst, "autoSize" ) && !inst.inline ) {
 			var findMax, max, maxI, i,
-				date = new Date( 2009, 12 - 1, 20 ), // Ensure double digits
+				date = new Date( 2009, 12 - 1, 20 ), 
 				dateFormat = this._get( inst, "dateFormat" );
 
 			if ( dateFormat.match( /[DM]/ ) ) {
@@ -7195,7 +6845,6 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Attach an inline date picker to a div. */
 	_inlineDatepicker: function( target, inst ) {
 		var divSpan = $( target );
 		if ( divSpan.hasClass( this.markerClassName ) ) {
@@ -7207,13 +6856,10 @@ $.extend( Datepicker.prototype, {
 		this._updateDatepicker( inst );
 		this._updateAlternate( inst );
 
-		//If disabled option is true, disable the datepicker before showing it (see ticket #5665)
 		if ( inst.settings.disabled ) {
 			this._disableDatepicker( target );
 		}
 
-		// Set display:block in place of inst.dpDiv.show() which won't work on disconnected elements
-		// http://bugs.jqueryui.com/ticket/7552 - A Datepicker created on a detached div has zero height
 		inst.dpDiv.css( "display", "block" );
 	},
 
@@ -7243,11 +6889,10 @@ $.extend( Datepicker.prototype, {
 			browserHeight = document.documentElement.clientHeight;
 			scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
 			scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-			this._pos = // should use actual width/height below
+			this._pos = 
 				[ ( browserWidth / 2 ) - 100 + scrollX, ( browserHeight / 2 ) - 150 + scrollY ];
 		}
 
-		// Move input on screen for focus, but hidden behind dialog
 		this._dialogInput.css( "left", ( this._pos[ 0 ] + 20 ) + "px" ).css( "top", this._pos[ 1 ] + "px" );
 		inst.settings.onSelect = onSelect;
 		this._inDialog = true;
@@ -7259,10 +6904,6 @@ $.extend( Datepicker.prototype, {
 		$.data( this._dialogInput[ 0 ], "datepicker", inst );
 		return this;
 	},
-
-	/* Detach a datepicker from its control.
-	 * @param  target	element - the target input field or division or span
-	 */
 	_destroyDatepicker: function( target ) {
 		var nodeName,
 			$target = $( target ),
@@ -7291,9 +6932,6 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Enable the date picker to a jQuery selection.
-	 * @param  target	element - the target input field or division or span
-	 */
 	_enableDatepicker: function( target ) {
 		var nodeName, inline,
 			$target = $( target ),
@@ -7319,9 +6957,6 @@ $.extend( Datepicker.prototype, {
 			function( value ) { return ( value === target ? null : value ); } ); // delete entry
 	},
 
-	/* Disable the date picker to a jQuery selection.
-	 * @param  target	element - the target input field or division or span
-	 */
 	_disableDatepicker: function( target ) {
 		var nodeName, inline,
 			$target = $( target ),
@@ -7395,7 +7030,6 @@ $.extend( Datepicker.prototype, {
 			maxDate = this._getMinMaxDate( inst, "max" );
 			datepicker_extendRemove( inst.settings, settings );
 
-			// reformat the old minDate/maxDate values if dateFormat changes and a new minDate/maxDate isn't provided
 			if ( minDate !== null && settings.dateFormat !== undefined && settings.minDate === undefined ) {
 				inst.settings.minDate = this._formatDate( inst, minDate );
 			}
@@ -7444,8 +7078,6 @@ $.extend( Datepicker.prototype, {
 		}
 		return ( inst ? this._getDate( inst ) : null );
 	},
-
-	/* Handle keystrokes. */
 	_doKeyDown: function( event ) {
 		var onSelect, dateStr, sel,
 			inst = $.datepicker._getInst( event.target ),
@@ -7457,7 +7089,7 @@ $.extend( Datepicker.prototype, {
 			switch ( event.keyCode ) {
 				case 9: $.datepicker._hideDatepicker();
 						handled = false;
-						break; // hide on tab out
+						break; 
 				case 13: sel = $( "td." + $.datepicker._dayOverClass + ":not(." +
 									$.datepicker._currentClass + ")", inst.dpDiv );
 						if ( sel[ 0 ] ) {
@@ -7468,74 +7100,69 @@ $.extend( Datepicker.prototype, {
 						if ( onSelect ) {
 							dateStr = $.datepicker._formatDate( inst );
 
-							// Trigger custom callback
 							onSelect.apply( ( inst.input ? inst.input[ 0 ] : null ), [ dateStr, inst ] );
 						} else {
 							$.datepicker._hideDatepicker();
 						}
 
-						return false; // don't submit the form
+						return false; 
 				case 27: $.datepicker._hideDatepicker();
 						break; // hide on escape
 				case 33: $.datepicker._adjustDate( event.target, ( event.ctrlKey ?
 							-$.datepicker._get( inst, "stepBigMonths" ) :
 							-$.datepicker._get( inst, "stepMonths" ) ), "M" );
-						break; // previous month/year on page up/+ ctrl
+						break; 
 				case 34: $.datepicker._adjustDate( event.target, ( event.ctrlKey ?
 							+$.datepicker._get( inst, "stepBigMonths" ) :
 							+$.datepicker._get( inst, "stepMonths" ) ), "M" );
-						break; // next month/year on page down/+ ctrl
+						break; 
 				case 35: if ( event.ctrlKey || event.metaKey ) {
 							$.datepicker._clearDate( event.target );
 						}
 						handled = event.ctrlKey || event.metaKey;
-						break; // clear on ctrl or command +end
+						break;
 				case 36: if ( event.ctrlKey || event.metaKey ) {
 							$.datepicker._gotoToday( event.target );
 						}
 						handled = event.ctrlKey || event.metaKey;
-						break; // current on ctrl or command +home
+						break; 
 				case 37: if ( event.ctrlKey || event.metaKey ) {
 							$.datepicker._adjustDate( event.target, ( isRTL ? +1 : -1 ), "D" );
 						}
 						handled = event.ctrlKey || event.metaKey;
 
-						// -1 day on ctrl or command +left
 						if ( event.originalEvent.altKey ) {
 							$.datepicker._adjustDate( event.target, ( event.ctrlKey ?
 								-$.datepicker._get( inst, "stepBigMonths" ) :
 								-$.datepicker._get( inst, "stepMonths" ) ), "M" );
 						}
 
-						// next month/year on alt +left on Mac
 						break;
 				case 38: if ( event.ctrlKey || event.metaKey ) {
 							$.datepicker._adjustDate( event.target, -7, "D" );
 						}
 						handled = event.ctrlKey || event.metaKey;
-						break; // -1 week on ctrl or command +up
+						break; 
 				case 39: if ( event.ctrlKey || event.metaKey ) {
 							$.datepicker._adjustDate( event.target, ( isRTL ? -1 : +1 ), "D" );
 						}
 						handled = event.ctrlKey || event.metaKey;
 
-						// +1 day on ctrl or command +right
 						if ( event.originalEvent.altKey ) {
 							$.datepicker._adjustDate( event.target, ( event.ctrlKey ?
 								+$.datepicker._get( inst, "stepBigMonths" ) :
 								+$.datepicker._get( inst, "stepMonths" ) ), "M" );
 						}
 
-						// next month/year on alt +right
 						break;
 				case 40: if ( event.ctrlKey || event.metaKey ) {
 							$.datepicker._adjustDate( event.target, +7, "D" );
 						}
 						handled = event.ctrlKey || event.metaKey;
-						break; // +1 week on ctrl or command +down
+						break; 
 				default: handled = false;
 			}
-		} else if ( event.keyCode === 36 && event.ctrlKey ) { // display the date picker on ctrl+home
+		} else if ( event.keyCode === 36 && event.ctrlKey ) { 
 			$.datepicker._showDatepicker( this );
 		} else {
 			handled = false;
@@ -7547,7 +7174,6 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Filter entered characters - based on date format. */
 	_doKeyPress: function( event ) {
 		var chars, chr,
 			inst = $.datepicker._getInst( event.target );
@@ -7559,7 +7185,6 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Synchronise manual entry and field/alternate field. */
 	_doKeyUp: function( event ) {
 		var date,
 			inst = $.datepicker._getInst( event.target );
@@ -7570,7 +7195,7 @@ $.extend( Datepicker.prototype, {
 					( inst.input ? inst.input.val() : null ),
 					$.datepicker._getFormatConfig( inst ) );
 
-				if ( date ) { // only if valid
+				if ( date ) { 
 					$.datepicker._setDateFromField( inst );
 					$.datepicker._updateAlternate( inst );
 					$.datepicker._updateDatepicker( inst );
@@ -7585,11 +7210,11 @@ $.extend( Datepicker.prototype, {
 	
 	_showDatepicker: function( input ) {
 		input = input.target || input;
-		if ( input.nodeName.toLowerCase() !== "input" ) { // find from button/image trigger
+		if ( input.nodeName.toLowerCase() !== "input" ) { 
 			input = $( "input", input.parentNode )[ 0 ];
 		}
 
-		if ( $.datepicker._isDisabledDatepicker( input ) || $.datepicker._lastInput === input ) { // already here
+		if ( $.datepicker._isDisabledDatepicker( input ) || $.datepicker._lastInput === input ) { 
 			return;
 		}
 
@@ -7615,12 +7240,12 @@ $.extend( Datepicker.prototype, {
 		$.datepicker._lastInput = input;
 		$.datepicker._setDateFromField( inst );
 
-		if ( $.datepicker._inDialog ) { // hide cursor
+		if ( $.datepicker._inDialog ) {
 			input.value = "";
 		}
-		if ( !$.datepicker._pos ) { // position below input
+		if ( !$.datepicker._pos ) { 
 			$.datepicker._pos = $.datepicker._findPos( input );
-			$.datepicker._pos[ 1 ] += input.offsetHeight; // add the height
+			$.datepicker._pos[ 1 ] += input.offsetHeight;
 		}
 
 		isFixed = false;
@@ -7632,15 +7257,11 @@ $.extend( Datepicker.prototype, {
 		offset = { left: $.datepicker._pos[ 0 ], top: $.datepicker._pos[ 1 ] };
 		$.datepicker._pos = null;
 
-		//to avoid flashes on Firefox
 		inst.dpDiv.empty();
 
-		// determine sizing offscreen
 		inst.dpDiv.css( { position: "absolute", display: "block", top: "-1000px" } );
 		$.datepicker._updateDatepicker( inst );
 
-		// fix width for dynamic number of date pickers
-		// and adjust position before showing
 		offset = $.datepicker._checkOffset( inst, offset, isFixed );
 		inst.dpDiv.css( { position: ( $.datepicker._inDialog && $.blockUI ?
 			"static" : ( isFixed ? "fixed" : "absolute" ) ), display: "none",
@@ -7666,10 +7287,9 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Generate the date picker content. */
 	_updateDatepicker: function( inst ) {
-		this.maxRows = 4; //Reset the max number of rows being displayed (see #7043)
-		datepicker_instActive = inst; // for delegate hover events
+		this.maxRows = 4;
+		datepicker_instActive = inst; 
 		inst.dpDiv.empty().append( this._generateHTML( inst ) );
 		this._attachHandlers( inst );
 
@@ -7696,12 +7316,10 @@ $.extend( Datepicker.prototype, {
 			inst.input.trigger( "focus" );
 		}
 
-		// Deffered render of the years select (to avoid flashes on Firefox)
 		if ( inst.yearshtml ) {
 			origyearshtml = inst.yearshtml;
 			setTimeout( function() {
 
-				//assure that inst.yearshtml didn't change.
 				if ( origyearshtml === inst.yearshtml && inst.yearshtml ) {
 					inst.dpDiv.find( "select.ui-datepicker-year:first" ).replaceWith( inst.yearshtml );
 				}
@@ -7710,14 +7328,10 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	// #6694 - don't focus the input if it's already focused
-	// this breaks the change event in IE
-	// Support: IE and jQuery <1.9
 	_shouldFocusInput: function( inst ) {
 		return inst.input && inst.input.is( ":visible" ) && !inst.input.is( ":disabled" ) && !inst.input.is( ":focus" );
 	},
 
-	/* Check positioning to remain on screen. */
 	_checkOffset: function( inst, offset, isFixed ) {
 		var dpWidth = inst.dpDiv.outerWidth(),
 			dpHeight = inst.dpDiv.outerHeight(),
@@ -7739,7 +7353,6 @@ $.extend( Datepicker.prototype, {
 		return offset;
 	},
 
-	/* Find an object's position on the screen. */
 	_findPos: function( obj ) {
 		var position,
 			inst = this._getInst( obj ),
@@ -7752,9 +7365,7 @@ $.extend( Datepicker.prototype, {
 		position = $( obj ).offset();
 		return [ position.left, position.top ];
 	},
-
-	/* Hide the date picker from view.
-	 * @param  input  element - the input field attached to the date picker
+am  input  element - the input field attached to the date picker
 	 */
 	_hideDatepicker: function( input ) {
 		var showAnim, duration, postProcess, onClose,
@@ -7771,7 +7382,6 @@ $.extend( Datepicker.prototype, {
 				$.datepicker._tidyDialog( inst );
 			};
 
-			// DEPRECATED: after BC for 1.8.x $.effects[ showAnim ] is not needed
 			if ( $.effects && ( $.effects.effect[ showAnim ] || $.effects[ showAnim ] ) ) {
 				inst.dpDiv.hide( showAnim, $.datepicker._get( inst, "showOptions" ), duration, postProcess );
 			} else {
@@ -7801,12 +7411,10 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Tidy up after a dialog display. */
 	_tidyDialog: function( inst ) {
 		inst.dpDiv.removeClass( this._dialogClass ).off( ".ui-datepicker-calendar" );
 	},
 
-	/* Close date picker if clicked elsewhere. */
 	_checkExternalClick: function( event ) {
 		if ( !$.datepicker._curInst ) {
 			return;
@@ -7825,7 +7433,6 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Adjust one of the date sub-fields. */
 	_adjustDate: function( id, offset, period ) {
 		var target = $( id ),
 			inst = this._getInst( target[ 0 ] );
@@ -7839,7 +7446,6 @@ $.extend( Datepicker.prototype, {
 		this._updateDatepicker( inst );
 	},
 
-	/* Action for current link. */
 	_gotoToday: function( id ) {
 		var date,
 			target = $( id ),
@@ -7859,7 +7465,6 @@ $.extend( Datepicker.prototype, {
 		this._adjustDate( target );
 	},
 
-	/* Action for selecting a new month/year. */
 	_selectMonthYear: function( id, select, period ) {
 		var target = $( id ),
 			inst = this._getInst( target[ 0 ] );
@@ -7872,7 +7477,6 @@ $.extend( Datepicker.prototype, {
 		this._adjustDate( target );
 	},
 
-	/* Action for selecting a day. */
 	_selectDay: function( id, month, year, td ) {
 		var inst,
 			target = $( id );
@@ -7889,13 +7493,12 @@ $.extend( Datepicker.prototype, {
 			inst.currentDay, inst.currentMonth, inst.currentYear ) );
 	},
 
-	/* Erase the input field and hide the date picker. */
+	
 	_clearDate: function( id ) {
 		var target = $( id );
 		this._selectDate( target, "" );
 	},
 
-	/* Update the input field with the selected date. */
 	_selectDate: function( id, dateStr ) {
 		var onSelect,
 			target = $( id ),
@@ -7909,10 +7512,9 @@ $.extend( Datepicker.prototype, {
 
 		onSelect = this._get( inst, "onSelect" );
 		if ( onSelect ) {
-			onSelect.apply( ( inst.input ? inst.input[ 0 ] : null ), [ dateStr, inst ] );  // trigger custom callback
+			onSelect.apply( ( inst.input ? inst.input[ 0 ] : null ), [ dateStr, inst ] ); 
 		} else if ( inst.input ) {
-			inst.input.trigger( "change" ); // fire the change event
-		}
+			inst.input.trigger( "change" ); 
 
 		if ( inst.inline ) {
 			this._updateDatepicker( inst );
@@ -7920,18 +7522,17 @@ $.extend( Datepicker.prototype, {
 			this._hideDatepicker();
 			this._lastInput = inst.input[ 0 ];
 			if ( typeof( inst.input[ 0 ] ) !== "object" ) {
-				inst.input.trigger( "focus" ); // restore focus
+				inst.input.trigger( "focus" ); 
 			}
 			this._lastInput = null;
 		}
 	},
 
-	/* Update any alternate field to synchronise with the main field. */
 	_updateAlternate: function( inst ) {
 		var altFormat, date, dateStr,
 			altField = this._get( inst, "altField" );
 
-		if ( altField ) { // update alternate field too
+		if ( altField ) { 
 			altFormat = this._get( inst, "altFormat" ) || this._get( inst, "dateFormat" );
 			date = this._getDate( inst );
 			dateStr = this.formatDate( altFormat, date, this._getFormatConfig( inst ) );
@@ -7939,28 +7540,21 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Set as beforeShowDay function to prevent selection of weekends.
-	 * @param  date  Date - the date to customise
-	 * @return [boolean, string] - is this date selectable?, what is its CSS class?
-	 */
+	
 	noWeekends: function( date ) {
 		var day = date.getDay();
 		return [ ( day > 0 && day < 6 ), "" ];
 	},
 
-	/* Set as calculateWeek to determine the week of the year based on the ISO 8601 definition.
-	 * @param  date  Date - the date to get the week for
-	 * @return  number - the number of the week within the year that contains this date
-	 */
+
 	iso8601Week: function( date ) {
 		var time,
 			checkDate = new Date( date.getTime() );
 
-		// Find Thursday of this week starting on Monday
 		checkDate.setDate( checkDate.getDate() + 4 - ( checkDate.getDay() || 7 ) );
 
 		time = checkDate.getTime();
-		checkDate.setMonth( 0 ); // Compare with Jan 1
+		checkDate.setMonth( 0 ); 
 		checkDate.setDate( 1 );
 		return Math.floor( Math.round( ( time - checkDate ) / 86400000 ) / 7 ) + 1;
 	},
@@ -7991,7 +7585,6 @@ $.extend( Datepicker.prototype, {
 			literal = false,
 			date,
 
-			// Check whether a format character is doubled
 			lookAhead = function( match ) {
 				var matches = ( iFormat + 1 < format.length && format.charAt( iFormat + 1 ) === match );
 				if ( matches ) {
@@ -8000,7 +7593,6 @@ $.extend( Datepicker.prototype, {
 				return matches;
 			},
 
-			// Extract a number from the string value
 			getNumber = function( match ) {
 				var isDoubled = lookAhead( match ),
 					size = ( match === "@" ? 14 : ( match === "!" ? 20 :
@@ -8015,7 +7607,6 @@ $.extend( Datepicker.prototype, {
 				return parseInt( num[ 0 ], 10 );
 			},
 
-			// Extract a name from the string value and convert to an index
 			getName = function( match, shortNames, longNames ) {
 				var index = -1,
 					names = $.map( lookAhead( match ) ? longNames : shortNames, function( v, k ) {
@@ -8039,7 +7630,6 @@ $.extend( Datepicker.prototype, {
 				}
 			},
 
-			// Confirm that a literal character matches the string value
 			checkLiteral = function() {
 				if ( value.charAt( iValue ) !== format.charAt( iFormat ) ) {
 					throw "Unexpected literal at position " + iValue;
@@ -8133,7 +7723,6 @@ $.extend( Datepicker.prototype, {
 		return date;
 	},
 
-	/* Standard date formats. */
 	ATOM: "yy-mm-dd", // RFC 3339 (ISO 8601)
 	COOKIE: "D, dd M yy",
 	ISO_8601: "yy-mm-dd",
@@ -8181,7 +7770,6 @@ $.extend( Datepicker.prototype, {
 				return num;
 			},
 
-			// Format a name, short or long as requested
 			formatName = function( match, value, shortNames, longNames ) {
 				return ( lookAhead( match ) ? longNames[ value ] : shortNames[ value ] );
 			},
@@ -8440,7 +8028,6 @@ $.extend( Datepicker.prototype, {
 		} );
 	},
 
-	/* Generate the HTML for the current state of the date picker. */
 	_generateHTML: function( inst ) {
 		var maxDraw, prevText, prev, nextText, next, currentText, gotoDate,
 			controls, buttonPanel, firstDay, showWeek, dayNames, dayNamesMin,
@@ -8625,7 +8212,6 @@ $.extend( Datepicker.prototype, {
 		return html;
 	},
 
-	/* Generate the month and year header. */
 	_generateMonthYearHeader: function( inst, drawMonth, drawYear, minDate, maxDate,
 			secondary, monthNames, monthNamesShort ) {
 
@@ -8636,7 +8222,6 @@ $.extend( Datepicker.prototype, {
 			html = "<div class='ui-datepicker-title'>",
 			monthHtml = "";
 
-		// Month selection
 		if ( secondary || !changeMonth ) {
 			monthHtml += "<span class='ui-datepicker-month'>" + monthNames[ drawMonth ] + "</span>";
 		} else {
@@ -8656,15 +8241,12 @@ $.extend( Datepicker.prototype, {
 		if ( !showMonthAfterYear ) {
 			html += monthHtml + ( secondary || !( changeMonth && changeYear ) ? "&#xa0;" : "" );
 		}
-
-		// Year selection
 		if ( !inst.yearshtml ) {
 			inst.yearshtml = "";
 			if ( secondary || !changeYear ) {
 				html += "<span class='ui-datepicker-year'>" + drawYear + "</span>";
 			} else {
 
-				// determine range of years to display
 				years = this._get( inst, "yearRange" ).split( ":" );
 				thisYear = new Date().getFullYear();
 				determineYear = function( value ) {
@@ -8694,11 +8276,10 @@ $.extend( Datepicker.prototype, {
 		if ( showMonthAfterYear ) {
 			html += ( secondary || !( changeMonth && changeYear ) ? "&#xa0;" : "" ) + monthHtml;
 		}
-		html += "</div>"; // Close datepicker_header
+		html += "</div>"; 
 		return html;
 	},
 
-	/* Adjust one of the date sub-fields. */
 	_adjustInstDate: function( inst, offset, period ) {
 		var year = inst.selectedYear + ( period === "Y" ? offset : 0 ),
 			month = inst.selectedMonth + ( period === "M" ? offset : 0 ),
@@ -8713,7 +8294,6 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Ensure a date is within any min/max bounds. */
 	_restrictMinMax: function( inst, date ) {
 		var minDate = this._getMinMaxDate( inst, "min" ),
 			maxDate = this._getMinMaxDate( inst, "max" ),
@@ -8721,7 +8301,6 @@ $.extend( Datepicker.prototype, {
 		return ( maxDate && newDate > maxDate ? maxDate : newDate );
 	},
 
-	/* Notify change of month/year. */
 	_notifyChange: function( inst ) {
 		var onChange = this._get( inst, "onChangeMonthYear" );
 		if ( onChange ) {
@@ -8730,28 +8309,23 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Determine the number of months to show. */
 	_getNumberOfMonths: function( inst ) {
 		var numMonths = this._get( inst, "numberOfMonths" );
 		return ( numMonths == null ? [ 1, 1 ] : ( typeof numMonths === "number" ? [ 1, numMonths ] : numMonths ) );
 	},
 
-	/* Determine the current maximum date - ensure no time components are set. */
 	_getMinMaxDate: function( inst, minMax ) {
 		return this._determineDate( inst, this._get( inst, minMax + "Date" ), null );
 	},
 
-	/* Find the number of days in a given month. */
 	_getDaysInMonth: function( year, month ) {
 		return 32 - this._daylightSavingAdjust( new Date( year, month, 32 ) ).getDate();
 	},
 
-	/* Find the day of the week of the first of a month. */
 	_getFirstDayOfMonth: function( year, month ) {
 		return new Date( year, month, 1 ).getDay();
 	},
 
-	/* Determines if we should allow a "next/prev" month display change. */
 	_canAdjustMonth: function( inst, offset, curYear, curMonth ) {
 		var numMonths = this._getNumberOfMonths( inst ),
 			date = this._daylightSavingAdjust( new Date( curYear,
@@ -8763,7 +8337,6 @@ $.extend( Datepicker.prototype, {
 		return this._isInRange( inst, date );
 	},
 
-	/* Is the given date in the accepted range? */
 	_isInRange: function( inst, date ) {
 		var yearSplit, currentYear,
 			minDate = this._getMinMaxDate( inst, "min" ),
@@ -8790,7 +8363,6 @@ $.extend( Datepicker.prototype, {
 			( !maxYear || date.getFullYear() <= maxYear ) );
 	},
 
-	/* Provide the configuration settings for formatting/parsing. */
 	_getFormatConfig: function( inst ) {
 		var shortYearCutoff = this._get( inst, "shortYearCutoff" );
 		shortYearCutoff = ( typeof shortYearCutoff !== "string" ? shortYearCutoff :
@@ -8800,7 +8372,6 @@ $.extend( Datepicker.prototype, {
 			monthNamesShort: this._get( inst, "monthNamesShort" ), monthNames: this._get( inst, "monthNames" ) };
 	},
 
-	/* Format the given date for display. */
 	_formatDate: function( inst, day, month, year ) {
 		if ( !day ) {
 			inst.currentDay = inst.selectedDay;
@@ -8814,11 +8385,7 @@ $.extend( Datepicker.prototype, {
 	}
 } );
 
-/*
- * Bind hover events for datepicker elements.
- * Done via delegate so the binding only occurs once in the lifetime of the parent div.
- * Global datepicker_instActive, set by _updateDatepicker allows the handlers to find their way back to the active picker.
- */
+
 function datepicker_bindHover( dpDiv ) {
 	var selector = "button, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a";
 	return dpDiv.on( "mouseout", selector, function() {
@@ -8846,7 +8413,6 @@ function datepicker_handleMouseover() {
 	}
 }
 
-/* jQuery extend now ignores nulls! */
 function datepicker_extendRemove( target, props ) {
 	$.extend( target, props );
 	for ( var name in props ) {
@@ -8857,24 +8423,17 @@ function datepicker_extendRemove( target, props ) {
 	return target;
 }
 
-/* Invoke the datepicker functionality.
-   @param  options  string - a command, optionally followed by additional parameters or
-					Object - settings for attaching new datepicker functionality
-   @return  jQuery object */
 $.fn.datepicker = function( options ) {
 
-	/* Verify an empty collection wasn't passed - Fixes #6976 */
 	if ( !this.length ) {
 		return this;
 	}
 
-	/* Initialise the date picker. */
 	if ( !$.datepicker.initialized ) {
 		$( document ).on( "mousedown", $.datepicker._checkExternalClick );
 		$.datepicker.initialized = true;
 	}
 
-	/* Append datepicker main container to body if not exist. */
 	if ( $( "#" + $.datepicker._mainDivId ).length === 0 ) {
 		$( "body" ).append( $.datepicker.dpDiv );
 	}
@@ -8896,7 +8455,7 @@ $.fn.datepicker = function( options ) {
 	} );
 };
 
-$.datepicker = new Datepicker(); // singleton instance
+$.datepicker = new Datepicker(); 
 $.datepicker.initialized = false;
 $.datepicker.uuid = new Date().getTime();
 $.datepicker.version = "1.12.1";
@@ -8906,7 +8465,6 @@ var widgetsDatepicker = $.datepicker;
 
 
 
-// This file is deprecated
 var ie = $.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
 
 
@@ -8952,14 +8510,12 @@ var widgetsMouse = $.widget( "ui.mouse", {
 
 	_mouseDown: function( event ) {
 
-		// don't let more than one widget handle mouseStart
 		if ( mouseHandled ) {
 			return;
 		}
 
 		this._mouseMoved = false;
 
-		// We may have missed mouseup (out of window)
 		( this._mouseStarted && this._mouseUp( event ) );
 
 		this._mouseDownEvent = event;
@@ -8967,8 +8523,6 @@ var widgetsMouse = $.widget( "ui.mouse", {
 		var that = this,
 			btnIsLeft = ( event.which === 1 ),
 
-			// event.target.nodeName works around a bug in IE 8 with
-			// disabled inputs (#7620)
 			elIsCancel = ( typeof this.options.cancel === "string" && event.target.nodeName ?
 				$( event.target ).closest( this.options.cancel ).length : false );
 		if ( !btnIsLeft || elIsCancel || !this._mouseCapture( event ) ) {
@@ -8990,12 +8544,10 @@ var widgetsMouse = $.widget( "ui.mouse", {
 			}
 		}
 
-		// Click event may never have fired (Gecko & Opera)
 		if ( true === $.data( event.target, this.widgetName + ".preventClickEvent" ) ) {
 			$.removeData( event.target, this.widgetName + ".preventClickEvent" );
 		}
 
-		// These delegates are required to keep context
 		this._mouseMoveDelegate = function( event ) {
 			return that._mouseMove( event );
 		};
@@ -9083,14 +8635,14 @@ var widgetsMouse = $.widget( "ui.mouse", {
 		);
 	},
 
-	_mouseDelayMet: function( /* event */ ) {
+	_mouseDelayMet: function( ) {
 		return this.mouseDelayMet;
 	},
 
-	_mouseStart: function( /* event */ ) {},
-	_mouseDrag: function( /* event */ ) {},
-	_mouseStop: function( /* event */ ) {},
-	_mouseCapture: function( /* event */ ) { return true; }
+	_mouseStart: function( ) {},
+	_mouseDrag: function( ) {},
+	_mouseStop: function(  ) {},
+	_mouseCapture: function( ) { return true; }
 } );
 
 
@@ -9130,8 +8682,7 @@ var plugin = $.ui.plugin = {
 
 var safeBlur = $.ui.safeBlur = function( element ) {
 
-	// Support: IE9 - 10 only
-	// If the <body> is blurred, IE will switch windows, see #9420
+	
 	if ( element && element.nodeName.toLowerCase() !== "body" ) {
 		$( element ).trigger( "blur" );
 	}
@@ -9206,13 +8757,11 @@ $.widget( "ui.draggable", $.ui.mouse, {
 	_mouseCapture: function( event ) {
 		var o = this.options;
 
-		// Among others, prevent a drag on a resizable-handle
 		if ( this.helper || o.disabled ||
 				$( event.target ).closest( ".ui-resizable-handle" ).length > 0 ) {
 			return false;
 		}
 
-		//Quit if we're not on a valid handle
 		this.handle = this._getHandle( event );
 		if ( !this.handle ) {
 			return false;
@@ -9274,7 +8823,6 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 		this._cacheMargins();
 
-		//Store the helper's css position
 		this.cssPosition = this.helper.css( "position" );
 		this.scrollParent = this.helper.scrollParent( true );
 		this.offsetParent = this.helper.offsetParent();
@@ -9282,31 +8830,24 @@ $.widget( "ui.draggable", $.ui.mouse, {
 				return $( this ).css( "position" ) === "fixed";
 			} ).length > 0;
 
-		//The element's absolute position on the page minus margins
 		this.positionAbs = this.element.offset();
 		this._refreshOffsets( event );
 
-		//Generate the original position
 		this.originalPosition = this.position = this._generatePosition( event, false );
 		this.originalPageX = event.pageX;
 		this.originalPageY = event.pageY;
 
-		//Adjust the mouse offset relative to the helper if "cursorAt" is supplied
 		( o.cursorAt && this._adjustOffsetFromHelper( o.cursorAt ) );
 
-		//Set a containment if given in the options
 		this._setContainment();
 
-		//Trigger event + callbacks
 		if ( this._trigger( "start", event ) === false ) {
 			this._clear();
 			return false;
 		}
 
-		//Recache the helper size
 		this._cacheHelperProportions();
 
-		//Prepare the droppable offsets
 		if ( $.ui.ddmanager && !o.dropBehaviour ) {
 			$.ui.ddmanager.prepareOffsets( this, event );
 		}
@@ -9338,16 +8879,13 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 	_mouseDrag: function( event, noPropagation ) {
 
-		// reset any necessary cached properties (see #5009)
 		if ( this.hasFixedAncestor ) {
 			this.offset.parent = this._getParentOffset();
 		}
 
-		//Compute the helpers position
 		this.position = this._generatePosition( event, true );
 		this.positionAbs = this._convertPositionTo( "absolute" );
 
-		//Call plugins and callbacks and use the resulting position if something is returned
 		if ( !noPropagation ) {
 			var ui = this._uiHash();
 			if ( this._trigger( "drag", event, ui ) === false ) {
@@ -9369,14 +8907,12 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 	_mouseStop: function( event ) {
 
-		//If we are using droppables, inform the manager about the drop
 		var that = this,
 			dropped = false;
 		if ( $.ui.ddmanager && !this.options.dropBehaviour ) {
 			dropped = $.ui.ddmanager.drop( this, event );
 		}
 
-		//if a drop comes from outside (a sortable)
 		if ( this.dropped ) {
 			dropped = this.dropped;
 			this.dropped = false;
@@ -9408,17 +8944,12 @@ $.widget( "ui.draggable", $.ui.mouse, {
 	_mouseUp: function( event ) {
 		this._unblockFrames();
 
-		// If the ddmanager is used for droppables, inform the manager that dragging has stopped
-		// (see #5003)
 		if ( $.ui.ddmanager ) {
 			$.ui.ddmanager.dragStop( this, event );
 		}
 
-		// Only need to focus if the event occurred on the draggable itself, see #10527
 		if ( this.handleElement.is( event.target ) ) {
 
-			// The interaction is over; whether or not the click resulted in a drag,
-			// focus the element
 			this.element.trigger( "focus" );
 		}
 
@@ -9469,9 +9000,6 @@ $.widget( "ui.draggable", $.ui.mouse, {
 				o.appendTo ) );
 		}
 
-		// Http://bugs.jqueryui.com/ticket/9446
-		// a helper function can return the original element
-		// which wouldn't have been set to relative in _create
 		if ( helperIsFunction && helper[ 0 ] === this.element[ 0 ] ) {
 			this._setPositionRelative();
 		}
@@ -9518,7 +9046,6 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 	_getParentOffset: function() {
 
-		//Get the offsetParent and cache its position
 		var po = this.offsetParent.offset(),
 			document = this.document[ 0 ];
 
@@ -9661,13 +9188,10 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		return {
 			top: (
 
-				// The absolute mouse position
 				pos.top	+
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.top * mod +
 
-				// The offsetParent's offset without borders (offset + border)
 				this.offset.parent.top * mod -
 				( ( this.cssPosition === "fixed" ?
 					-this.offset.scroll.top :
@@ -9675,13 +9199,10 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			),
 			left: (
 
-				// The absolute mouse position
 				pos.left +
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.left * mod +
 
-				// The offsetParent's offset without borders (offset + border)
 				this.offset.parent.left * mod	-
 				( ( this.cssPosition === "fixed" ?
 					-this.offset.scroll.left :
@@ -9699,7 +9220,6 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			pageX = event.pageX,
 			pageY = event.pageY;
 
-		// Cache the scroll
 		if ( !scrollIsRootNode || !this.offset.scroll ) {
 			this.offset.scroll = {
 				top: this.scrollParent.scrollTop(),
@@ -9707,12 +9227,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			};
 		}
 
-		/*
-		 * - Position constraining -
-		 * Constrain the position to a mix of grid, containment.
-		 */
 
-		// If we are not dragging yet, we won't check for options
 		if ( constrainPosition ) {
 			if ( this.containment ) {
 				if ( this.relativeContainer ) {
@@ -9743,8 +9258,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 			if ( o.grid ) {
 
-				//Check for grid elements set to 0 to prevent divide by 0 error causing invalid
-				// argument errors in IE (see ticket #6950)
+				
 				top = o.grid[ 1 ] ? this.originalPageY + Math.round( ( pageY -
 					this.originalPageY ) / o.grid[ 1 ] ) * o.grid[ 1 ] : this.originalPageY;
 				pageY = containment ? ( ( top - this.offset.click.top >= containment[ 1 ] ||
@@ -9775,16 +9289,12 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		return {
 			top: (
 
-				// The absolute mouse position
 				pageY -
 
-				// Click offset (relative to the element)
 				this.offset.click.top -
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.top -
 
-				// The offsetParent's offset without borders (offset + border)
 				this.offset.parent.top +
 				( this.cssPosition === "fixed" ?
 					-this.offset.scroll.top :
@@ -9792,16 +9302,12 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			),
 			left: (
 
-				// The absolute mouse position
 				pageX -
 
-				// Click offset (relative to the element)
 				this.offset.click.left -
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.left -
 
-				// The offsetParent's offset without borders (offset + border)
 				this.offset.parent.left +
 				( this.cssPosition === "fixed" ?
 					-this.offset.scroll.left :
@@ -9823,13 +9329,11 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		}
 	},
 
-	// From now on bulk stuff - mainly helpers
 
 	_trigger: function( type, event, ui ) {
 		ui = ui || this._uiHash();
 		$.ui.plugin.call( this, type, [ event, ui, this ], true );
 
-		// Absolute position and offset (see #6884 ) have to be recalculated after plugins
 		if ( /^(drag|start|stop)/.test( type ) ) {
 			this.positionAbs = this._convertPositionTo( "absolute" );
 			ui.offset = this.positionAbs;
@@ -9863,9 +9367,7 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 			if ( sortable && !sortable.options.disabled ) {
 				draggable.sortables.push( sortable );
 
-				// RefreshPositions is called at drag start to refresh the containerCache
-				// which is used in drag. This ensures it's initialized and synchronized
-				// with any changes that might have happened on the page since initialization.
+				
 				sortable.refreshPositions();
 				sortable._trigger( "activate", event, uiSortable );
 			}
@@ -9884,7 +9386,6 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 			if ( sortable.isOver ) {
 				sortable.isOver = 0;
 
-				// Allow this sortable to handle removing the helper
 				draggable.cancelHelperRemoval = true;
 				sortable.cancelHelperRemoval = false;
 
@@ -9912,7 +9413,6 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 			var innermostIntersecting = false,
 				sortable = this;
 
-			// origin over variables that sortable's _intersectsWith uses
 			sortable.positionAbs = draggable.positionAbs;
 			sortable.helperProportions = draggable.helperProportions;
 			sortable.offset.click = draggable.offset.click;
@@ -9922,7 +9422,6 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 
 				$.each( draggable.sortables, function() {
 
-					// origin over variables that sortable's _intersectsWith uses
 					this.positionAbs = draggable.positionAbs;
 					this.helperProportions = draggable.helperProportions;
 					this.offset.click = draggable.offset.click;
@@ -9950,21 +9449,16 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 						.appendTo( sortable.element )
 						.data( "ui-sortable-item", true );
 
-					// Store helper option to later restore it
 					sortable.options._helper = sortable.options.helper;
 
 					sortable.options.helper = function() {
 						return ui.helper[ 0 ];
 					};
 
-					// Fire the start events of the sortable with our passed browser event,
-					// and our own helper (so it doesn't create a new one)
 					event.target = sortable.currentItem[ 0 ];
 					sortable._mouseCapture( event, true );
 					sortable._mouseStart( event, true, true );
 
-					// Because the browser event is way off the new appended portlet,
-					// modify necessary variables to reflect the changes
 					sortable.offset.click.top = draggable.offset.click.top;
 					sortable.offset.click.left = draggable.offset.click.left;
 					sortable.offset.parent.left -= draggable.offset.parent.left -
@@ -10328,10 +9822,9 @@ $.widget( "ui.resizable", $.ui.mouse, {
 		minHeight: 10,
 		minWidth: 10,
 
-		// See #7960
 		zIndex: 90,
 
-		// Callbacks
+		
 		resize: null,
 		start: null,
 		stop: null
@@ -10358,9 +9851,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			return true;
 		}
 
-		// TODO: determine which cases actually cause this to happen
-		// if the element doesn't have the scroll set, see if it's possible to
-		// set the scroll
+		
 		el[ scroll ] = 1;
 		has = ( el[ scroll ] > 0 );
 		el[ scroll ] = 0;
@@ -10382,7 +9873,6 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			_helper: o.helper || o.ghost || o.animate ? o.helper || "ui-resizable-helper" : null
 		} );
 
-		// Wrap the element if it cannot hold child nodes
 		if ( this.element[ 0 ].nodeName.match( /^(canvas|textarea|input|select|button|img)$/i ) ) {
 
 			this.element.wrap(
@@ -10411,8 +9901,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			this.element.css( margins );
 			this.originalElement.css( "margin", 0 );
 
-			// support: Safari
-			// Prevent Safari textarea resize
+			
 			this.originalResizeStyle = this.originalElement.css( "resize" );
 			this.originalElement.css( "resize", "none" );
 
@@ -10422,8 +9911,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 				display: "block"
 			} ) );
 
-			// Support: IE9
-			// avoid IE jump (hard set the margin)
+			
 			this.originalElement.css( margins );
 
 			this._proportionallyResize();
@@ -10468,7 +9956,6 @@ $.widget( "ui.resizable", $.ui.mouse, {
 						.remove();
 			};
 
-		// TODO: Unwrap at same DOM position
 		if ( this.elementIsWrapper ) {
 			_destroy( this.element );
 			wrapper = this.element;
@@ -10580,7 +10067,6 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			}
 		};
 
-		// TODO: make renderAxis a prototype function
 		this._renderAxis( this.element );
 
 		this._handles = this._handles.add( this.element.find( ".ui-resizable-handle" ) );
@@ -10909,7 +10395,6 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			data.top = dh - o.maxHeight;
 		}
 
-		// Fixing jump error on top/left - bug #2330
 		if ( !data.width && !data.height && !data.left && data.top ) {
 			data.top = null;
 		} else if ( !data.width && !data.height && !data.top && data.left ) {
@@ -10960,8 +10445,6 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 			prel = this._proportionallyResizeElements[ i ];
 
-			// TODO: Seems like a bug to cache this.outerDimensions
-			// considering that we are in a loop.
 			if ( !this.outerDimensions ) {
 				this.outerDimensions = this._getPaddingPlusBorderDimensions( prel );
 			}
@@ -10991,7 +10474,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 				position: "absolute",
 				left: this.elementOffset.left + "px",
 				top: this.elementOffset.top + "px",
-				zIndex: ++o.zIndex //TODO: Don't modify option
+				zIndex: ++o.zIndex 
 			} );
 
 			this.helper
@@ -11058,9 +10541,6 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 } );
 
-/*
- * Resizable Extensions
- */
 
 $.ui.plugin.add( "resizable", "animate", {
 
@@ -11097,7 +10577,6 @@ $.ui.plugin.add( "resizable", "animate", {
 						$( pr[ 0 ] ).css( { width: data.width, height: data.height } );
 					}
 
-					// Propagating resize, and updating values for each animation step
 					that._updateCache( data );
 					that._propagate( "resize", event );
 
@@ -11469,26 +10948,6 @@ $.ui.plugin.add( "resizable", "grid", {
 var widgetsResizable = $.ui.resizable;
 
 
-/*!
- * jQuery UI Dialog 1.12.1
- * http://jqueryui.com
- *
- * originright jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- */
-
-//>>label: Dialog
-//>>group: Widgets
-//>>description: Displays customizable dialog windows.
-//>>docs: http://api.jqueryui.com/dialog/
-//>>demos: http://jqueryui.com/dialog/
-//>>css.structure: ../../themes/base/core.css
-//>>css.structure: ../../themes/base/dialog.css
-//>>css.theme: ../../themes/base/theme.css
-
-
-
 $.widget( "ui.dialog", {
 	version: "1.12.1",
 	options: {
@@ -11575,7 +11034,6 @@ $.widget( "ui.dialog", {
 			this.options.title = this.originalTitle;
 		}
 
-		// Dialogs can't be disabled
 		if ( this.options.disabled ) {
 			this.options.disabled = false;
 		}
@@ -11629,7 +11087,6 @@ $.widget( "ui.dialog", {
 			.removeUniqueId()
 			.css( this.originalCss )
 
-			// Without detaching first, the following becomes really slow
 			.detach();
 
 		this.uiDialog.remove();
@@ -11640,7 +11097,6 @@ $.widget( "ui.dialog", {
 
 		next = originalPosition.parent.children().eq( originalPosition.index );
 
-		// Don't try to place the dialog next to itself (#8613)
 		if ( next.length && next[ 0 ] !== this.element[ 0 ] ) {
 			next.before( this.element );
 		} else {
@@ -11669,9 +11125,7 @@ $.widget( "ui.dialog", {
 
 		if ( !this.opener.filter( ":focusable" ).trigger( "focus" ).length ) {
 
-			// Hiding a focused element doesn't trigger blur in WebKit
-			// so in case we have nothing to focus on, explicitly blur the active element
-			// https://bugs.webkit.org/show_bug.cgi?id=47182
+			
 			$.ui.safeBlur( $.ui.safeActiveElement( this.document[ 0 ] ) );
 		}
 
@@ -11723,9 +11177,6 @@ $.widget( "ui.dialog", {
 		this._createOverlay();
 		this._moveToTop( null, true );
 
-		// Ensure the overlay is moved to the top with the dialog, but only when
-		// opening. The overlay shouldn't move after the dialog is open so that
-		// modeless dialogs opened after the modal dialog stack properly.
 		if ( this.overlay ) {
 			this.overlay.css( "z-index", this.uiDialog.css( "z-index" ) - 1 );
 		}
@@ -11735,9 +11186,7 @@ $.widget( "ui.dialog", {
 			that._trigger( "focus" );
 		} );
 
-		// Track the dialog immediately upon openening in case a focus event
-		// somehow occurs outside of the dialog before an element inside the
-		// dialog is focused (#10152)
+	
 		this._makeFocusTarget();
 
 		this._trigger( "open" );
@@ -11745,13 +11194,6 @@ $.widget( "ui.dialog", {
 
 	_focusTabbable: function() {
 
-		// Set focus to the first match:
-		// 1. An element that was focused previously
-		// 2. First element inside the dialog matching [autofocus]
-		// 3. Tabbable element inside the content element
-		// 4. Tabbable element inside the buttonpane
-		// 5. The close button
-		// 6. The dialog itself
 		var hasFocus = this._focusedElement;
 		if ( !hasFocus ) {
 			hasFocus = this.element.find( "[autofocus]" );
@@ -11783,9 +11225,7 @@ $.widget( "ui.dialog", {
 		event.preventDefault();
 		checkFocus.call( this );
 
-		// support: IE
-		// IE <= 8 doesn't prevent moving focus even with event.preventDefault()
-		// so we check again later
+		
 		this._delay( checkFocus );
 	},
 
@@ -11794,7 +11234,6 @@ $.widget( "ui.dialog", {
 			.hide()
 			.attr( {
 
-				// Setting tabIndex makes the div focusable
 				tabIndex: -1,
 				role: "dialog"
 			} )
@@ -11810,7 +11249,6 @@ $.widget( "ui.dialog", {
 					return;
 				}
 
-				// Prevent tabbing out of dialogs
 				if ( event.keyCode !== $.ui.keyCode.TAB || event.isDefaultPrevented() ) {
 					return;
 				}
@@ -11839,9 +11277,6 @@ $.widget( "ui.dialog", {
 			}
 		} );
 
-		// We assume that any existing aria-describedby attribute means
-		// that the dialog content is marked up properly
-		// otherwise we brute force the content as the description
 		if ( !this.element.find( "[aria-describedby]" ).length ) {
 			this.uiDialog.attr( {
 				"aria-describedby": this.element.uniqueId().attr( "id" )
@@ -11858,20 +11293,14 @@ $.widget( "ui.dialog", {
 		this._on( this.uiDialogTitlebar, {
 			mousedown: function( event ) {
 
-				// Don't prevent click on close button (#8838)
-				// Focusing a dialog that is partially scrolled out of view
-				// causes the browser to scroll it into view, preventing the click event
+			
 				if ( !$( event.target ).closest( ".ui-dialog-titlebar-close" ) ) {
 
-					// Dialog isn't getting focus when dragging (#8063)
 					this.uiDialog.trigger( "focus" );
 				}
 			}
 		} );
 
-		// Support: IE
-		// Use type="button" to prevent enter keypresses in textboxes from closing the
-		// dialog in IE (#9312)
 		this.uiDialogTitlebarClose = $( "<button type='button'></button>" )
 			.button( {
 				label: $( "<a>" ).text( this.options.closeText ).html(),
@@ -11923,7 +11352,6 @@ $.widget( "ui.dialog", {
 		var that = this,
 			buttons = this.options.buttons;
 
-		// If we already have a button pane, remove it
 		this.uiDialogButtonPane.remove();
 		this.uiButtonSet.empty();
 
@@ -11938,17 +11366,14 @@ $.widget( "ui.dialog", {
 				{ click: props, text: name } :
 				props;
 
-			// Default to a non-submitting button
 			props = $.extend( { type: "button" }, props );
 
-			// Change the context for the click callback to be the main element
 			click = props.click;
 			buttonOptions = {
 				icon: props.icon,
 				iconPosition: props.iconPosition,
 				showLabel: props.showLabel,
 
-				// Deprecated options
 				icons: props.icons,
 				text: props.text
 			};
@@ -11958,7 +11383,6 @@ $.widget( "ui.dialog", {
 			delete props.iconPosition;
 			delete props.showLabel;
 
-			// Deprecated options
 			delete props.icons;
 			if ( typeof props.text === "boolean" ) {
 				delete props.text;
@@ -12020,8 +11444,6 @@ $.widget( "ui.dialog", {
 			options = this.options,
 			handles = options.resizable,
 
-			// .ui-resizable has position: relative defined in the stylesheet
-			// but dialogs have to use absolute or fixed positioning
 			position = this.uiDialog.css( "position" ),
 			resizeHandles = typeof handles === "string" ?
 				handles :
@@ -12115,7 +11537,6 @@ $.widget( "ui.dialog", {
 
 	_position: function() {
 
-		// Need to show the dialog to get the actual offset in the position plugin
 		var isVisible = this.uiDialog.is( ":visible" );
 		if ( !isVisible ) {
 			this.uiDialog.show();
@@ -12172,7 +11593,6 @@ $.widget( "ui.dialog", {
 		if ( key === "closeText" ) {
 			this.uiDialogTitlebarClose.button( {
 
-				// Ensure that we always pass a string
 				label: $( "<a>" ).text( "" + this.options.closeText ).html()
 			} );
 		}
@@ -12194,18 +11614,15 @@ $.widget( "ui.dialog", {
 
 		if ( key === "resizable" ) {
 
-			// currently resizable, becoming non-resizable
 			isResizable = uiDialog.is( ":data(ui-resizable)" );
 			if ( isResizable && !value ) {
 				uiDialog.resizable( "destroy" );
 			}
 
-			// Currently resizable, changing handles
 			if ( isResizable && typeof value === "string" ) {
 				uiDialog.resizable( "option", "handles", value );
 			}
 
-			// Currently non-resizable, becoming resizable
 			if ( !isResizable && value !== false ) {
 				this._makeResizable();
 			}
@@ -12218,12 +11635,9 @@ $.widget( "ui.dialog", {
 
 	_size: function() {
 
-		// If the user has resized the dialog, the .ui-dialog and .ui-dialog-content
-		// divs will both have width and height set, so we need to reset them
 		var nonContentHeight, minContentHeight, maxContentHeight,
 			options = this.options;
 
-		// Reset content sizing
 		this.element.show().css( {
 			width: "auto",
 			minHeight: 0,
@@ -12235,8 +11649,6 @@ $.widget( "ui.dialog", {
 			options.width = options.minWidth;
 		}
 
-		// Reset wrapper sizing
-		// determine the height of all the non-content elements
 		nonContentHeight = this.uiDialog.css( {
 			height: "auto",
 			width: options.width
@@ -12289,8 +11701,6 @@ $.widget( "ui.dialog", {
 			return true;
 		}
 
-		// TODO: Remove hack when datepicker implements
-		// the .ui-front logic (#8989)
 		return !!$( event.target ).closest( ".ui-datepicker" ).length;
 	},
 
@@ -12299,8 +11709,6 @@ $.widget( "ui.dialog", {
 			return;
 		}
 
-		// We use a delay in case the overlay is created from an
-		// event that we're going to be cancelling (#2804)
 		var isOpening = true;
 		this._delay( function() {
 			isOpening = false;
@@ -12308,9 +11716,6 @@ $.widget( "ui.dialog", {
 
 		if ( !this.document.data( "ui-dialog-overlays" ) ) {
 
-			// Prevent use of anchors and inputs
-			// Using _on() for an event handler shared across many instances is
-			// safe because the dialogs stack and must be closed in reverse order
 			this._on( this.document, {
 				focusin: function( event ) {
 					if ( isOpening ) {
@@ -12357,11 +11762,8 @@ $.widget( "ui.dialog", {
 	}
 } );
 
-// DEPRECATED
-// TODO: switch return back to widget declaration at top of file when this is removed
 if ( $.uiBackCompat !== false ) {
 
-	// Backcompat for dialogClass option
 	$.widget( "ui.dialog", $.ui.dialog, {
 		options: {
 			dialogClass: ""
@@ -12418,11 +11820,9 @@ $.widget( "ui.droppable", {
 		this.proportions = function( /* valueToWrite */ ) {
 			if ( arguments.length ) {
 
-				// Store the droppable's proportions
 				proportions = arguments[ 0 ];
 			} else {
 
-				// Retrieve or derive the droppable's proportions
 				return proportions ?
 					proportions :
 					proportions = {
@@ -12440,7 +11840,6 @@ $.widget( "ui.droppable", {
 
 	_addToManager: function( scope ) {
 
-		// Add the reference and positions to the manager
 		$.ui.ddmanager.droppables[ scope ] = $.ui.ddmanager.droppables[ scope ] || [];
 		$.ui.ddmanager.droppables[ scope ].push( this );
 	},
@@ -12498,7 +11897,6 @@ $.widget( "ui.droppable", {
 
 		var draggable = $.ui.ddmanager.current;
 
-		// Bail if draggable and droppable are same element
 		if ( !draggable || ( draggable.currentItem ||
 				draggable.element )[ 0 ] === this.element[ 0 ] ) {
 			return;
@@ -12535,7 +11933,6 @@ $.widget( "ui.droppable", {
 		var draggable = custom || $.ui.ddmanager.current,
 			childrenIntersection = false;
 
-		// Bail if draggable and droppable are same element
 		if ( !draggable || ( draggable.currentItem ||
 				draggable.element )[ 0 ] === this.element[ 0 ] ) {
 			return false;
@@ -12588,8 +11985,6 @@ $.widget( "ui.droppable", {
 		};
 	},
 
-	// Extension points just to make backcompat sane and avoid duplicating logic
-	// TODO: Remove in 1.13 along with call to it below
 	_addHoverClass: function() {
 		this._addClass( "ui-droppable-hover" );
 	},
@@ -12633,22 +12028,21 @@ var intersect = $.ui.intersect = ( function() {
 		case "fit":
 			return ( l <= x1 && x2 <= r && t <= y1 && y2 <= b );
 		case "intersect":
-			return ( l < x1 + ( draggable.helperProportions.width / 2 ) && // Right Half
-				x2 - ( draggable.helperProportions.width / 2 ) < r && // Left Half
-				t < y1 + ( draggable.helperProportions.height / 2 ) && // Bottom Half
-				y2 - ( draggable.helperProportions.height / 2 ) < b ); // Top Half
-		case "pointer":
+			return ( l < x1 + ( draggable.helperProportions.width / 2 ) && 
+				x2 - ( draggable.helperProportions.width / 2 ) < r && 
+				t < y1 + ( draggable.helperProportions.height / 2 ) && 
+				y2 - ( draggable.helperProportions.height / 2 ) < b ); 
 			return isOverAxis( event.pageY, t, droppable.proportions().height ) &&
 				isOverAxis( event.pageX, l, droppable.proportions().width );
 		case "touch":
 			return (
-				( y1 >= t && y1 <= b ) || // Top edge touching
-				( y2 >= t && y2 <= b ) || // Bottom edge touching
-				( y1 < t && y2 > b ) // Surrounded vertically
+				( y1 >= t && y1 <= b ) || 
+				( y2 >= t && y2 <= b ) || 
+				( y1 < t && y2 > b ) 
 			) && (
-				( x1 >= l && x1 <= r ) || // Left edge touching
-				( x2 >= l && x2 <= r ) || // Right edge touching
-				( x1 < l && x2 > r ) // Surrounded horizontally
+				( x1 >= l && x1 <= r ) ||
+				( x2 >= l && x2 <= r ) || 
+				( x1 < l && x2 > r ) 
 			);
 		default:
 			return false;
@@ -12663,18 +12057,16 @@ $.ui.ddmanager = {
 
 		var i, j,
 			m = $.ui.ddmanager.droppables[ t.options.scope ] || [],
-			type = event ? event.type : null, // workaround for #2317
+			type = event ? event.type : null,
 			list = ( t.currentItem || t.element ).find( ":data(ui-droppable)" ).addBack();
 
 		droppablesLoop: for ( i = 0; i < m.length; i++ ) {
 
-			// No disabled and non-accepted
 			if ( m[ i ].options.disabled || ( t && !m[ i ].accept.call( m[ i ].element[ 0 ],
 					( t.currentItem || t.element ) ) ) ) {
 				continue;
 			}
 
-			// Filter out elements in the current dragged item
 			for ( j = 0; j < list.length; j++ ) {
 				if ( list[ j ] === m[ i ].element[ 0 ] ) {
 					m[ i ].proportions().height = 0;
@@ -12687,7 +12079,6 @@ $.ui.ddmanager = {
 				continue;
 			}
 
-			// Activate the droppable if used directly from draggables
 			if ( type === "mousedown" ) {
 				m[ i ]._activate.call( m[ i ], event );
 			}
@@ -12705,7 +12096,6 @@ $.ui.ddmanager = {
 
 		var dropped = false;
 
-		// Create a origin of the droppables in case the list changes during the drop (#9116)
 		$.each( ( $.ui.ddmanager.droppables[ draggable.options.scope ] || [] ).slice(), function() {
 
 			if ( !this.options ) {
@@ -12729,8 +12119,6 @@ $.ui.ddmanager = {
 	},
 	dragStart: function( draggable, event ) {
 
-		// Listen for scrolling so that if the dragging causes scrolling the position of the
-		// droppables can be recalculated (see #5003)
 		draggable.element.parentsUntil( "body" ).on( "scroll.droppable", function() {
 			if ( !draggable.options.refreshPositions ) {
 				$.ui.ddmanager.prepareOffsets( draggable, event );
@@ -12744,7 +12132,6 @@ $.ui.ddmanager = {
 			$.ui.ddmanager.prepareOffsets( draggable, event );
 		}
 
-		// Run through all droppables and check their positions based on specific tolerance options
 		$.each( $.ui.ddmanager.droppables[ draggable.options.scope ] || [], function() {
 
 			if ( this.options.disabled || this.greedyChild || !this.visible ) {
@@ -12762,7 +12149,6 @@ $.ui.ddmanager = {
 
 			if ( this.options.greedy ) {
 
-				// find droppable parents with same scope
 				scope = this.options.scope;
 				parent = this.element.parents( ":data(ui-droppable)" ).filter( function() {
 					return $( this ).droppable( "instance" ).options.scope === scope;
@@ -12774,7 +12160,6 @@ $.ui.ddmanager = {
 				}
 			}
 
-			// We just moved into a greedy child
 			if ( parentInstance && c === "isover" ) {
 				parentInstance.isover = false;
 				parentInstance.isout = true;
@@ -12785,7 +12170,6 @@ $.ui.ddmanager = {
 			this[ c === "isout" ? "isover" : "isout" ] = false;
 			this[ c === "isover" ? "_over" : "_out" ].call( this, event );
 
-			// We just moved out of a greedy child
 			if ( parentInstance && c === "isout" ) {
 				parentInstance.isout = false;
 				parentInstance.isover = true;
@@ -12797,19 +12181,14 @@ $.ui.ddmanager = {
 	dragStop: function( draggable, event ) {
 		draggable.element.parentsUntil( "body" ).off( "scroll.droppable" );
 
-		// Call prepareOffsets one final time since IE does not fire return scroll events when
-		// overflow was caused by drag (see #5003)
 		if ( !draggable.options.refreshPositions ) {
 			$.ui.ddmanager.prepareOffsets( draggable, event );
 		}
 	}
 };
 
-// DEPRECATED
-// TODO: switch return back to widget declaration at top of file when this is removed
 if ( $.uiBackCompat !== false ) {
 
-	// Backcompat for activeClass and hoverClass options
 	$.widget( "ui.droppable", $.ui.droppable, {
 		options: {
 			hoverClass: false,
@@ -12995,7 +12374,6 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 		filter: "*",
 		tolerance: "touch",
 
-		// Callbacks
 		selected: null,
 		selecting: null,
 		start: null,
@@ -13010,7 +12388,6 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 
 		this.dragged = false;
 
-		// Cache selectee children based on filter
 		this.refresh = function() {
 			that.elementPos = $( that.element[ 0 ] ).offset();
 			that.selectees = $( that.options.filter, that.element[ 0 ] );
@@ -13066,7 +12443,6 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 
 		$( options.appendTo ).append( this.helper );
 
-		// position helper (lasso)
 		this.helper.css( {
 			"left": event.pageX,
 			"top": event.pageY,
@@ -13087,7 +12463,6 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 				that._addClass( selectee.$element, "ui-unselecting" );
 				selectee.unselecting = true;
 
-				// selectable UNSELECTING callback
 				that._trigger( "unselecting", event, {
 					unselecting: selectee.element
 				} );
@@ -13106,7 +12481,6 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 				selectee.selecting = doSelect;
 				selectee.selected = doSelect;
 
-				// selectable (UN)SELECTING callback
 				if ( doSelect ) {
 					that._trigger( "selecting", event, {
 						selecting: selectee.element
@@ -13180,14 +12554,12 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 					that._addClass( selectee.$element, "ui-selecting" );
 					selectee.selecting = true;
 
-					// selectable SELECTING callback
 					that._trigger( "selecting", event, {
 						selecting: selectee.element
 					} );
 				}
 			} else {
 
-				// UNSELECT
 				if ( selectee.selecting ) {
 					if ( ( event.metaKey || event.ctrlKey ) && selectee.startselected ) {
 						that._removeClass( selectee.$element, "ui-selecting" );
@@ -13202,7 +12574,6 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 							selectee.unselecting = true;
 						}
 
-						// selectable UNSELECTING callback
 						that._trigger( "unselecting", event, {
 							unselecting: selectee.element
 						} );
@@ -13316,7 +12687,6 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 				this.element[ 0 ].selectedIndex
 			);
 
-		// Associate existing label with the new button
 		this.labels = this.element.labels().attr( "for", this.ids.button );
 		this._on( this.labels, {
 			click: function( event ) {
@@ -13325,10 +12695,8 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 			}
 		} );
 
-		// Hide original select element
 		this.element.hide();
 
-		// Create button
 		this.button = $( "<span>", {
 			tabindex: this.options.disabled ? -1 : 0,
 			id: this.ids.button,
@@ -13356,8 +12724,6 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 		this._on( this.button, this._buttonEvents );
 		this.button.one( "focusin", function() {
 
-			// Delay rendering the menu items until the button receives focus.
-			// The menu may have already been rendered via a programmatic open.
 			if ( !that._rendered ) {
 				that._refreshMenu();
 			}
@@ -13389,9 +12755,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 				select: function( event, ui ) {
 					event.preventDefault();
 
-					// Support: IE8
-					// If the item was selected via a click, the text selection
-					// will be destroyed in IE
+					
 					that._setSelection();
 
 					that._select( ui.item.data( "ui-selectmenu-item" ), event );
@@ -13399,7 +12763,6 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 				focus: function( event, ui ) {
 					var item = ui.item.data( "ui-selectmenu-item" );
 
-					// Prevent inital focus from firing and check if its a newly focused item
 					if ( that.focusIndex != null && item.index !== that.focusIndex ) {
 						that._trigger( "focus", event, { item: item } );
 						if ( !that.isOpen ) {
@@ -13414,15 +12777,12 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 			} )
 			.menu( "instance" );
 
-		// Don't close the menu on mouseleave
 		this.menuInstance._off( this.menu, "mouseleave" );
 
-		// Cancel the menu's collapseAll on document click
 		this.menuInstance._closeOnDocumentClick = function() {
 			return false;
 		};
 
-		// Selects often contain empty items, but never contain dividers
 		this.menuInstance._isDivider = function() {
 			return false;
 		};
@@ -13433,7 +12793,6 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 		this.buttonItem.replaceWith(
 			this.buttonItem = this._renderButtonItem(
 
-				// Fall back to an empty object in case there are no options
 				this._getSelectedItem().data( "ui-selectmenu-item" ) || {}
 			)
 		);
@@ -13464,11 +12823,9 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 
 		item = this._getSelectedItem();
 
-		// Update the menu to have the correct item focused
 		this.menuInstance.focus( null, item );
 		this._setAria( item.data( "ui-selectmenu-item" ) );
 
-		// Set disabled state
 		this._setOption( "disabled", this.element.prop( "disabled" ) );
 	},
 
@@ -13477,17 +12834,14 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 			return;
 		}
 
-		// If this is the first time the menu is being opened, render the items
 		if ( !this._rendered ) {
 			this._refreshMenu();
 		} else {
 
-			// Menu clears focus on close, reset focus to selected item
 			this._removeClass( this.menu.find( ".ui-state-active" ), null, "ui-state-active" );
 			this.menuInstance.focus( null, this._getSelectedItem() );
 		}
 
-		// If there are no options, don't open the menu
 		if ( !this.menuItems.length ) {
 			return;
 		}
@@ -13654,7 +13008,6 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 
 	_buttonEvents: {
 
-		// Prevent text selection from being reset when interacting with the selectmenu (#10144)
 		mousedown: function() {
 			var selection;
 
@@ -13664,7 +13017,6 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 					this.range = selection.getRangeAt( 0 );
 				}
 
-			// Support: IE8
 			} else {
 				this.range = document.selection.createRange();
 			}
@@ -13911,8 +13263,6 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 			"ui-slider": "ui-corner-all",
 			"ui-slider-handle": "ui-corner-all",
 
-			// Note: ui-widget-header isn't the most fittingly semantic framework class for this
-			// element, but worked best visually with a variety of themes
 			"ui-slider-range": "ui-corner-all ui-widget-header"
 		},
 		distance: 0,
@@ -13924,15 +13274,12 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 		value: 0,
 		values: null,
 
-		// Callbacks
 		change: null,
 		slide: null,
 		start: null,
 		stop: null
 	},
 
-	// Number of pages in a slider
-	// (how many times can you page up/down to go through the whole range)
 	numPages: 5,
 
 	_create: function() {
@@ -14012,7 +13359,6 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 			} else {
 				this._removeClass( this.range, "ui-slider-range-min ui-slider-range-max" );
 
-				// Handle range switching from true to min/max
 				this.range.css( {
 					"left": "",
 					"bottom": ""
@@ -14353,8 +13699,6 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 		this._toggleClass( null, "ui-state-disabled", !!value );
 	},
 
-	//internal value getter
-	// _value() returns value trimmed by min and max, aligned by step
 	_value: function() {
 		var val = this.options.value;
 		val = this._trimAlignValue( val );
@@ -14362,9 +13706,6 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 		return val;
 	},
 
-	//internal values getter
-	// _values() returns array of values trimmed by min and max, aligned by step
-	// _values( index ) returns single value trimmed by min and max, aligned by step
 	_values: function( index ) {
 		var val,
 			vals,
@@ -14390,7 +13731,6 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 		}
 	},
 
-	// Returns the step-aligned value that val is closest to, between (inclusive) min and max
 	_trimAlignValue: function( val ) {
 		if ( val <= this._valueMin() ) {
 			return this._valueMin();
@@ -14406,8 +13746,6 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 			alignValue += ( valModStep > 0 ) ? step : ( -step );
 		}
 
-		// Since JavaScript has problems with large floats, round
-		// the final value to 5 digits after the decimal point (see #4124)
 		return parseFloat( alignValue.toFixed( 5 ) );
 	},
 
@@ -14419,7 +13757,6 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 		max = aboveMin + min;
 		if ( max > this.options.max ) {
 
-			//If max is not divisible by step, rounding off may increase its value
 			max -= step;
 		}
 		this.max = parseFloat( max.toFixed( this._precision() ) );
@@ -14733,10 +14070,8 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			return false;
 		}
 
-		//We have to refresh the items data once first
 		this._refreshItems( event );
 
-		//Find out if the clicked node (or one of its parents) is a actual item in this.items
 		$( event.target ).parents().each( function() {
 			if ( $.data( this, that.widgetName + "-item" ) === that ) {
 				currentItem = $( this );
@@ -14774,28 +14109,17 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 		this.currentContainer = this;
 
-		//We only need to call refreshPositions, because the refreshItems call has been moved to
-		// mouseCapture
 		this.refreshPositions();
 
-		//Create and append the visible helper
 		this.helper = this._createHelper( event );
 
-		//Cache the helper size
 		this._cacheHelperProportions();
 
-		/*
-		 * - Position generation -
-		 * This block generates everything position related - it's the core of draggables.
-		 */
 
-		//Cache the margins of the original element
 		this._cacheMargins();
 
-		//Get the next scrolling parent
 		this.scrollParent = this.helper.scrollParent();
 
-		//The element's absolute position on the page minus margins
 		this.offset = this.currentItem.offset();
 		this.offset = {
 			top: this.offset.top - this.margins.top,
@@ -14803,54 +14127,43 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		};
 
 		$.extend( this.offset, {
-			click: { //Where the click happened, relative to the element
+			click: { 
 				left: event.pageX - this.offset.left,
 				top: event.pageY - this.offset.top
 			},
 			parent: this._getParentOffset(),
 
-			// This is a relative to absolute position minus the actual position calculation -
-			// only used for relative positioned helper
 			relative: this._getRelativeOffset()
 		} );
 
-		// Only after we got the offset, we can change the helper's position to absolute
-		// TODO: Still need to figure out a way to make relative sorting possible
+		
 		this.helper.css( "position", "absolute" );
 		this.cssPosition = this.helper.css( "position" );
 
-		//Generate the original position
 		this.originalPosition = this._generatePosition( event );
 		this.originalPageX = event.pageX;
 		this.originalPageY = event.pageY;
 
-		//Adjust the mouse offset relative to the helper if "cursorAt" is supplied
 		( o.cursorAt && this._adjustOffsetFromHelper( o.cursorAt ) );
 
-		//Cache the former DOM position
 		this.domPosition = {
 			prev: this.currentItem.prev()[ 0 ],
 			parent: this.currentItem.parent()[ 0 ]
 		};
 
-		// If the helper is not the original, hide the original so it's not playing any role during
-		// the drag, won't cause anything bad this way
 		if ( this.helper[ 0 ] !== this.currentItem[ 0 ] ) {
 			this.currentItem.hide();
 		}
 
-		//Create the placeholder
 		this._createPlaceholder();
 
-		//Set a containment if given in the options
 		if ( o.containment ) {
 			this._setContainment();
 		}
 
-		if ( o.cursor && o.cursor !== "auto" ) { // cursor option
+		if ( o.cursor && o.cursor !== "auto" ) { 
 			body = this.document.find( "body" );
 
-			// Support: IE
 			this.storedCursor = body.css( "cursor" );
 			body.css( "cursor", o.cursor );
 
@@ -14858,42 +14171,37 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				$( "<style>*{ cursor: " + o.cursor + " !important; }</style>" ).appendTo( body );
 		}
 
-		if ( o.opacity ) { // opacity option
+		if ( o.opacity ) {
 			if ( this.helper.css( "opacity" ) ) {
 				this._storedOpacity = this.helper.css( "opacity" );
 			}
 			this.helper.css( "opacity", o.opacity );
 		}
 
-		if ( o.zIndex ) { // zIndex option
+		if ( o.zIndex ) { 
 			if ( this.helper.css( "zIndex" ) ) {
 				this._storedZIndex = this.helper.css( "zIndex" );
 			}
 			this.helper.css( "zIndex", o.zIndex );
 		}
 
-		//Prepare scrolling
 		if ( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
 				this.scrollParent[ 0 ].tagName !== "HTML" ) {
 			this.overflowOffset = this.scrollParent.offset();
 		}
 
-		//Call callbacks
 		this._trigger( "start", event, this._uiHash() );
 
-		//Recache the helper size
 		if ( !this._preserveHelperProportions ) {
 			this._cacheHelperProportions();
 		}
 
-		//Post "activate" events to possible containers
 		if ( !noActivation ) {
 			for ( i = this.containers.length - 1; i >= 0; i-- ) {
 				this.containers[ i ]._trigger( "activate", event, this._uiHash( this ) );
 			}
 		}
 
-		//Prepare possible droppables
 		if ( $.ui.ddmanager ) {
 			$.ui.ddmanager.current = this;
 		}
@@ -14906,8 +14214,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 		this._addClass( this.helper, "ui-sortable-helper" );
 
-		// Execute the drag once - this causes the helper not to be visiblebefore getting its
-		// correct position
 		this._mouseDrag( event );
 		return true;
 
@@ -14918,7 +14224,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			o = this.options,
 			scrolled = false;
 
-		//Compute the helpers position
 		this.position = this._generatePosition( event );
 		this.positionAbs = this._convertPositionTo( "absolute" );
 
@@ -14926,7 +14231,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			this.lastPositionAbs = this.positionAbs;
 		}
 
-		//Do scrolling
 		if ( this.options.scroll ) {
 			if ( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
 					this.scrollParent[ 0 ].tagName !== "HTML" ) {
@@ -14976,10 +14280,8 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			}
 		}
 
-		//Regenerate the absolute position used for position checks
 		this.positionAbs = this._convertPositionTo( "absolute" );
 
-		//Set the helper position
 		if ( !this.options.axis || this.options.axis !== "y" ) {
 			this.helper[ 0 ].style.left = this.position.left + "px";
 		}
@@ -14990,7 +14292,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		//Rearrange
 		for ( i = this.items.length - 1; i >= 0; i-- ) {
 
-			//Cache variables and intersection, continue if no intersection
 			item = this.items[ i ];
 			itemElement = item.item[ 0 ];
 			intersection = this._intersectsWithPointer( item );
@@ -14998,20 +14299,12 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				continue;
 			}
 
-			// Only put the placeholder inside the current Container, skip all
-			// items from other containers. This works because when moving
-			// an item from one container to another the
-			// currentContainer is switched before the placeholder is moved.
-			//
-			// Without this, moving items in "sub-sortables" can cause
-			// the placeholder to jitter between the outer and inner container.
+			
 			if ( item.instance !== this.currentContainer ) {
 				continue;
 			}
 
-			// Cannot intersect with itself
-			// no useless actions that have been done before
-			// no action if the item moved is the parent of the item checked
+			
 			if ( itemElement !== this.currentItem[ 0 ] &&
 				this.placeholder[ intersection === 1 ? "next" : "prev" ]()[ 0 ] !== itemElement &&
 				!$.contains( this.placeholder[ 0 ], itemElement ) &&
@@ -15034,15 +14327,12 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			}
 		}
 
-		//Post events to containers
 		this._contactContainers( event );
 
-		//Interconnect with droppables
 		if ( $.ui.ddmanager ) {
 			$.ui.ddmanager.drag( this, event );
 		}
 
-		//Call callbacks
 		this._trigger( "sort", event, this._uiHash() );
 
 		this.lastPositionAbs = this.positionAbs;
@@ -15056,7 +14346,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			return;
 		}
 
-		//If we are using droppables, inform the manager about the drop
 		if ( $.ui.ddmanager && !this.options.dropBehaviour ) {
 			$.ui.ddmanager.drop( this, event );
 		}
@@ -15110,7 +14399,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				this.currentItem.show();
 			}
 
-			//Post deactivating events to containers
 			for ( var i = this.containers.length - 1; i >= 0; i-- ) {
 				this.containers[ i ]._trigger( "deactivate", null, this._uiHash( this ) );
 				if ( this.containers[ i ].containerCache.over ) {
@@ -15123,8 +14411,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 		if ( this.placeholder ) {
 
-			//$(this.placeholder[0]).remove(); would have been the jQuery way - unfortunately,
-			// it unbinds ALL events from the original node!
 			if ( this.placeholder[ 0 ].parentNode ) {
 				this.placeholder[ 0 ].parentNode.removeChild( this.placeholder[ 0 ] );
 			}
@@ -15217,10 +14503,10 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			return isOverElement;
 		} else {
 
-			return ( l < x1 + ( this.helperProportions.width / 2 ) && // Right Half
-				x2 - ( this.helperProportions.width / 2 ) < r && // Left Half
-				t < y1 + ( this.helperProportions.height / 2 ) && // Bottom Half
-				y2 - ( this.helperProportions.height / 2 ) < b ); // Top Half
+			return ( l < x1 + ( this.helperProportions.width / 2 ) && 
+				x2 - ( this.helperProportions.width / 2 ) < r && 
+				t < y1 + ( this.helperProportions.height / 2 ) && 
+				y2 - ( this.helperProportions.height / 2 ) < b ); 
 
 		}
 	},
@@ -15359,7 +14645,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				$( this.options.items, this.element ), this ] ],
 			connectWith = this._connectWith();
 
-		//Shouldn't be run the first time through due to massive slow-down
 		if ( connectWith && this.ready ) {
 			for ( i = connectWith.length - 1; i >= 0; i-- ) {
 				cur = $( connectWith[ i ], this.document[ 0 ] );
@@ -15383,7 +14668,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			for ( j = 0, queriesLength = _queries.length; j < queriesLength; j++ ) {
 				item = $( _queries[ j ] );
 
-				// Data for target checking (mouse manager)
 				item.data( this.widgetName + "-item", targetData );
 
 				items.push( {
@@ -15399,13 +14683,10 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 	refreshPositions: function( fast ) {
 
-		// Determine whether items are being displayed horizontally
 		this.floating = this.items.length ?
 			this.options.axis === "x" || this._isFloating( this.items[ 0 ].item ) :
 			false;
 
-		//This has to be redone because due to the item being moved out/into the offsetParent,
-		// the offsetParent's position will change
 		if ( this.offsetParent && this.helper ) {
 			this.offset.parent = this._getParentOffset();
 		}
@@ -15415,7 +14696,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		for ( i = this.items.length - 1; i >= 0; i-- ) {
 			item = this.items[ i ];
 
-			//We ignore calculating positions of all connected containers when we're not over them
 			if ( item.instance !== this.currentContainer && this.currentContainer &&
 					item.item[ 0 ] !== this.currentItem[ 0 ] ) {
 				continue;
@@ -15488,16 +14768,11 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				},
 				update: function( container, p ) {
 
-					// 1. If a className is set as 'placeholder option, we don't force sizes -
-					// the class is responsible for that
-					// 2. The option 'forcePlaceholderSize can be enabled to force it even if a
-					// class name is specified
 					if ( className && !o.forcePlaceholderSize ) {
 						return;
 					}
 
-					//If the element doesn't have a actual height by itself (without styles coming
-					// from a stylesheet), it receives the inline height from the dragged item
+					
 					if ( !p.height() ) {
 						p.height(
 							that.currentItem.innerHeight() -
@@ -15514,13 +14789,11 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			};
 		}
 
-		//Create the placeholder
-		that.placeholder = $( o.placeholder.element.call( that.element, that.currentItem ) );
 
-		//Append it after the actual current item
+				that.placeholder = $( o.placeholder.element.call( that.element, that.currentItem ) );
+
 		that.currentItem.after( that.placeholder );
 
-		//Update the size of the placeholder (TODO: Logic to fuzzy, see line 316/317)
 		o.placeholder.update( that, that.placeholder );
 
 	},
@@ -15541,17 +14814,14 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			innermostContainer = null,
 			innermostIndex = null;
 
-		// Get innermost container that intersects with item
 		for ( i = this.containers.length - 1; i >= 0; i-- ) {
 
-			// Never consider a container that's located within the item itself
 			if ( $.contains( this.currentItem[ 0 ], this.containers[ i ].element[ 0 ] ) ) {
 				continue;
 			}
 
 			if ( this._intersectsWith( this.containers[ i ].containerCache ) ) {
 
-				// If we've already found a container and it's more "inner" than this, then continue
 				if ( innermostContainer &&
 						$.contains(
 							this.containers[ i ].element[ 0 ],
@@ -15564,7 +14834,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 			} else {
 
-				// container doesn't intersect. trigger "out" event if necessary
 				if ( this.containers[ i ].containerCache.over ) {
 					this.containers[ i ]._trigger( "out", event, this._uiHash( this ) );
 					this.containers[ i ].containerCache.over = 0;
@@ -15573,12 +14842,10 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 		}
 
-		// If no intersecting containers found, return
 		if ( !innermostContainer ) {
 			return;
 		}
 
-		// Move the item into the container if it's not there already
 		if ( this.containers.length === 1 ) {
 			if ( !this.containers[ innermostIndex ].containerCache.over ) {
 				this.containers[ innermostIndex ]._trigger( "over", event, this._uiHash( this ) );
@@ -15586,8 +14853,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			}
 		} else {
 
-			// When entering a new container, we will find the item with the least distance and
-			// append our item near it
 			dist = 10000;
 			itemWithLeastDistance = null;
 			floating = innermostContainer.floating || this._isFloating( this.currentItem );
@@ -15618,7 +14883,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				}
 			}
 
-			//Check if dropOnEmpty is enabled
 			if ( !itemWithLeastDistance && !this.options.dropOnEmpty ) {
 				return;
 			}
@@ -15638,7 +14902,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			this.containers[ innermostIndex ]._trigger( "change", event, this._uiHash( this ) );
 			this.currentContainer = this.containers[ innermostIndex ];
 
-			//Update the placeholder
 			this.options.placeholder.update( this.currentContainer, this.placeholder );
 
 			this.containers[ innermostIndex ]._trigger( "over", event, this._uiHash( this ) );
@@ -15654,7 +14917,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				$( o.helper.apply( this.element[ 0 ], [ event, this.currentItem ] ) ) :
 				( o.helper === "clone" ? this.currentItem.clone() : this.currentItem );
 
-		//Add the helper to the DOM if that didn't happen already
 		if ( !helper.parents( "body" ).length ) {
 			$( o.appendTo !== "parent" ?
 				o.appendTo :
@@ -15705,25 +14967,15 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 	_getParentOffset: function() {
 
-		//Get the offsetParent and cache its position
 		this.offsetParent = this.helper.offsetParent();
 		var po = this.offsetParent.offset();
 
-		// This is a special case where we need to modify a offset calculated on start, since the
-		// following happened:
-		// 1. The position of the helper is absolute, so it's position is calculated based on the
-		// next positioned parent
-		// 2. The actual offset parent is a child of the scroll parent, and the scroll parent isn't
-		// the document, which means that the scroll is included in the initial calculation of the
-		// offset of the parent, and never recalculated upon drag
 		if ( this.cssPosition === "absolute" && this.scrollParent[ 0 ] !== this.document[ 0 ] &&
 				$.contains( this.scrollParent[ 0 ], this.offsetParent[ 0 ] ) ) {
 			po.left += this.scrollParent.scrollLeft();
 			po.top += this.scrollParent.scrollTop();
 		}
 
-		// This needs to be actually done for all browsers, since pageX/pageY includes this
-		// information with an ugly IE fix
 		if ( this.offsetParent[ 0 ] === this.document[ 0 ].body ||
 				( this.offsetParent[ 0 ].tagName &&
 				this.offsetParent[ 0 ].tagName.toLowerCase() === "html" && $.ui.ie ) ) {
@@ -15827,13 +15079,10 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		return {
 			top: (
 
-				// The absolute mouse position
 				pos.top	+
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.top * mod +
 
-				// The offsetParent's offset without borders (offset + border)
 				this.offset.parent.top * mod -
 				( ( this.cssPosition === "fixed" ?
 					-this.scrollParent.scrollTop() :
@@ -15841,13 +15090,10 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			),
 			left: (
 
-				// The absolute mouse position
 				pos.left +
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.left * mod +
 
-				// The offsetParent's offset without borders (offset + border)
 				this.offset.parent.left * mod	-
 				( ( this.cssPosition === "fixed" ?
 					-this.scrollParent.scrollLeft() : scrollIsRootNode ? 0 :
@@ -15868,24 +15114,14 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				$.contains( this.scrollParent[ 0 ], this.offsetParent[ 0 ] ) ) ?
 					this.offsetParent :
 					this.scrollParent,
-				scrollIsRootNode = ( /(html|body)/i ).test( scroll[ 0 ].tagName );
-
-		// This is another very weird special case that only happens for relative elements:
-		// 1. If the css position is relative
-		// 2. and the scroll parent is the document or similar to the offset parent
-		// we have to refresh the relative offset during the scroll so there are no jumps
+		
 		if ( this.cssPosition === "relative" && !( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
 				this.scrollParent[ 0 ] !== this.offsetParent[ 0 ] ) ) {
 			this.offset.relative = this._getRelativeOffset();
 		}
 
-		/*
-		 * - Position constraining -
-		 * Constrain the position to a mix of grid, containment.
-		 */
 
-		if ( this.originalPosition ) { //If we are not dragging yet, we won't check for options
-
+		if ( this.originalPosition ) { 
 			if ( this.containment ) {
 				if ( event.pageX - this.offset.click.left < this.containment[ 0 ] ) {
 					pageX = this.containment[ 0 ] + this.offset.click.left;
@@ -15928,16 +15164,12 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		return {
 			top: (
 
-				// The absolute mouse position
 				pageY -
 
-				// Click offset (relative to the element)
 				this.offset.click.top -
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.top -
 
-				// The offsetParent's offset without borders (offset + border)
 				this.offset.parent.top +
 				( ( this.cssPosition === "fixed" ?
 					-this.scrollParent.scrollTop() :
@@ -15945,16 +15177,12 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			),
 			left: (
 
-				// The absolute mouse position
 				pageX -
 
-				// Click offset (relative to the element)
 				this.offset.click.left -
 
-				// Only for relative positioned nodes: Relative offset from element to offset parent
 				this.offset.relative.left -
 
-				// The offsetParent's offset without borders (offset + border)
 				this.offset.parent.left +
 				( ( this.cssPosition === "fixed" ?
 					-this.scrollParent.scrollLeft() :
@@ -15975,7 +15203,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		this._delay( function() {
 			if ( counter === this.counter ) {
 
-				//Precompute after each DOM insertion, NOT on mousemove
 				this.refreshPositions( !hardRefresh );
 			}
 		} );
@@ -15986,14 +15213,9 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 		this.reverting = false;
 
-		// We delay all events that have to be triggered to after the point where the placeholder
-		// has been removed and everything else normalized again
 		var i,
 			delayedTriggers = [];
 
-		// We first have to update the dom position of the actual currentItem
-		// Note: don't do it if the current item is already removed (by a user), or it gets
-		// reappended (see #4088)
 		if ( !this._noFinalSort && this.currentItem.parent().length ) {
 			this.placeholder.before( this.currentItem );
 		}
@@ -16021,14 +15243,11 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				this.currentItem.prev().not( ".ui-sortable-helper" )[ 0 ] ||
 				this.domPosition.parent !== this.currentItem.parent()[ 0 ] ) && !noPropagation ) {
 
-			// Trigger update callback if the DOM position has changed
 			delayedTriggers.push( function( event ) {
 				this._trigger( "update", event, this._uiHash() );
 			} );
 		}
 
-		// Check if the items Container has Changed and trigger appropriate
-		// events.
 		if ( this !== this.currentContainer ) {
 			if ( !noPropagation ) {
 				delayedTriggers.push( function( event ) {
@@ -16047,7 +15266,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			}
 		}
 
-		//Post events to containers
 		function delayEvent( type, instance, container ) {
 			return function( event ) {
 				container._trigger( type, event, instance._uiHash( instance ) );
@@ -16063,7 +15281,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			}
 		}
 
-		//Do what was originally in plugins
 		if ( this.storedCursor ) {
 			this.document.find( "body" ).css( "cursor", this.storedCursor );
 			this.storedStylesheet.remove();
@@ -16081,8 +15298,6 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			this._trigger( "beforeStop", event, this._uiHash() );
 		}
 
-		//$(this.placeholder[0]).remove(); would have been the jQuery way - unfortunately,
-		// it unbinds ALL events from the original node!
 		this.placeholder[ 0 ].parentNode.removeChild( this.placeholder[ 0 ] );
 
 		if ( !this.cancelHelperRemoval ) {
@@ -16170,16 +15385,12 @@ $.widget( "ui.spinner", {
 
 	_create: function() {
 
-		// handle string values that need to be parsed
 		this._setOption( "max", this.options.max );
 		this._setOption( "min", this.options.min );
 		this._setOption( "step", this.options.step );
 
-		// Only format if there is a value, prevents the field from being marked
-		// as invalid in Firefox, see #9573.
 		if ( this.value() !== "" ) {
 
-			// Format the value, but don't constrain.
 			this._value( this.element.val(), true );
 		}
 
@@ -16187,9 +15398,6 @@ $.widget( "ui.spinner", {
 		this._on( this._events );
 		this._refresh();
 
-		// Turning off autocomplete prevents the browser from remembering the
-		// value when navigating through history, so we re-enable autocomplete
-		// if the page is unloaded before the widget is destroyed. #7790
 		this._on( this.window, {
 			beforeunload: function() {
 				this.element.removeAttr( "autocomplete" );
@@ -16253,11 +15461,6 @@ $.widget( "ui.spinner", {
 		"mousedown .ui-spinner-button": function( event ) {
 			var previous;
 
-			// We never want the buttons to have focus; whenever the user is
-			// interacting with the spinner, the focus should be on the input.
-			// If the input is focused then this.previous is properly set from
-			// when the input first received focus. If the input is not focused
-			// then we need to set this.previous based on the value before spinning.
 			previous = this.element[ 0 ] === $.ui.safeActiveElement( this.document[ 0 ] ) ?
 				this.previous : this.element.val();
 			function checkFocus() {
@@ -16266,23 +15469,15 @@ $.widget( "ui.spinner", {
 					this.element.trigger( "focus" );
 					this.previous = previous;
 
-					// support: IE
-					// IE sets focus asynchronously, so we need to check if focus
-					// moved off of the input because the user clicked on the button.
 					this._delay( function() {
 						this.previous = previous;
 					} );
 				}
 			}
 
-			// Ensure focus is on (or stays on) the text field
 			event.preventDefault();
 			checkFocus.call( this );
 
-			// Support: IE
-			// IE doesn't prevent moving focus even with event.preventDefault()
-			// so we set a flag to know when we should ignore the blur event
-			// and check (again) if focus moved off of the input.
 			this.cancelBlur = true;
 			this._delay( function() {
 				delete this.cancelBlur;
@@ -16299,7 +15494,6 @@ $.widget( "ui.spinner", {
 		"mouseup .ui-spinner-button": "_stop",
 		"mouseenter .ui-spinner-button": function( event ) {
 
-			// button will add ui-state-active if mouse was down while mouseleave and kept down
 			if ( !$( event.currentTarget ).hasClass( "ui-state-active" ) ) {
 				return;
 			}
@@ -16311,20 +15505,15 @@ $.widget( "ui.spinner", {
 				.hasClass( "ui-spinner-up" ) ? 1 : -1, event );
 		},
 
-		// TODO: do we really want to consider this a stop?
-		// shouldn't we just stop the repeater and wait until mouseup before
-		// we trigger the stop event?
 		"mouseleave .ui-spinner-button": "_stop"
 	},
 
-	// Support mobile enhanced option and make backcompat more sane
 	_enhance: function() {
 		this.uiSpinner = this.element
 			.attr( "autocomplete", "off" )
 			.wrap( "<span>" )
 			.parent()
 
-				// Add buttons
 				.append(
 					"<a></a><a></a>"
 				);
@@ -16348,7 +15537,6 @@ $.widget( "ui.spinner", {
 				}
 			} );
 
-		// TODO: Right now button does not support classes this is already updated in button PR
 		this._removeClass( this.buttons, "ui-corner-all" );
 
 		this._addClass( this.buttons.first(), "ui-spinner-button ui-spinner-up" );
@@ -16460,21 +15648,14 @@ $.widget( "ui.spinner", {
 		var base, aboveMin,
 			options = this.options;
 
-		// Make sure we're at a valid step
-		// - find out where we are relative to the base (min or 0)
 		base = options.min !== null ? options.min : 0;
 		aboveMin = value - base;
-
-		// - round to the nearest step
 		aboveMin = Math.round( aboveMin / options.step ) * options.step;
 
-		// - rounding is based on 0, so adjust back to our base
 		value = base + aboveMin;
 
-		// Fix precision from bad JS floating point math
 		value = parseFloat( value.toFixed( this._precision() ) );
 
-		// Clamp the value
 		if ( options.max !== null && value > options.max ) {
 			return options.max;
 		}
@@ -16558,7 +15739,6 @@ $.widget( "ui.spinner", {
 			"aria-valuemin": this.options.min,
 			"aria-valuemax": this.options.max,
 
-			// TODO: what should we do with values that can't be parsed?
 			"aria-valuenow": this._parse( this.element.val() )
 		} );
 	},
@@ -16566,16 +15746,13 @@ $.widget( "ui.spinner", {
 	isValid: function() {
 		var value = this.value();
 
-		// Null is invalid
 		if ( value === null ) {
 			return false;
 		}
 
-		// If value gets adjusted, it's invalid
 		return value === this._adjustValue( value );
 	},
 
-	// Update the value without triggering change
 	_value: function( value, allowAny ) {
 		var parsed;
 		if ( value !== "" ) {
@@ -16639,11 +15816,8 @@ $.widget( "ui.spinner", {
 	}
 } );
 
-// DEPRECATED
-// TODO: switch return back to widget declaration at top of file when this is removed
 if ( $.uiBackCompat !== false ) {
 
-	// Backcompat for spinner html extension points
 	$.widget( "ui.spinner", $.ui.spinner, {
 		_enhance: function() {
 			this.uiSpinner = this.element
@@ -16702,7 +15876,6 @@ $.widget( "ui.tabs", {
 			anchorUrl = anchor.href.replace( rhash, "" );
 			locationUrl = location.href.replace( rhash, "" );
 
-			// Decoding may throw an error if the URL isn't UTF-8 (#9518)
 			try {
 				anchorUrl = decodeURIComponent( anchorUrl );
 			} catch ( error ) {}
@@ -16734,7 +15907,6 @@ $.widget( "ui.tabs", {
 			) ).sort();
 		}
 
-		// Check for length avoids error when initializing empty list
 		if ( this.options.active !== false && this.anchors.length ) {
 			this.active = this._findActive( options.active );
 		} else {
@@ -16755,7 +15927,6 @@ $.widget( "ui.tabs", {
 
 		if ( active === null ) {
 
-			// check the fragment identifier in the URL
 			if ( locationHash ) {
 				this.tabs.each( function( i, tab ) {
 					if ( $( tab ).attr( "aria-controls" ) === locationHash ) {
@@ -16765,18 +15936,15 @@ $.widget( "ui.tabs", {
 				} );
 			}
 
-			// Check for a tab marked active via a class
 			if ( active === null ) {
 				active = this.tabs.index( this.tabs.filter( ".ui-tabs-active" ) );
 			}
 
-			// No active tab, set to false
 			if ( active === null || active === -1 ) {
 				active = this.tabs.length ? 0 : false;
 			}
 		}
 
-		// Handle numbers: negative, out of range
 		if ( active !== false ) {
 			active = this.tabs.index( this.tabs.eq( active ) );
 			if ( active === -1 ) {
@@ -16784,7 +15952,6 @@ $.widget( "ui.tabs", {
 			}
 		}
 
-		// Don't allow collapsible: false and active: false
 		if ( !collapsible && active === false && this.anchors.length ) {
 			active = 0;
 		}
@@ -16826,35 +15993,26 @@ $.widget( "ui.tabs", {
 			break;
 		case $.ui.keyCode.SPACE:
 
-			// Activate only, no collapsing
 			event.preventDefault();
 			clearTimeout( this.activating );
 			this._activate( selectedIndex );
 			return;
 		case $.ui.keyCode.ENTER:
 
-			// Toggle (cancel delayed activation, allow collapsing)
 			event.preventDefault();
 			clearTimeout( this.activating );
 
-			// Determine if we should collapse or activate
 			this._activate( selectedIndex === this.options.active ? false : selectedIndex );
 			return;
 		default:
 			return;
 		}
 
-		// Focus the appropriate tab, based on which key was pressed
 		event.preventDefault();
 		clearTimeout( this.activating );
 		selectedIndex = this._focusNextTab( selectedIndex, goingForward );
 
-		// Navigating with control/command key will prevent automatic activation
 		if ( !event.ctrlKey && !event.metaKey ) {
-
-			// Update aria-selected immediately so that AT think the tab is already selected.
-			// Otherwise AT may confuse the user by stating that they need to activate the tab,
-			// but the tab will already be activated by the time the announcement finishes.
 			focusedTab.attr( "aria-selected", "false" );
 			this.tabs.eq( selectedIndex ).attr( "aria-selected", "true" );
 
@@ -16869,14 +16027,12 @@ $.widget( "ui.tabs", {
 			return;
 		}
 
-		// Ctrl+up moves focus to the current tab
 		if ( event.ctrlKey && event.keyCode === $.ui.keyCode.UP ) {
 			event.preventDefault();
 			this.active.trigger( "focus" );
 		}
 	},
 
-	// Alt+page up/down moves focus to the previous/next tab (and activates)
 	_handlePageNav: function( event ) {
 		if ( event.altKey && event.keyCode === $.ui.keyCode.PAGE_UP ) {
 			this._activate( this._focusNextTab( this.options.active - 1, false ) );
@@ -16917,7 +16073,6 @@ $.widget( "ui.tabs", {
 	_setOption: function( key, value ) {
 		if ( key === "active" ) {
 
-			// _activate() will handle invalid values and update this.options
 			this._activate( value );
 			return;
 		}
@@ -16927,7 +16082,6 @@ $.widget( "ui.tabs", {
 		if ( key === "collapsible" ) {
 			this._toggleClass( "ui-tabs-collapsible", null, value );
 
-			// Setting collapsible: false while collapsed; open first panel
 			if ( !value && this.options.active === false ) {
 				this._activate( 0 );
 			}
@@ -16956,7 +16110,6 @@ $.widget( "ui.tabs", {
 
 		this._processTabs();
 
-		// Was collapsed or no tabs
 		if ( options.active === false || !this.anchors.length ) {
 			options.active = false;
 			this.active = $();
@@ -16995,7 +16148,6 @@ $.widget( "ui.tabs", {
 				"aria-hidden": "true"
 			} );
 
-		// Make sure one tab is in the tab order
 		if ( !this.active.length ) {
 			this.tabs.eq( 0 ).attr( "tabIndex", 0 );
 		} else {
@@ -17024,7 +16176,6 @@ $.widget( "ui.tabs", {
 		this._addClass( this.tablist, "ui-tabs-nav",
 			"ui-helper-reset ui-helper-clearfix ui-widget-header" );
 
-		// Prevent users from focusing disabled tabs via click
 		this.tablist
 			.on( "mousedown" + this.eventNamespace, "> li", function( event ) {
 				if ( $( this ).is( ".ui-state-disabled" ) ) {
@@ -17063,13 +16214,12 @@ $.widget( "ui.tabs", {
 				tab = $( anchor ).closest( "li" ),
 				originalAriaControls = tab.attr( "aria-controls" );
 
-			// Inline tab
 			if ( that._isLocal( anchor ) ) {
 				selector = anchor.hash;
 				panelId = selector.substring( 1 );
 				panel = that.element.find( that._sanitizeSelector( selector ) );
 
-			// remote tab
+			
 			} else {
 
 				panelId = tab.attr( "aria-controls" ) || $( {} ).uniqueId()[ 0 ].id;
@@ -17098,7 +16248,6 @@ $.widget( "ui.tabs", {
 		this.panels.attr( "role", "tabpanel" );
 		this._addClass( this.panels, "ui-tabs-panel", "ui-widget-content" );
 
-		// Avoid memory leaks (#10056)
 		if ( prevTabs ) {
 			this._off( prevTabs.not( this.tabs ) );
 			this._off( prevAnchors.not( this.anchors ) );
@@ -17106,7 +16255,6 @@ $.widget( "ui.tabs", {
 		}
 	},
 
-	// Allow overriding how to find the list for rare usage scenarios (#7715)
 	_getList: function() {
 		return this.tablist || this.element.find( "ol, ul" ).eq( 0 );
 	},
@@ -17128,7 +16276,6 @@ $.widget( "ui.tabs", {
 			}
 		}
 
-		// Disable tabs
 		for ( i = 0; ( li = this.tabs[ i ] ); i++ ) {
 			currentItem = $( li );
 			if ( disabled === true || $.inArray( i, disabled ) !== -1 ) {
@@ -17315,12 +16462,10 @@ $.widget( "ui.tabs", {
 		var anchor,
 			active = this._findActive( index );
 
-		// Trying to activate the already active panel
 		if ( active[ 0 ] === this.active[ 0 ] ) {
 			return;
 		}
 
-		// Trying to collapse, simulate a click on the current active header
 		if ( !active.length ) {
 			active = this.active;
 		}
@@ -17339,7 +16484,6 @@ $.widget( "ui.tabs", {
 
 	_getIndex: function( index ) {
 
-		// meta-function to give users option to provide a href string instead of a numerical index.
 		if ( typeof index === "string" ) {
 			index = this.anchors.index( this.anchors.filter( "[href$='" +
 				$.ui.escapeSelector( index ) + "']" ) );
@@ -17505,7 +16649,6 @@ $.widget( "ui.tabs", {
 	}
 } );
 
-// DEPRECATED
 if ( $.uiBackCompat !== false ) {
 
 	$.widget( "ui.tabs", $.ui.tabs, {
