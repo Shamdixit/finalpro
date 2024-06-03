@@ -3421,7 +3421,6 @@ var effectsEffectFold = $.effects.define( "fold", "hide", function( options, don
 		animation2.clip = start;
 	}
 
-	// Animate
 	element
 		.queue( function( next ) {
 			if ( placeholder ) {
@@ -7831,7 +7830,7 @@ am  input  element - the input field attached to the date picker
 						chars += "0123456789";
 						break;
 					case "D": case "M":
-						return null; // Accept anything
+						return null; 
 					case "'":
 						if ( lookAhead( "'" ) ) {
 							chars += "'";
@@ -13536,7 +13535,6 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 
 		allowed = this._trigger( "slide", event, this._uiHash( index, newVal, newValues ) );
 
-		// A slide can be canceled by returning false from the slide callback
 		if ( allowed === false ) {
 			return;
 		}
