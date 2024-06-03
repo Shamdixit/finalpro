@@ -332,11 +332,7 @@
     var Event = {
       CLICK_DATA_API: "click" + EVENT_KEY + DATA_API_KEY,
       FOCUS_BLUR_DATA_API: "focus" + EVENT_KEY + DATA_API_KEY + " " + ("blur" + EVENT_KEY + DATA_API_KEY)
-      /**
-       * ------------------------------------------------------------------------
-       * Class Definition
-       * ------------------------------------------------------------------------
-       */
+     
 
     };
 
@@ -458,12 +454,9 @@
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
-    var ARROW_LEFT_KEYCODE = 37; // KeyboardEvent.which value for left arrow key
-
-    var ARROW_RIGHT_KEYCODE = 39; // KeyboardEvent.which value for right arrow key
-
-    var TOUCHEVENT_COMPAT_WAIT = 500; // Time for mouse compat events to fire after touch
-
+    var ARROW_LEFT_KEYCODE = 37; 
+    var ARROW_RIGHT_KEYCODE = 39; 
+    var TOUCHEVENT_COMPAT_WAIT = 500; 
     var Default = {
       interval: 5000,
       keyboard: true,
@@ -543,8 +536,7 @@
       };
 
       _proto.nextWhenVisible = function nextWhenVisible() {
-        // Don't call next when the page isn't visible
-        // or the carousel or its parent isn't visible
+       
         if (!document.hidden && $$$1(this._element).is(':visible') && $$$1(this._element).css('visibility') !== 'hidden') {
           this.next();
         }
@@ -774,7 +766,6 @@
         }
 
         if (!activeElement || !nextElement) {
-          // Some weirdness is happening, so we bail
           return;
         }
 
@@ -1152,8 +1143,7 @@
         var parent = null;
 
         if (Util.isElement(this._config.parent)) {
-          parent = this._config.parent; // It's a jQuery object
-
+          parent = this._config.parent;
           if (typeof this._config.parent.jquery !== 'undefined') {
             parent = this._config.parent[0];
           }
@@ -1434,7 +1424,6 @@ unction getScrollParent(element) {
       return getOffsetParent(commonAncestorContainer);
     }
 
-    // one of the nodes is inside shadowDOM, find which one
     var element1root = getRoot(element1);
     if (element1root.host) {
       return findCommonOffsetParent(element1root.host, element2);
@@ -1715,7 +1704,6 @@ unction getScrollParent(element) {
 
       var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
 
-      // In case of HTML, we need a different computation
       if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
         var _getWindowSizes = getWindowSizes(),
             height = _getWindowSizes.height,
@@ -1849,12 +1837,10 @@ unction getScrollParent(element) {
 
 
   function find(arr, check) {
-    // use native find if supported
     if (Array.prototype.find) {
       return arr.find(check);
     }
 
-    // use `filter` to obtain the same behavior of `find`
     return arr.filter(check)[0];
   }
 
@@ -1867,7 +1853,6 @@ unction getScrollParent(element) {
       });
     }
 
-    // use `find` + `indexOf` if `findIndex` isn't supported
     var match = find(arr, function (obj) {
       return obj[prop] === value;
     });
@@ -1896,7 +1881,6 @@ unction getScrollParent(element) {
   }
 
   function update() {
-    // if popper is destroyed, don't perform any further update
     if (this.state.isDestroyed) {
       return;
     }
@@ -1922,7 +1906,6 @@ unction getScrollParent(element) {
     data.offsets.popper = getPopperOffsets(this.popper, data.offsets.reference, data.placement);
     data.offsets.popper.position = this.options.positionFixed ? 'fixed' : 'absolute';
 
-    // run the modifiers
     data = runModifiers(this.modifiers, data);
 
     if (!this.state.isCreated) {
@@ -2015,15 +1998,12 @@ unction getScrollParent(element) {
 
   
   function removeEventListeners(reference, state) {
-    // Remove resize event listener on window
     getWindow(reference).removeEventListener('resize', state.updateBound);
 
-    // Remove scroll event listener on scroll parents
     state.scrollParents.forEach(function (target) {
       target.removeEventListener('scroll', state.updateBound);
     });
 
-    // Reset state
     state.updateBound = null;
     state.scrollParents = [];
     state.scrollElement = null;
@@ -2047,7 +2027,6 @@ unction getScrollParent(element) {
   function setStyles(element, styles) {
     Object.keys(styles).forEach(function (prop) {
       var unit = '';
-      // add unit if the value is numeric and is one of the following
       if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
         unit = 'px';
       }
@@ -2082,7 +2061,6 @@ unction getScrollParent(element) {
 
   /
   function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
-    // compute reference element offsets
     var referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
 
     var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
@@ -2148,7 +2126,6 @@ unction getScrollParent(element) {
       styles[sideB] = 0;
       styles.willChange = 'transform';
     } else {
-      // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
       var invertTop = sideA === 'bottom' ? -1 : 1;
       var invertLeft = sideB === 'right' ? -1 : 1;
       styles[sideA] = top * invertTop;
@@ -2156,12 +2133,10 @@ unction getScrollParent(element) {
       styles.willChange = sideA + ', ' + sideB;
     }
 
-    // Attributes
     var attributes = {
       'x-placement': data.placement
     };
 
-    // Update `data` attributes, styles and arrowStyles
     data.attributes = _extends({}, attributes, data.attributes);
     data.styles = _extends({}, styles, data.styles);
     data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
@@ -2280,13 +2255,11 @@ unction getScrollParent(element) {
   };
 
   function flip(data, options) {
-    // if `inner` modifier is enabled, we can't use the `flip` modifier
     if (isModifierEnabled(data.instance.modifiers, 'inner')) {
       return data;
     }
 
     if (data.flipped && data.placement === data.originalPlacement) {
-      // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
       return data;
     }
 
@@ -2840,17 +2813,16 @@ unction getScrollParent(element) {
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
-    var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
+    var ESCAPE_KEYCODE = 27; 
 
-    var SPACE_KEYCODE = 32; // KeyboardEvent.which value for space key
+    var SPACE_KEYCODE = 32; 
 
-    var TAB_KEYCODE = 9; // KeyboardEvent.which value for tab key
+    var TAB_KEYCODE = 9; 
+    var ARROW_UP_KEYCODE = 38; 
 
-    var ARROW_UP_KEYCODE = 38; // KeyboardEvent.which value for up arrow key
+    var ARROW_DOWN_KEYCODE = 40;
 
-    var ARROW_DOWN_KEYCODE = 40; // KeyboardEvent.which value for down arrow key
-
-    var RIGHT_MOUSE_BUTTON_WHICH = 3; // MouseEvent.which value for the right button (assuming a right-handed mouse)
+    var RIGHT_MOUSE_BUTTON_WHICH = 3;
 
     var REGEXP_KEYDOWN = new RegExp(ARROW_UP_KEYCODE + "|" + ARROW_DOWN_KEYCODE + "|" + ESCAPE_KEYCODE);
     var Event = {
@@ -2960,7 +2932,7 @@ unction getScrollParent(element) {
           if (this._config.reference === 'parent') {
             referenceElement = parent;
           } else if (Util.isElement(this._config.reference)) {
-            referenceElement = this._config.reference; // Check if it's jQuery element
+            referenceElement = this._config.reference;
 
             if (typeof this._config.reference.jquery !== 'undefined') {
               referenceElement = this._config.reference[0];
@@ -3037,7 +3009,7 @@ unction getScrollParent(element) {
 
       _proto._getPlacement = function _getPlacement() {
         var $parentDropdown = $$$1(this._element).parent();
-        var placement = AttachmentMap.BOTTOM; // Handle dropup
+        var placement = AttachmentMap.BOTTOM; 
 
         if ($parentDropdown.hasClass(ClassName.DROPUP)) {
           placement = AttachmentMap.TOP;
@@ -3282,7 +3254,7 @@ unction getScrollParent(element) {
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
-    var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
+    var ESCAPE_KEYCODE = 27; 
 
     var Default = {
       backdrop: true,
@@ -3901,10 +3873,7 @@ unction getScrollParent(element) {
     /*#__PURE__*/
     function () {
       function Tooltip(element, config) {
-        /**
-         * Check for Popper dependency
-         * Popper - https://popper.js.org
-         */
+        
         if (typeof Popper === 'undefined') {
           throw new TypeError('Bootstrap tooltips require Popper.js (https://popper.js.org)');
         } // private
@@ -4061,11 +4030,7 @@ unction getScrollParent(element) {
               _this._handlePopperPlacementChange(data);
             }
           });
-          $$$1(tip).addClass(ClassName.SHOW); // If this is a touch-enabled device we add extra
-          // empty mouseover listeners to the body's immediate children;
-          // only needed because of broken event delegation on iOS
-          // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
-
+          $$$1(tip).addClass(ClassName.SHOW); 
           if ('ontouchstart' in document.documentElement) {
             $$$1(document.body).children().on('mouseover', null, $$$1.noop);
           }
@@ -4125,8 +4090,7 @@ unction getScrollParent(element) {
           return;
         }
 
-        $$$1(tip).removeClass(ClassName.SHOW); // If this is a touch-enabled device we remove the extra
-        // empty mouseover listeners we added for iOS support
+        $$$1(tip).removeClass(ClassName.SHOW); 
 
         if ('ontouchstart' in document.documentElement) {
           $$$1(document.body).children().off('mouseover', null, $$$1.noop);
@@ -4537,8 +4501,7 @@ unction getScrollParent(element) {
       };
 
       _proto.setContent = function setContent() {
-        var $tip = $$$1(this.getTipElement()); // We use append for html objects to maintain js events
-
+        var $tip = $$$1(this.getTipElement());
         this.setElementContent($tip.find(Selector.TITLE), this.getTitle());
 
         var content = this._getContent();
