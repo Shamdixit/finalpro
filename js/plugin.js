@@ -4576,7 +4576,6 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		this._removeClass( prev, "ui-accordion-header-active" )
 			._addClass( prev, "ui-accordion-header-collapsed" );
 
-		// Work around for rendering bug in IE (#5421)
 		if ( toHide.length ) {
 			toHide.parent()[ 0 ].className = toHide.parent()[ 0 ].className;
 		}
@@ -15484,7 +15483,6 @@ $.widget( "ui.spinner", {
 
 		this.element.attr( "role", "spinbutton" );
 
-		// Button bindings
 		this.buttons = this.uiSpinner.children( "a" )
 			.attr( "tabIndex", -1 )
 			.attr( "aria-hidden", true )
@@ -15780,7 +15778,6 @@ if ( $.uiBackCompat !== false ) {
 				.wrap( this._uiSpinnerHtml() )
 				.parent()
 
-					// Add buttons
 					.append( this._buttonHtml() );
 		},
 		_uiSpinnerHtml: function() {
