@@ -727,7 +727,7 @@ $.widget.bridge = function( name, object ) {
 	};
 };
 
-$.Widget = function( /* options, element */ ) {};
+$.Widget = function(  ) {};
 $.Widget._childConstructors = [];
 
 $.Widget.prototype = {
@@ -811,7 +811,6 @@ $.Widget.prototype = {
 			.off( this.eventNamespace )
 			.removeAttr( "aria-disabled" );
 
-		// Clean up events and states
 		this.bindings.off( this.eventNamespace );
 	},
 
@@ -999,7 +998,6 @@ $.Widget.prototype = {
 		var delegateElement;
 		var instance = this;
 
-		// No suppressDisabledCheck flag, shuffle arguments
 		if ( typeof suppressDisabledCheck !== "boolean" ) {
 			handlers = element;
 			element = suppressDisabledCheck;
