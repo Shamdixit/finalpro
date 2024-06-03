@@ -15,7 +15,7 @@ this is a web based application developed for health care facilities.
  - Azure AI health bot
    
 ## introduction
-Welcome to the Wellthier HealthCare Website repository. This project aims to provide a comprehensive platform for managing patient records, scheduling appointments, and offering healthcare information. It is designed to streamline operations for healthcare providers and offer an intuitive interface for patients.
+Welcome to the finalpro Website repository. This project aims to provide a comprehensive platform for managing patient records, scheduling appointments, and offering healthcare information. It is designed to streamline operations for healthcare providers and offer an intuitive interface for patients.
 ## features and functionalities:
 - Patient Management: Record and manage patient details securely.
 - userfriendly Interface: a clean and simple UI
