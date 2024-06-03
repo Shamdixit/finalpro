@@ -7,12 +7,12 @@ this is a web based application developed for health care facilities.
 
 
 **Azure core technologies used for project**
-- Static web app
-- Storage accounts
+- Azure Static web app
+- Azure Storage accounts
 
 
 **Azure AI services used for project**
- - Azure health bot
+ - Azure AI health bot
    
 ## introduction
 Welcome to the Wellthier HealthCare Website repository. This project aims to provide a comprehensive platform for managing patient records, scheduling appointments, and offering healthcare information. It is designed to streamline operations for healthcare providers and offer an intuitive interface for patients.
@@ -32,7 +32,7 @@ Welcome to the Wellthier HealthCare Website repository. This project aims to pro
 ## IDE USed :
 Visual studio code
 
-## steps to follow for deployment of dtatic web applications:
+## steps to follow for deployment of Azure Static web applications:
 1. Create an Azure Static Web App Go to the Azure Portal and log in.
 ### 2. Click on Create a resource and search for "Static Web App". ![st2](https://github.com/Shamdixit/finalpro/assets/126175943/98fe4bac-dd11-47dc-8339-d4f393905ba6)
 
@@ -41,6 +41,8 @@ Visual studio code
 ## 6. Deploy Your App.![stwb1](https://github.com/Shamdixit/finalpro/assets/126175943/2b8f3c38-abac-4cbe-ae1c-4ca798de3a4c)
 7. Every time you push changes to your repository, the GitHub Actions workflow will trigger and deploy your site.
 8. You can monitor the deployment status in the Actions tab of your GitHub repository.
+## 9. here you can see the code for static website in github repositary.![stat](https://github.com/Shamdixit/finalpro/assets/126175943/7ecb3420-1998-4556-9979-d78ebde793a3)
+
 
 ### 9. Access Your Deployed App.![st5](https://github.com/Shamdixit/finalpro/assets/126175943/7ee10b81-8d49-4dfa-911f-f0b71500deaf)
 Once the deployment is complete, you can access your static web app via the URL provided in the Azure Portal under your Static Web App resource.
@@ -72,6 +74,13 @@ Once the deployment is complete, you can access your static web app via the URL 
 9. now your Azure healt bot is applide to the project successfully.
 
 ### Azure AI health bot screenshot in project:  ![hbs](https://github.com/Shamdixit/finalpro/assets/126175943/683b7735-bedf-49d5-b56a-b6733655f69f)
+
+# * here are some screen shots of the web application.
+![home](https://github.com/Shamdixit/finalpro/assets/126175943/ffcad9cf-c47d-43f7-9a45-4e8cfeb92d88)
+![contact](https://github.com/Shamdixit/finalpro/assets/126175943/c632fb90-03da-48fa-9d88-d5d11fd79312)
+![c2](https://github.com/Shamdixit/finalpro/assets/126175943/01218da8-8016-4607-a691-867a35d8b5fd)
+![foot](https://github.com/Shamdixit/finalpro/assets/126175943/f9470d58-8f1a-45d0-9338-c7651a39d8d2)
+
 
 ## designed & developed by :
 we have worked together on the whole wellthier project together using HTML, CSS , JavaScript.
