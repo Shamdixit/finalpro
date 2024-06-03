@@ -79,7 +79,7 @@ Once the deployment is complete, you can access your static web app via the URL 
 10. 
 ### Azure AI health bot screenshot in project:![hb9](https://github.com/Shamdixit/finalpro/assets/126175943/b7f0d471-9854-4010-83d1-56b24a991083)
 
-# * here are some Project DEMO  screenshots of the web application (Welltier).
+# * here are some Project DEMO  screenshots of the web application (Wellthier).
 ![home](https://github.com/Shamdixit/finalpro/assets/126175943/ffcad9cf-c47d-43f7-9a45-4e8cfeb92d88)
 ![contact](https://github.com/Shamdixit/finalpro/assets/126175943/c632fb90-03da-48fa-9d88-d5d11fd79312)
 ![c2](https://github.com/Shamdixit/finalpro/assets/126175943/01218da8-8016-4607-a691-867a35d8b5fd)
