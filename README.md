@@ -3,7 +3,7 @@ this is a web based application developed for health care facilities.
 ### this web application is based on healthcare and it is developed for accomplishment of future ready talent internship program launched by Microsoft, Future Skills Prime, Zuno by foundit & Github.
 
 * project link - https://shamdixit.github.io/finalpro/
-* project demo video link - 
+* project demo video link - https://youtu.be/hpfuWqp3_Is
 
 
 **Azure core technologies used for project**
