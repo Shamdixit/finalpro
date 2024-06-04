@@ -32,10 +32,10 @@ Welcome to the finalpro Website repository. This project aims to provide a compr
 ## IDE USed :
 Visual studio code
 
-## steps to follow for deployment of Azure Static web applications:
+# steps to follow for deployment of Azure Static web applications:
 1. Create an Azure Static Web App Go to the Azure Portal and log in.
 ### 2. Click on Create a resource and search for "Static Web App". ![st2](https://github.com/Shamdixit/finalpro/assets/126175943/98fe4bac-dd11-47dc-8339-d4f393905ba6)
-
+3. create.
 4. Click on Create to start the setup process.
 ### 5. Fill in the required details.![storageacc](https://github.com/Shamdixit/finalpro/assets/126175943/f6ae1352-1a12-4a9b-ac75-e89f48fa83e7)
 ## 6. Deploy Your App.![stwb1](https://github.com/Shamdixit/finalpro/assets/126175943/2b8f3c38-abac-4cbe-ae1c-4ca798de3a4c)
@@ -47,7 +47,7 @@ Visual studio code
 ### 9. Access Your Deployed App.![st5](https://github.com/Shamdixit/finalpro/assets/126175943/7ee10b81-8d49-4dfa-911f-f0b71500deaf)
 Once the deployment is complete, you can access your static web app via the URL provided in the Azure Portal under your Static Web App resource.
 
-## steps to follow for deployment of storage accounts :
+# steps to follow for deployment of storage accounts :
 1. built the whole project code in visual studio code
 2. test it on the live server.
 3. after that install git in system.
@@ -63,7 +63,7 @@ Once the deployment is complete, you can access your static web app via the URL 
 
 * this is the link provided by the Azure Storage Accounts. 
    https://healthcare01.z5.web.core.windows.net/ 
-## steps to follow for deployment of azure health bot:
+# steps to follow for deployment of azure health bot:
 1. first, you need to have an access to the azure portal.
 2. then search "health bot" in azure AI services
 3. select the azure health bot
